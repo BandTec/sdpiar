@@ -1,0 +1,47 @@
+#caixa1{
+    border-style: solid;
+    border-width: 1px;
+    overflow:auto;
+    font-size: 40px;
+    text-align: center;
+    background-color: white;
+    }
+
+#caixa2{
+    border-style: solid;
+    border-width: 1px;
+    margin: 2%;
+    padding: 1%;
+    text-align: left;
+    font-size: 35px; 
+    background-color: white;
+    
+    
+}
+
+img{
+    
+    width: 180px;
+    float:left;   
+    }
+
+.box{
+    height:35px;
+    font-size:25px;
+    width: 50%;
+}
+
+#botao_simu{
+    margin-top: 80px;
+    width: 33%;
+    margin-left: 33%;
+    margin-right: 33%;
+    height:50px;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body{
+    background-image: url(incendio.jpg);
+}

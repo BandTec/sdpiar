@@ -1,0 +1,19 @@
+create table Cadastro (
+    idCadastro int primary key identity,
+    Nome varchar (50),
+    DataNascimento date,
+    CPF varchar(30),
+    RG varchar(30),
+    Sexo varchar (1),
+    CEP int,
+    Endereço varchar (40),
+    Zona varchar (10),
+    Telefone int,
+    Email varchar (40)
+    );
+insert into Cadastro values 
+    ('Nathalia Jorge','2000-07-26','39265476850','509267774','F','03282050','Rua Tamanduá','Zona Leste','29188931','nathaliajorge@gmail.com'),
+    ('Efrain Mamani','1998-05-23','78530281946','578392013','M','09384020','República','Zona Norte','24562035','efrain.mamani@bandtec.com.br'),
+    ('Leonardo Melo','1997-03-19','84702502394','403235809','M','08367023','Guarulhos','Zona Norte','24581920','leonardo.melo@bandtec.com.br'),
+    ('Leonardo Matias','1995-02-25','74703582394','123535809','M','09568235','Higienópolis','Zona Sul','24468214','leonardo.ciarcia@bandtec.com.br'),
+    ('Vinício Braga','1992-09-03','92845102394','932184673','F','09238163','Presidente Dutra','Zona Oeste','29083765','vinicio.braga@bandtec.com.br');
