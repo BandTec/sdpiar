@@ -11,7 +11,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
     dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
     s = '',
-    toFixedFix = function(n, prec) {
+    toFixedFix = function (n, prec) {
       var k = Math.pow(10, prec);
       return '' + Math.round(n * k) / k;
     };
@@ -32,31 +32,49 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Dom", "Seg", "Ter", "Quar", "Quin", "Sex", "Sab"],
     datasets: [{
-      label: "Earnings",
+      label: "Graus",
       lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
+      backgroundColor: "rgba(240, 52, 52, 0.4)",
+      borderColor: "rgba(240, 52, 52, 1)",
       pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointBackgroundColor: "rgba(240, 52, 52, 1)",
+      pointBorderColor: "rgba(240, 52, 52, 1)",
+      pointHoverRadius: 6,
+      pointHoverBackgroundColor: "rgba(240, 52, 52, 1)",
+      pointHoverBorderColor: "rgba(240, 52, 52, 1)",
       pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-    }],
+      pointBorderWidth: 6,
+      data: [0, 30, 15, 20, 34, 17, 32],
+
+    },
+    {
+      label: "Umidade",
+      lineTension: 0.3,
+      backgroundColor: "rgba(52, 52, 240, 0.4)",
+      borderColor: "rgba(52, 52, 240, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(52, 52, 240, 1)",
+      pointBorderColor: "rgba(52, 52, 240, 1)",
+      pointHoverRadius: 6,
+      pointHoverBackgroundColor: "rgba(52, 52, 240, 1)",
+      pointHoverBorderColor: "rgba(52, 52, 240, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 6,
+      data: [28, 15, 30, 10, 17, 29, 16],
+
+    }
+    ],
   },
   options: {
     maintainAspectRatio: false,
     layout: {
       padding: {
-        left: 10,
+        left: 15,
         right: 25,
         top: 25,
-        bottom: 0
+        bottom: 0,
       }
     },
     scales: {
@@ -77,8 +95,8 @@ var myLineChart = new Chart(ctx, {
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return '$' + number_format(value);
+          callback: function (value, index, values) {
+            return number_format(value) + '°C';
           }
         },
         gridLines: {
@@ -108,9 +126,9 @@ var myLineChart = new Chart(ctx, {
       mode: 'index',
       caretPadding: 10,
       callbacks: {
-        label: function(tooltipItem, chart) {
+        label: function (tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '°C';
         }
       }
     }
