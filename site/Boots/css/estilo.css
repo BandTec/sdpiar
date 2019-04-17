@@ -3,6 +3,11 @@ hr.style1{
     margin-left: 30%;
     margin-right: 30%;
 }
+hr.style2{
+  border-top: 10px double #000;
+  margin-left: 30%;
+  margin-right: 30%;
+}
    :root {
     --blue: #4e73df;
     --indigo: #6610f2;
@@ -11588,7 +11593,7 @@ hr.style1{
   }
   
   .bg-register-image {
-    background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+    background: url("http://www.proativaplanejamento.com.br/reformas-residenciais/imagens/empresa-de-pintura-industrial.jpg");
     background-position: center;
     background-size: cover;
   }
