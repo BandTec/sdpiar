@@ -4669,7 +4669,7 @@ hr.style2{
     }
   }
   
-  @media (min-width: 1200px) {
+  @media (min-width: 1200px) {    
     .navbar-expand-xl {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
@@ -11694,7 +11694,7 @@ hr.style2{
   
   .error {
     color: #5a5c69;
-    font-size: 7rem;
+    font-size: 0.9rem;
     position: relative;
     line-height: 1;
     width: 12.5rem;
