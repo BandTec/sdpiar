@@ -17,7 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+  <link href="css/estilo.css" rel="stylesheet">
+  
 </head>
 
 <body class="bg-gradient-primary">
@@ -28,8 +29,8 @@
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block my-5">
-            <img src="cadastro.png" alt="imagem de cadastro">
+          <div class="col-lg-5 d-none d-lg-block">
+            <img src="" alt="imagem de cadastro">
           </div>
           <div class="col-lg-7">
             <div class="p-5">
@@ -39,21 +40,21 @@
               <form class="user">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nome">
+                    <input type="text" class="form-control form-control-user" id="nome" placeholder="Nome">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Empresa">
+                    <input type="text" class="form-control form-control-user" id="sobrenome" placeholder="Sobrenome">
                   </div>
                 </div>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email ">
-                </div>
+                    <div class="form-group controls">
+                        <input type="email" class="form-control form-control-user" id="email" placeholder="Email ">
+                      </div>                
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="tel" placeholder="Telefone">
+                    <input type="text" class="form-control form-control-user " id="telefone" placeholder="Telefone" maxlength="11">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="dataNasc" placeholder="Nome do Funcionário">
+                    <input type="text" class="form-control form-control-user" id="dataNasc" placeholder="Data de nascimento">
                   </div>
                 
                 </div>
@@ -62,7 +63,7 @@
                     <input type="text" class="form-control form-control-user" id="cpf" placeholder="CPF">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="cep" placeholder="CNPJ">
+                    <input type="text" class="form-control form-control-user" id="cep" name="cep" placeholder="CEP">
                   </div>
                 </div>
                 <div class="form-group">
@@ -70,15 +71,12 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleInputPassword" placeholder="Usuário">
+                    <input type="text" class="form-control form-control-user" id="usuario" placeholder="Usuário">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Senha">
+                    <input type="password" class="form-control form-control-user" id="senha" placeholder="Senha">
                   </div>
-                  <div>
-                  <input type="radio" name="pessoa"> Pessoa Física 
-                  <input type="radio" name="pessoa"> Pessoa Jurídica
-                    </div>
+                
                 </div>
                 
                 <a href="login.html" class="btn btn-primary btn-user btn-block">
@@ -109,6 +107,11 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+  <script src="mask.js"></script>
 
 </body>
 
