@@ -3,6 +3,10 @@ hr.style1{
     margin-left: 30%;
     margin-right: 30%;
 }
+.container-certo{
+margin-left: 10px;
+margin-right: 10px;
+}
 hr.style2{
   border-top: 10px double #000;
   margin-left: 30%;
