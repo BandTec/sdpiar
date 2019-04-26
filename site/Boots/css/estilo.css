@@ -5562,6 +5562,12 @@ hr.style2{
     background-color: #fadbd8;
     border-color: #f8ccc8;
   }
+
+  .estilo-leo-hahaha {
+    color: black;
+    background-color: greenyellow;
+    border-color: green;
+  }
   
   .alert-danger hr {
     border-top-color: #f5b7b1;
