@@ -2030,6 +2030,25 @@ hr.style2{
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   }
   
+  .new-style {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: black;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid red;
+    border-radius: 0.35rem;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .form-control {
       -webkit-transition: none;
@@ -2159,7 +2178,7 @@ hr.style2{
     display: block;
     margin-top: 0.25rem;
   }
-  
+
   .form-row {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5546,6 +5565,12 @@ hr.style2{
     color: #78261f;
     background-color: #fadbd8;
     border-color: #f8ccc8;
+  }
+
+  .estilo-leo-hahaha {
+    color: black;
+    background-color: greenyellow;
+    border-color: green;
   }
   
   .alert-danger hr {

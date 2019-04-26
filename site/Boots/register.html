@@ -19,6 +19,8 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/estilo.css" rel="stylesheet">
   
+  <script src="validation.cadastro.js"></script>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -29,8 +31,8 @@
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block">
-            <img src="" alt="imagem de cadastro">
+          <div class="col-lg-5 d-none d-lg-block my-5">
+            <img src="cadastro.png" alt="imagem de cadastro">
           </div>
           <div class="col-lg-7">
             <div class="p-5">
@@ -40,10 +42,10 @@
               <form class="user">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="nome" placeholder="Nome">
+                    <input type="text" class="form-control form-control-user" id="nome" placeholder="Nome / Nome do funcionário">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="sobrenome" placeholder="Sobrenome">
+                    <input type="text" class="form-control form-control-user" id="empresa" placeholder="Nome da empresa">
                   </div>
                 </div>
                     <div class="form-group controls">
@@ -60,14 +62,14 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="cpf" placeholder="CPF">
+                    <input type="text" class="form-control form-control-user" id="cpf" placeholder="CPF / CNPJ">
                   </div>
                   <div class="col-sm-6">
                     <input type="text" class="form-control form-control-user" id="cep" name="cep" placeholder="CEP">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="endereco" placeholder="Endereço da área que vai ser monitorada ">
+                  <input type="text" class="form-control form-control-user" id="endereco" placeholder="Endereço da área que vai ser monitorada ">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -76,19 +78,29 @@
                   <div class="col-sm-6">
                     <input type="password" class="form-control form-control-user" id="senha" placeholder="Senha">
                   </div>
+                  
+                  <div class="ml-5 my-5" >
+                      <input type="checkbox" id="fisica" name="pessoa"> Pessoa Física 
+                      <input type="checkbox" id="juridica" name="pessoa"> Pessoa Jurídica
+                  </div>
                 
                 </div>
                 
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                <button type="button" class="btn btn-primary btn-user btn-block" onclick="validacao_cadastro(nome,empresa,email,telefone,dataNasc,cpf,cep,endereco,usuario,senha,fisica,juridica)">
                   Criar Conta
-                </a>
+                </button>
                 <hr>
                 
               </form>
               <hr>
               
-              <div class="text-center">
-                <a class="small" href="login.html">Já possui uma conta ? Entre !</a>
+              <div class="row">
+              <div class="text-center col-6">
+                <a class="small" href="login.html">Já possui uma conta ? Fazer login</a>
+              </div>
+              <div class="text-center col-6">
+                <a class="small" href="index.html">Voltar para página inicial</a>
+              </div>
               </div>
             </div>
           </div>

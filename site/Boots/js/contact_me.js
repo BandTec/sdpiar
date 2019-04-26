@@ -43,11 +43,11 @@ $(function() {
         },
         error: function() {
           // Fail message
-          $('#success').html("<div class='alert alert-danger'>");
-          $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+          $('#success').html("<div class='alert estilo-leo-hahaha'>");
+          $('#success > .estilo-leo-hahaha').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
             .append("</button>");
-          $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
-          $('#success > .alert-danger').append('</div>');
+          $('#success > .estilo-leo-hahaha').append($("<strong>").text("Obrigado pela visita " + firstName + ". Retornaremos o seu contato o mais breve possível."));
+          $('#success > .estilo-leo-hahaha').append('</div>');
           //clear all fields
           $('#contactForm').trigger("reset");
         },
