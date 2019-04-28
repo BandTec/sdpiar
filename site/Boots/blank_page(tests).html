@@ -33,6 +33,15 @@
         <br><br>
 
         <div id="div_de_teste">e</div>
+        <br><br>
+
+        <button type="button" onclick="objeto()">Testando objeto e array</button>
+        <br><br>
+
+        <input id="cadastro_nome" type="text" placeholder="Digite seu nome">
+        <br><br>
+
+        <div id="div_objeto"></div>
 
     </form>
 
@@ -60,6 +69,29 @@
     function testefc () {
         var nome = "div_de_teste.innerHTML" ;
         nome = "funcionou porra"
+    }
+
+    var controle = 0 ;
+    var cadastro = {
+    nome : [] ,
+    empresa : [] ,
+    email : [] ,
+    telefone : [] ,
+    data_nasc : [] ,
+    cpf : [] ,
+    cep : [] ,
+    endereco : [] ,
+    usuario : [] ,
+    senha : [] ,
+    pessoa : [] 
+}
+
+    function objeto () {
+        controle++
+        
+        cadastro.nome[controle] = cadastro_nome.value ; 
+
+        div_objeto.innerHTML = `${cadastro.nome[1]}` ;
     }
 
 </script>
