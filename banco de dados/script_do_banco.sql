@@ -35,6 +35,8 @@ primary key (idarea,fksensor)
 
 INSERT INTO AREA VALUES (1,2,3,30,50,'22:02:02'),(2,2,2,30,50,'22:02:02'),(3,2,1,30,50,'22:02:02');
 
+INSERT INTO usuario (usuario, senha, cpf_cnpj, nome, email, telefone, endereco) VALUES ('reggilbert5869', '143.31.120.111', '2001:7bda:c7bc:e69b:b31d:a35d:0e3d:386d', 'regina gilbert', 'Regi.GILBER2824@mailinator.com', '(25) 92776-0591', '7006 Village');
+
 select * from usuario;
 truncate table usuario;
 drop table usuario;
