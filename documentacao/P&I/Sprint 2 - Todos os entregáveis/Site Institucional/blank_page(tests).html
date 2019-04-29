@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testes</title>
+</head>
+
+<body>
+
+    <form>
+
+        <input type="checkbox" id="test"> Cheque-me
+        <br><br>
+
+        <button type="button" onclick="validate()">Validar</button>
+        <br><br>
+
+        <button type="button" onclick="testando_while()">Teste de variável com while</button>
+        <br><br>
+
+        <div id="div_mensagem1">a</div>
+
+        <div id="div_mensagem2">b</div>
+
+        <div id="div_mensagem3">c</div>
+
+        <div id="div_mensagem4">d</div>
+        <br><br>
+
+        <button type="button" onclick="testefc()">Teste sem while</button>
+        <br><br>
+
+        <div id="div_de_teste">e</div>
+        <br><br>
+
+        <button type="button" onclick="objeto()">Testando objeto e array</button>
+        <br><br>
+
+        <input id="cadastro_nome" type="text" placeholder="Digite seu nome">
+        <br><br>
+
+        <div id="div_objeto"></div>
+
+    </form>
+
+</body>
+
+</html>
+
+<script>
+
+    function validate () {
+        if ( test.checked ) {
+            alert ( "Funcionou" ) ;
+        }
+    }
+
+    function testando_while () {
+        var i = 1 ;
+        while ( i <= 4 ) {
+            var nome = "div_mensagem" + i ;
+            nome.innerHTML = "nome" ;
+            i++ ;
+        }
+    }
+
+    function testefc () {
+        var nome = "div_de_teste.innerHTML" ;
+        nome = "funcionou porra"
+    }
+
+    var controle = 0 ;
+    var cadastro = {
+    nome : [] ,
+    empresa : [] ,
+    email : [] ,
+    telefone : [] ,
+    data_nasc : [] ,
+    cpf : [] ,
+    cep : [] ,
+    endereco : [] ,
+    usuario : [] ,
+    senha : [] ,
+    pessoa : [] 
+}
+
+    function objeto () {
+        controle++
+        
+        cadastro.nome[controle] = cadastro_nome.value ; 
+
+        div_objeto.innerHTML = `${cadastro.nome[1]}` ;
+    }
+
+</script>
