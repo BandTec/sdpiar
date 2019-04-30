@@ -41,18 +41,6 @@ function validacao_cadastro ( cp1 , cp2 , cp3 , cp4 , cp5 , cp6 , cp7 , cp8 , cp
         if ( c11 && c12 ) {
             alert ( "Preencha apenas uma das opções de tipo de pessoa" ) ;
         } else {
-            controle++
-            cadastro.nome[controle] = c1 ; 
-            cadastro.empresa[controle] = c2 ;
-            cadastro.email[controle] = c3 ;
-            cadastro.telefone[controle] = c4 ;
-            cadastro.data_nasc[controle] = c5 ;
-            cadastro.cpf[controle] = c6 ;
-            cadastro.cep[controle] = c7 ;
-            cadastro.endereco[controle] = c8 ;
-            cadastro.usuario[controle] = c9 ;
-            cadastro.senha[controle] = c10 ;
-            c11 ? cadastro.pessoa[controle] = "Pessoa Física" : cadastro.pessoa[controle] = "Pessoa Jurídica" ;
             location.href = "login.html" ;
         }
     } else {
