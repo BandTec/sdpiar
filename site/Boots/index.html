@@ -104,12 +104,12 @@
              perdas por causa do desastre natural.
             Oferecemos o serviço para sua área rural, contra incêndios e perca de plantação por conta do solo seco.
            </p>
+           <div class="text-center mt-4">
+            <a class="btn btn-xl btn-outline-light text-dark" data-toggle="modal" data-target="#Site_modal">
+              Saiba mais
+            </a>
+          </div>
         </div>
-        
-        <!-- <div class="col-lg-4 mr-auto">
-          <p class="lead">Deseja contratar nossos serviços: </p>
-          
-        </div> -->
       </div>
     </div>
   </section>
@@ -211,7 +211,7 @@
           <h4 class="text-uppercase mb-4">Siga-nos nas redes sociais</h4>
           <ul class="list-inline mb-0">
             <li class="list-inline-item">
-              <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.facebook.com/sdpiar">
+              <a class="btn btn-outline-primary btn-social text-center rounded-circle" href="https://www.facebook.com/sdpiar">
                 <i class="fab fa-fw fa-facebook-f"></i>
               </a>
             </li>
@@ -238,6 +238,72 @@
       <i class="fa fa-chevron-up"></i>
     </a>
   </div>
+
+   <!--  MODAL AQUI Ó -->
+   <div class="modal fade" id="Site_modal" tabindex="-1" role="dialog">
+    
+    <div class="modal-dialog modal-lg" role="document">
+      <!-- MODAL-LG SERVE PARA AUMENTAR O TAMANHO DO MODAL
+      MODAL-SM SERVE PARA DEIXAR O MODAL MASI FINO -->
+      
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h5 class="modal-title text-center">SDPIAR deixando o verde mais verde</h5>
+          
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+
+        </div>
+
+        <div class="modal-body">
+              <!-- O MODAL CRIA UMA BARRA DE ROLAGEM CASO O CONTEÚDO FOR MAIOR QUE O MODAL -->
+
+              <div class="container-fluid">
+
+                <div class="row">
+
+                  <div class="col-12">
+                      <h5>Essa bodega é apenas um teste</h5>
+
+                    
+                      <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut aliquet nisl. Suspendisse hendrerit velit quis ex pharetra dapibus. Duis accumsan mauris eget blandit condimentum. In et pellentesque ipsum, at finibus erat. Vivamus vel congue nisi. Integer tempor, nibh eget tempus ornare, erat ante viverra orci, in eleifend tellus libero ac lacus.</p>
+                  
+                    </div>
+
+        
+                  
+                </div>
+
+                
+
+              </div>
+        </div>
+
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Fechar
+          </button>
+ 
+        </div>
+
+      </div>
+
+
+    
+    </div>
+    
+  
+  </div>
+
+  <script>
+      $(function () {
+      $('[data-toggle="popover"]').popover()
+      })
+    </script>
+    
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
