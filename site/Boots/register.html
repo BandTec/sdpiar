@@ -79,11 +79,27 @@
                     <input type="password" class="form-control form-control-user" id="senha" placeholder="Senha">
                   </div>
                   
-                  <div class="ml-5 my-5 col-lg-6 col-sm-6" >
-                      <input type="checkbox" id="fisica" name="pessoa"> Pessoa Física
-                      <input type="checkbox" id="juridica" name="pessoa"> Pessoa Jurídica
-                  </div>                      
-                  
+                   <div class="ml-5 my-5 col-lg-12 col-sm-12" >
+                      <!-- <input type="checkbox" id="fisica" name="pessoa"> Pessoa Física
+                      <input type="checkbox" id="juridica" name="pessoa"> Pessoa Jurídica -->
+                      
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="fisica">
+                          <label class="form-check-label" for="inlineRadio1">Pessoa Física</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="juridico">
+                          <label class="form-check-label" for="inlineRadio2">Pessoa  Jurídica</label>
+                        </div>
+                      
+                        <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label mr-5" for="exampleCheck1">Check me out 1</label>
+                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label " for="exampleCheck2">Check me out 2</label>
+                   
+                       -->
+                  </div>    
+
                 </div>
                 
                 <button type="button" class="btn btn-primary btn-user btn-block" onclick="validacao_cadastro(nome,empresa,email,telefone,dataNasc,cpf,cep,endereco,usuario,senha,fisica,juridica)">
