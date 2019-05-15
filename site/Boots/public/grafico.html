@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Dashboard - Admin</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,6 +20,7 @@
 
   <!-- Inserção manual de dados ( Simulação dos quartis ) -->
   <script src="simulacao_quartis.js"></script>
+  <script src="interacoes_dashboard.js"></script>
 
 </head>
 
@@ -82,10 +83,10 @@
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a onclick="zerar_notas()" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span id="qtd_notifications" class="badge badge-danger badge-counter">2+</span>
               </a>
               <!-- Notificações -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
@@ -115,7 +116,7 @@
                   </div>
                 </a>
                 
-                <a class="dropdown-item text-center small text-gray-500" href="#">Exibir otificações anteriores</a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Exibir notificações anteriores</a>
               </div>
             </li>
             <div class="topbar-divider d-none d-sm-block"></div>
