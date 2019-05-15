@@ -18,6 +18,9 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- Inserção manual de dados ( Simulação dos quartis ) -->
+  <script src="simulacao_quartis.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -139,19 +142,79 @@
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
+          <!-- Gráfico -->
+          <div class="container-fluid">
+            <div class="row">
+            
+                  <div class="col-xl-9">
+                      <div class="card shadow mb-4">
+                        <!-- Cabeçalho (Título) -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                          <h6 class="m-0 font-weight-bold text-primary">Gráfico</h6>
+                        </div>
+                        <!-- Gráfico em si -->
+                        <div class="card-body">
+                          <div class="chart-area">
+                            <canvas id="myAreaChart"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+
+                        
+
+                        <div class="card bg-danger text-white shadow">
+                            <div class="card-body text-center">
+                              Última Temperatura Medida
+                              <div id="last_temp" class="text-white-50 small">0º</div>
+                            </div>
+                        </div><br>
+
+                        <div class="card bg-primary text-white shadow">
+                            <div class="card-body text-center">
+                              Última Umidade Medida
+                              <div id="last_umid" class="text-white-50 small">0%</div>
+                            </div>
+                        </div><br>
+
+                      <div class="text-center">
+                        <button class="btn-outline-success" onclick="gerar_dados()">Gerar Dados</button>
+                      </div>
+                    </div>
+            </div>
+            </div>
+
+        <!-- Quartis -->
         <div class="container-fluid">
 
-          <!-- Content Row -->
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- Quartil de Temperatura -->
+            <div class="col-12">Quartil de Temperatura</div>
+            <div class="col-xl-2 col-md-6 mb-4">
               <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Temperatura Média</div>
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Mínimo</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">14,2º</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">1º Quartil</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
                     </div>
                     <div class="col-auto">
@@ -162,32 +225,111 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-danger shadow h-100 py-2">
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Média</div>
+                        <div id="avg_temp" class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="col-xl-2 col-md-6 mb-4">
+                  <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Mediana</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                        </div>
+                      <div class="col-auto">
+                        <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">3º Quartil</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Máxima</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">285,0º</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- Quartil de Umidade -->
+            <div class="col-12">Quartil de Umidade</div>
+            <div class="col-xl-2 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Temperatura Alta</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Máximo</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">100%</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
+                      <i class="fas fa-tint fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-           
+            <div class="col-xl-2 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">3º Quartil</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-tint fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Umidade  </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Média</div>
+                        <div id="avg_umid" class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
                       </div>
                       <div class="col-auto">
                           <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -197,44 +339,57 @@
                 </div>
               </div>
 
-            
-<!-- Earnings (Monthly) Card Example -->
-<div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Umidade  </div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
-          </div>
-          <div class="col-auto">
-                      <i class="fas fa-tint fa-2x text-gray-300"></i>
+            <div class="col-xl-2 col-md-6 mb-4">
+                  <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mediana</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                        </div>
+                      <div class="col-auto">
+                          <i class="fas fa-tint fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">1º Quartil</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-tint fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mínimo</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-tint fa-2x text-gray-300"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-          <!-- Content Row -->
 <div class="container-fluid">
-          <div class="row">
-          
-                <div class="col-xl-12">
-                    <div class="card shadow mb-4">
-                      <!-- Card Header - Dropdown -->
-                      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Gráfico</h6>
-                      </div>
-                      <!-- Card Body -->
-                      <div class="card-body">
-                        <div class="chart-area">
-                          <canvas id="myAreaChart"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-</DIv>
-<div class="container-certo">
 
           <!-- Content Row -->
           <div class="row">
@@ -311,7 +466,7 @@
             </div>
             <!-- </div> -->
 
-            <div class="container-certo">
+            <div class="container-fluid">
               <div class="row">
                   <div class="col-lg-12 mb-4">
 
@@ -343,7 +498,7 @@
         <!-- /.container-fluid -->
 
       <!-- </div -->
-      <!-- End of Main Content -->
+      
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -355,8 +510,7 @@
       </footer>
       <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+    
 
   </div>
   <!-- End of Page Wrapper -->
