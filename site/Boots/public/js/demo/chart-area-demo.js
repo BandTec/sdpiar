@@ -47,6 +47,7 @@ var myLineChart = new Chart(ctx, {
       pointHitRadius: 10,
       pointBorderWidth: 6,
       data: [],
+      yAxisID: 'temp_test',
 
     },
     {
@@ -63,7 +64,7 @@ var myLineChart = new Chart(ctx, {
       pointHitRadius: 10,
       pointBorderWidth: 6,
       data: [],
-
+      yAxisID: 'umid_test',
     }
     ],
   },
@@ -91,22 +92,23 @@ var myLineChart = new Chart(ctx, {
         }
       }],
       yAxes: [{
+        id:'temp_test',
+        position:'right',
         ticks: {
-          maxTicksLimit: 5,
-          padding: 10,
-          // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '' + number_format(value);
-          }
-        },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
+          return number_format(value) + '°';
         }
-      }],
+        }
+      },
+      {
+        id:'umid_test',
+        ticks: {
+          callback: function(value, index, values) {
+          return number_format(value) + '%';
+        }
+        }
+      }
+      ],
     },
     legend: {
       display: false

@@ -44,6 +44,7 @@ function gerar_dados () {
         
     } else {
         myLineChart.data.datasets[0].data.shift() ;
+        myLineChart.data.datasets[1].data.shift() ;
         myLineChart.data.datasets[0].data.push(dados[dados.length-1].temperatura) ;
         myLineChart.data.datasets[1].data.push(dados[dados.length-1].umidade) ;
         
