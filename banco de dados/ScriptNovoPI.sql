@@ -29,7 +29,7 @@ primary key (idarea,sensor1,sensor2,sensor3)
 create table tempArea(
 temperaturaMedia decimal(5,2),
 umidadeMedia decimal(4,2),
-DataHora datetime,
+DataHora TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
 fkarea int,
 foreign key (fkarea) references area(idarea)
 );
@@ -38,9 +38,50 @@ create table sensor(
 fksensor int,
 temperatura decimal(5,2),
 umidade decimal(3,1),
-dataHora datetime
+dataHora  TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
 select * from usuario,area, temparea, sensor;
 
-drop database novopi;
+select * from usuario;
+
+-- Inserindo dados na tabela usuário
+insert into usuario (idusuario, PF_PJ, nome, email, endereco, telefone, CPF_CNPJ, NomeEmpresa, usuario, senha) values 
+(null, 'PJ', 'José', 'josetn@gmail.com','Área Verde', '1125613317','4824082897', 'Terra Nova','jose_tn','123456' ),
+(null, 'PJ', 'Maria', 'Maria@gmail.com','Horto Florestal', '1125612312','76765435123', 'TurboTel','maria_tt','987654' ),
+(null, 'PJ', 'Irineu', 'irineu@gmail.com','Água Branca', '11987656789','1234082897', 'Green run','irineu_gr','098765' ),
+(null, 'PJ', 'Priscila', 'priscila@gmail.com','Ibirapuera', '11987678658','4824082098', 'Ibi','priscila_ibi','987640' );
+
+-- Inserindo dados na tabela sensor
+insert into sensor (fksensor,temperatura,umidade) values
+(01,'25','60'),
+(02,'25','65'),
+(03,'24','67'),
+(01,'22','50'),
+(02,'29','45'),
+(03,'24','60'),
+(01,'21','70'),
+(02,'23','55'),
+(03,'19','70'),
+(01,'22','60'),
+(02,'23','65'),
+(03,'21','70');
+
+insert into area values 
+(1000,1,2,3,1);
+
+select * from sensor;
+select * from temparea;
+select avg(temperatura)from sensor ;
+select avg(umidade) from sensor;
+ 
+ -- Inserindo dados na tabela TempArea
+insert into tempArea(fkarea) values (1000);
+update tempArea set umidademedia = ( select avg(umidade) from sensor) where fkarea = 1000;
+update tempArea set temperaturamedia = ( select avg(temperatura) from sensor) where fkarea = 1000;
+update tempArea set fkarea = 100 where fkarea = 100;
+
+select * from temparea;
+
+
+
