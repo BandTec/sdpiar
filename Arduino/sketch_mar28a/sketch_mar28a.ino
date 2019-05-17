@@ -20,5 +20,5 @@ void loop()
   //Serial.println(" Celsius  ");
 
 //O ideal é a leitura a cada 2 segundos
-  delay(3000);  
+  delay(10000);  
 }
