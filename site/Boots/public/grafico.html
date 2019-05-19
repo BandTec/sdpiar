@@ -143,18 +143,30 @@
 
                         <div class="col-lg-3 col-md-12">
 
-                            <div class="card bg-danger text-white shadow">
+                            <div class="card bg-danger text-white">
                                 <div class="card-body text-center">
                                     Última Temperatura Medida
                                     <div id="last_temp" class="text-white-50 small">0º</div>
                                 </div>
                             </div><br>
 
-                            <div class="card bg-primary text-white shadow">
+                            <div class="card bg-primary text-white">
                                 <div class="card-body text-center">
                                     Última Umidade Medida
                                     <div id="last_umid" class="text-white-50 small">0%</div>
                                 </div>
+                            </div><br>
+
+                            <div class="text-center">
+                                
+                                <span id="cor_temp" class=""><i class="fas fa-temperature-low fa-3x ml-4"></i></span>
+                                
+                            </div><br>
+
+                            <div class="text-center">
+                                
+                                <span id="cor_umid" class=""><i class="fas fa-tint fa-3x"></i></span>
+                                
                             </div><br>
 
                             <div class="text-center">
@@ -241,7 +253,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">3º Quartil</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                                            <div id="temp_quartil_tres" class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
@@ -291,7 +303,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">3º Quartil</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                                            <div id="umid_quartil_tres" class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -338,7 +350,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">1º Quartil</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                                            <div id="umid_quartil_um" class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-tint fa-2x text-gray-300"></i>

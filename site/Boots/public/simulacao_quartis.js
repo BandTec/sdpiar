@@ -132,6 +132,109 @@ function gerar_dados () {
     } 
 
     temp_quartil_um.innerHTML = `${prim_quartil_temp.toFixed(1)}º` ;
+    
+    // Calculando o 1º Quartil de umidade
+    if ( quartis_umid.length == 1 || quartis_umid.length == 2 ) {
+        prim_quartil_umid = quartis_umid[0] ;
+    } else if ( quartis_umid.length % 4 == 0 ) {      
+        var auxiliar = quartis_umid.length / 4 ;
+        prim_quartil_umid = ( ( quartis_umid [ auxiliar - 1 ] ) + ( quartis_umid [ auxiliar ] ) ) / 2 ;
+    } else if ( quartis_umid.length % 2 == 0 ) {
+        var auxiliar = quartis_umid.length / 2 ;
+        var auxiliar_dois = parseInt ( auxiliar / 2 ) ;
+        prim_quartil_umid = quartis_umid [ auxiliar_dois ] ;
+    } else if ( quartis_umid.length == 3 ) {
+        var auxiliar = parseInt ( quartis_umid.length / 2 ) ;
+        var mediana_temporaria = quartis_umid [ auxiliar ] ;
+        var esquerda_da_mediana = quartis_umid [ auxiliar - 1 ] ; 
+        prim_quartil_umid = ( mediana_temporaria + esquerda_da_mediana ) / 2 ; 
+    } else {
+        var auxiliar = parseInt ( quartis_umid.length / 2 ) ;
+        if ( auxiliar % 2 == 0 ) {
+            auxiliar = auxiliar / 2 ;
+            prim_quartil_umid = ( quartis_umid [ auxiliar - 1 ] + quartis_umid [ auxiliar ] ) / 2 ;
+        } else { 
+            auxiliar = parseInt ( auxiliar / 2 ) ;
+            prim_quartil_umid = quartis_umid [ auxiliar ] ; 
+        }
+    }
+
+    umid_quartil_um.innerHTML = `${prim_quartil_umid.toFixed(1)}º` ;
+
+    // Calculando o 3º Quartil de temperatura
+    if ( quartis_temp.length == 1 || quartis_temp.length == 2 ) {
+        terc_quartil_temp = quartis_temp[0] ;
+    } else if ( quartis_temp.length % 4 == 0 ) {      temp
+        var auxiliar = quartis_temp.length / 4 ;
+        auxiliar = auxiliar * 3 ;
+        terc_quartil_temp = ( ( quartis_temp [ auxiliar - 1 ] ) + ( quartis_temp [ auxiliar ] ) ) / 2 ;
+    } else if ( quartis_temp.length % 2 == 0 ) {
+        var auxiliar = quartis_temp.length / 2 ;
+        auxiliar = auxiliar + parseInt ( auxiliar / 2 ) ;
+        terc_quartil_temp = quartis_temp [ auxiliar ] ;
+    } else if ( quartis_temp.length == 3 ) {
+        var auxiliar = parseInt ( quartis_temp.length / 2 ) ;
+        var mediana_temporaria = quartis_temp [ auxiliar ] ;
+        var direita_da_mediana = quartis_temp [ auxiliar + 1 ] ; 
+        terc_quartil_temp = ( mediana_temporaria + direita_da_mediana ) / 2 ; 
+    } else {
+        var auxiliar = parseInt ( quartis_temp.length / 2 ) ;
+        if ( auxiliar % 2 == 0 ) {
+            auxiliar = auxiliar + ( auxiliar / 2 ) ;
+            terc_quartil_temp = ( quartis_temp [ auxiliar + 1 ] + quartis_temp [ auxiliar ] ) / 2 ;
+        } else { 
+            auxiliar = auxiliar + parseInt ( auxiliar / 2 ) + 1 ;
+            terc_quartil_temp = quartis_temp [ auxiliar ] ; 
+        }
+    }
+
+    temp_quartil_tres.innerHTML = `${terc_quartil_temp.toFixed(1)}º` ;
+
+    // Calculando o 3º Quartil de umidade
+    if ( quartis_umid.length == 1 || quartis_umid.length == 2 ) {
+        terc_quartil_umid = quartis_umid[0] ;
+    } else if ( quartis_umid.length % 4 == 0 ) {      
+        var auxiliar = quartis_umid.length / 4 ;
+        auxiliar = auxiliar * 3 ;
+        terc_quartil_umid = ( ( quartis_umid [ auxiliar - 1 ] ) + ( quartis_umid [ auxiliar ] ) ) / 2 ;
+    } else if ( quartis_umid.length % 2 == 0 ) {
+        var auxiliar = quartis_umid.length / 2 ;
+        auxiliar = auxiliar + parseInt ( auxiliar / 2 ) ;
+        terc_quartil_umid = quartis_umid [ auxiliar ] ;
+    } else if ( quartis_umid.length == 3 ) {
+        var auxiliar = parseInt ( quartis_umid.length / 2 ) ;
+        var mediana_temporaria = quartis_umid [ auxiliar ] ;
+        var direita_da_mediana = quartis_umid [ auxiliar + 1 ] ; 
+        terc_quartil_umid = ( mediana_temporaria + direita_da_mediana ) / 2 ; 
+    } else {
+        var auxiliar = parseInt ( quartis_umid.length / 2 ) ;
+        if ( auxiliar % 2 == 0 ) {
+            auxiliar = auxiliar + ( auxiliar / 2 ) ;
+            terc_quartil_umid = ( quartis_umid [ auxiliar + 1 ] + quartis_umid [ auxiliar ] ) / 2 ;
+        } else { 
+            auxiliar = auxiliar + parseInt ( auxiliar / 2 ) + 1 ;
+            terc_quartil_umid = quartis_umid [ auxiliar ] ; 
+        }
+    }
+
+    umid_quartil_tres.innerHTML = `${terc_quartil_umid.toFixed(1)}º` ;
+
+    if ( dados[dados.length-1].temperatura < mediana_temp ) {
+        cor_temp.className = 'text-success' ;
+    } else if ( dados[dados.length-1].temperatura >= mediana_temp && dados[dados.length-1].temperatura < terc_quartil_temp ) {
+        cor_temp.className = 'text-warning' ;
+    } else {
+        cor_temp.className = 'text-danger' ;
+    }
+
+    if ( dados[dados.length-1].umidade < mediana_umid ) {
+        cor_umid.className = 'text-danger' ;
+    } else if ( dados[dados.length-1].umidade >= mediana_umid && dados[dados.length-1].umidade < terc_quartil_umid ) {
+        cor_umid.className = 'text-warning' ;
+    } else {
+        cor_umid.className = 'text-primary' ;
+    }
+
 }
 
 // Função auxiliar para ordenar os valores de um vetor
