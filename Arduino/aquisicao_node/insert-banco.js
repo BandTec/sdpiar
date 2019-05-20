@@ -96,7 +96,7 @@ function registrar_leitura(temperatura, umidade) {
         var erro = `Erro ao tentar registrar aquisição na base: ${err}`;
         console.error(erro);
 
-    }).finally(() => {
+    }).finally( () => {
         banco.sql.close();
         efetuando_insert = false;
     });
@@ -107,3 +107,8 @@ var efetuando_insert = false;
 
 // iniciando a "escuta" de dispositivos Arduino
 iniciar_escuta();
+
+// dados aleatórios: 3 linhas abaixo:
+setInterval(function() {
+    registrar_leitura(Math.random()*100,Math.random()*200) 
+}, 5000)

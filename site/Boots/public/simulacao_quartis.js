@@ -159,7 +159,7 @@ function gerar_dados () {
         }
     }
 
-    umid_quartil_um.innerHTML = `${prim_quartil_umid.toFixed(1)}º` ;
+    umid_quartil_um.innerHTML = `${prim_quartil_umid.toFixed(1)}%` ;
 
     // Calculando o 3º Quartil de temperatura
     if ( quartis_temp.length == 1 || quartis_temp.length == 2 ) {
@@ -217,7 +217,7 @@ function gerar_dados () {
         }
     }
 
-    umid_quartil_tres.innerHTML = `${terc_quartil_umid.toFixed(1)}º` ;
+    umid_quartil_tres.innerHTML = `${terc_quartil_umid.toFixed(1)}%` ;
 
     if ( dados[dados.length-1].temperatura < mediana_temp ) {
         cor_temp.className = 'text-success' ;
