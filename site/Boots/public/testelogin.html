@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .tela {
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pf {
+            float: left;
+            /*margin: 20px;*/
+            background-color: red;
+            height: 250px;
+            width: 250px;
+            display: none;
+            padding: 20px;
+        }
+
+        .pj {
+            float: left;
+            padding: 20px;
+            /*margin: 20px;*/
+            background-color: blue;
+            height: 250px;
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tela">
+        <button onclick="pf()">pf</button><button onclick="pj()">pj</button><br>
+        <div class="pf"  id="p1f">
+            <form>
+                <input type="text"><br>
+                <input type="text"><br>
+                <button>cadastrar</button>
+            </form>
+        </div>
+        <div class="pj" id="p1j">
+            <form>
+                <input type="text"><br>
+                <input type="text"><br>
+                <button >cadastrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+pf = ()=>{
+    p1j.style.display = "none";
+    p1f.style.display = 'inline';
+}
+pj = ()=>{
+    p1j.style.display = "inline";
+    p1f.style.display = 'none';
+}
+</script>
