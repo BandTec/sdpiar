@@ -3,6 +3,15 @@ hr.style1{
     margin-left: 30%;
     margin-right: 30%;
 }
+
+.trava {
+  position:relative;
+  left:0;
+  right:0;
+  width: 500px;
+  top: 20px;
+}
+
 .img-circle {
   border-radius: 5000%;
   }
@@ -10707,6 +10716,13 @@ hr.style2{
     background-color: #4e73df;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e73df), to(#224abe));
     background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    background-size: cover;
+  }
+
+  .bg-gradient-primary1 {
+    background-color: #df584e;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #df584e), to(#f11a1a));
+    background-image: linear-gradient(180deg, #df584e 10%, #f11a1a 100%);
     background-size: cover;
   }
   
