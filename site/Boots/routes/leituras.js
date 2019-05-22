@@ -10,9 +10,9 @@ router.get('/ultimas', function (req, res, next) {
     var limite_linhas = 3;
     return banco.sql.query(`select top ${limite_linhas} 
                             idsensor as id_sensor, 
-                            temperatura as temp, 
+                            temperatura, 
                             umidade, 
-                            FORMAT(dataHora,'HH:mm:ss') as data 
+                            FORMAT(dataHora,'HH:mm:ss') as hora 
                             from sensor order by idsensor desc`);
   }).then(consulta => {
 

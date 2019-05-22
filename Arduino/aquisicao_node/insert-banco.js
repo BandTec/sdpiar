@@ -89,7 +89,7 @@ function registrar_leitura(temperatura, umidade) {
 
     banco.conectar().then(() => {
 
-        return banco.sql.query(`INSERT into sensor (idsensor,temperatura,umidade) values (${idsensorbanco++}, ${temperatura}, ${umidade});`);
+        return banco.sql.query(`INSERT into sensor (idsensor,temperatura,umidade,dataHora) values (${idsensorbanco++}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);`);
 
     }).catch(err => {
 

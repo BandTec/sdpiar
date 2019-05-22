@@ -2,7 +2,7 @@ create database NovoPI;
 use NovoPI;
 
 create table usuario(
-idusuario int primary key auto_increment not null,
+idusuario int primary key identity,
 PjPai int,
 PF_PJ char(2),
 nome varchar(45),
@@ -30,7 +30,7 @@ create table sensor(
 idsensor int,
 temperatura float,
 umidade float,
-dataHora  CURRENT_TIMESTAMP 
+dataHora TIMESTAMP 
 );
 
 create table tempArea(
