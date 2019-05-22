@@ -4,7 +4,7 @@ use NovoPI;
 create table usuario(
 idusuario int primary key auto_increment not null,
 PjPai int,
-PF_PJ enum('pf','pj'),
+PF_PJ char(2),
 nome varchar(45),
 email varchar(50),
 endereco varchar(45),
@@ -26,19 +26,19 @@ foreign key (fkusuario) references usuario(idusuario),
 primary key (idarea,sensor1,sensor2,sensor3)
 );
 
+create table sensor(
+idsensor int,
+temperatura float,
+umidade float,
+dataHora  CURRENT_TIMESTAMP 
+);
+
 create table tempArea(
 temperaturaMedia decimal(5,2),
 umidadeMedia decimal(4,2),
-DataHora TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+DataHora datetime ,
 fkarea int,
 foreign key (fkarea) references area(idarea)
-);
-
-create table sensor(
-fksensor int,
-temperatura decimal(5,2),
-umidade decimal(3,1),
-dataHora  TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
 select * from usuario,area, temparea, sensor;
