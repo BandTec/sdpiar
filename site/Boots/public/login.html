@@ -13,12 +13,14 @@
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-  <script src="validation_login.js"></script>
+
 
 
 
@@ -38,44 +40,38 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-5 d-none d-lg-block my-5">
-                <img src="img/clientes.png"  alt="imagem de cadastro">
+                <img src="img/clientes.png" alt="imagem de cadastro">
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Entre ou cadastre-se!</h1>
                   </div>
-                  <form id="form_login" method="post" onsubmit="return entrar()" class="user">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Usuario" name="login">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name="senha" class="form-control form-control-user" placeholder="Senha">
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Lembrar senha</label>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-primary btn-user btn-block" id="btn_entrar">
-                      Entrar
-                    </button>
-                    <hr>
-                    
-                  </form>
-                  <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-                    Usuário e/ou senha inválidos!
-                </div>  
-                  <hr>
                   
+                  <form id="form_login" method="post" onsubmit="return entrar()">
+                    <div class="form-group">
+                      Usuário: <input type="text" name="login" class="form-control form-control-user">
+                    </div>
+                    <div class="form-group">
+                      Senha: <input type="password" name="senha" class="form-control form-control-user">
+                    </div>
+                    <button id="btn_entrar" class="btn btn-primary btn-user btn-block">Entrar</button>
+                  </form>
+                  
+                  <img src="aguarde.gif" id="img_aguarde" style="display: none;width: 50px;    margin-left: 43%;">
+                  <br>
+                  <div  id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                    Usuário e/ou senha inválidos!
+                  </div>
+                  <hr>
+
                   <div class="row">
-                  <div class="text-center col-6">
-                    <a class="small" href="register.html">Não tem uma conta? Cadastre-se!</a>
-                  </div>
-                  <div class="text-center col-6">
-                    <a class="small" href="index.html">Voltar para página inicial</a>
-                  </div>
+                    <div class="text-center col-6">
+                      <a class="small" href="register.html">Não tem uma conta? Cadastre-se!</a>
+                    </div>
+                    <div class="text-center col-6">
+                      <a class="small" href="index.html">Voltar para página inicial</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -107,47 +103,47 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-      if (sessionStorage.usuario_bandtec != undefined) {
-          window.location.href = 'grafico-chartjs.html';
-      }
+    if (sessionStorage.usuario_bandtec != undefined) {
+      window.location.href = 'grafico-chartjs.html';
+    }
   }
 
   function entrar() {
-      aguardar();
-      var formulario = new URLSearchParams(new FormData(form_login));
-      fetch("/usuarios/entrar", {
-          method: "POST",
-          body: formulario
-      }).then(function (response) {
-          
-          if (response.ok) {
+    aguardar();
+    var formulario = new URLSearchParams(new FormData(form_login));
+    fetch("/usuarios/entrar", {
+      method: "POST",
+      body: formulario
+    }).then(function (response) {
 
-              response.json().then(function (resposta) {
+      if (response.ok) {
 
-                  sessionStorage.usuario_bandtec = resposta.nome;
-                  verificarAutenticacao();
+        response.json().then(function (resposta) {
 
-              });
-          } else {
+          sessionStorage.usuario_bandtec = resposta.nome;
+          verificarAutenticacao();
 
-              console.log('Erro de login!');
-              finalizar_aguardar();
-          }
-      });
+        });
+      } else {
 
-      return false;
+        console.log('Erro de login!');
+        finalizar_aguardar();
+      }
+    });
+
+    return false;
   }
 
   function aguardar() {
-      btn_entrar.disabled = true;
-      img_aguarde.style.display='block';
-      div_erro.style.display='none';
+    btn_entrar.disabled = true;
+    img_aguarde.style.display = 'block';
+    div_erro.style.display = 'none';
   }
 
   function finalizar_aguardar() {
-      btn_entrar.disabled = false;
-      img_aguarde.style.display='none';
-      div_erro.style.display='block';
+    btn_entrar.disabled = false;
+    img_aguarde.style.display = 'none';
+    div_erro.style.display = 'block';
   }
 
 </script>
