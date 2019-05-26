@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="simulador.css">
+</head>
+<body>
+    <div id="caixa1">
+            
+            <img src="Bombeiros.png" alt="logo"><br>
+            Simulador Financeiro
+        </div>
+           
+        
+    <div id="caixa2">
+    
+    <form>
+        Você já teve alguma perda por causa dos insendios florestais? <br>
+        <input type="radio" name="pergunta1" value="p1_sim">Sim
+        <input type="radio" name="pergunta1" value="p1_nao">Não <br><br>
+        
+        Se já ocorreu algum incendio em seu terreno, ou próximo de sua propriedade, você acha que poderia ter sido evitado um estrago maior, se 
+        ele fosse combatido? <br>
+        <input type="radio" name="pergunta1" value="p2_sim">Sim
+        <input type="radio" name="pergunta1" value="p2_nao">Não <br><br>
+        
+        Quanto foi seu prejuizo, em R$, por causa dos incendios florestais?<br>
+        R$<input type="number" id="prejuizo" placeholder="Insira o prejuizo em reais" class="box"><br><br>
+        Quantos treinamentos de brigada de incendio você faz por ano com seus <br>funcionarios?
+        <input type="number" id="qnt_treinamentos" placeholder="Insira a quantidade de treinamentos aqui" class="box"><br><br>
+        Quanto você gasta em cada treinamento?<br>
+        R$ <input type="number" id="preco_treinamentos" placeholder="Insira o preço dos treinamentos aqui" class="box"><br><br>
+        Qual o tamanho de seu terreno?<br>
+        <input type="number" id="tamanho_terreno" placeholder="Insira o tamanho em km²" class="box">Km²<br><br>
+
+        Se você tivesse nosso sistema implantado em seu terreno, você teria economizado...<br><br>
+
+        
+        <div id="resultado">
+
+            </div>
+    </form>
+
+    
+    <button type="button" onclick="economia()" id="botao_simu">Calcular</button>  <br>
+    <a href="menu.html" > Voltar para o menu</a>
+
+    </div>
+    
+</body>
+</html>
+<script>
+    function economia(){
+        var gasto_treinamento = qnt_treinamentos.value * preco_treinamentos.value;
+        var gasto_prejuizo = Number(gasto_treinamento) + Number(prejuizo.value);
+        var contrato = tamanho_terreno.value * 1500;        
+
+        resultado.innerHTML = `... R$${gasto_prejuizo.toFixed(2)}, apenas por R$${contrato.toFixed(2)}, que seria nosso contrato pelo tamanho de seu terreno.  `
+    }
+
+</script>

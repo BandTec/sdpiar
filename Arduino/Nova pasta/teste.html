@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grafico</title>
+</head>
+<body>
+    <div><canvas id="grf"></canvas></div>
+    
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script>
+var qlqr = grf.getContext('2d');
+var r1 = new Chart(qlqr, {
+    type: 'line',
+    data: {
+        labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta'],
+        datasets: [{
+            data: [30, 20, 45, 12, 101],
+            backgroundColor: '#abbcc1',
+            label: 'Gonorréia',
+            borderColor: '#abbcc1',
+            fill: false
+        },{
+            data: [100, 70, 80, 20, 50],
+            backgroundColor: '#000', 
+            label: 'Sifilis' ,
+            borderColor: '#000',
+            fill: false
+        }],
+    
+    },
+    options:{
+        title:{
+            display: true,
+            text: 'Grafico da puta',
+            fontSize: 30, 
+        }
+    }
+    
+})
+</script>
+</html>
