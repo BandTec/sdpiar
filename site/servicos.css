@@ -1,0 +1,83 @@
+#caixa1{
+    border-style: solid;
+    border-width: 1px;
+    overflow:auto;
+    font-size: 40px;
+    text-align: center;
+    background-color: white;
+    
+    }
+
+img{
+    
+    width: 180px;
+    float:left;   
+    }
+
+    body{
+        background-image: url(incendio.jpg);
+    }
+
+#caixa2{
+
+        border-style: solid;
+        border-width: 1px;
+        margin: 2%;
+        padding:2%;
+        text-align: left;
+        font-size: 35px;        
+        background-color: white;
+        overflow: auto;   
+        
+}
+
+#mapa{
+
+    border-style: solid;
+    border-width: 1px;
+    margin: 2%;
+    padding:2%;
+    font-size: 35px;
+    background-color: white;
+    overflow: auto;
+    text-align: left;
+}
+
+#caixa3{
+    text-align:left;
+    font-size: 35px;
+}
+
+iframe{
+    float: right;
+}
+a:link {
+    text-decoration: none;
+  }
+
+a:hover {
+    text-decoration: underline;
+    color:rgb(139, 9, 9);
+  }
+
+  a:visited {
+    text-decoration: none;
+    color:red;
+   
+  }
+
+
+  
+  #imagens {
+    float: left;
+    width: 30%;
+    padding: 20px;
+  }
+  
+  #caixa2::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+ 

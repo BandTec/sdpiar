@@ -1,0 +1,73 @@
+#caixa1{
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 5%;
+    margin-left:20%;
+    margin-right:20%;
+    margin-bottom:20%;
+    padding: 2%;
+    text-align: center;
+    background-color: white;
+    
+}
+form{
+    font-size: 35px;
+    
+}
+
+#botao{
+    background-color: #f44336;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    width: 190px;
+    height: 70px;;
+    font-size: 30px;
+    margin: 4px 2px;  
+}
+
+#botao:hover, #botao:active{
+    background-color: red;
+}
+#titulo{
+    font-size:55px;
+    color:red;
+}
+
+#nome_login, #senha_login {
+    height:auto;
+    font-size:25px;
+        
+}
+img{
+    
+    width: 300px;
+    margin-left: 40%;   
+    margin-right: 40%;
+    
+    padding: 10px;
+}
+body{
+background-image: url(incendio.jpg);
+
+    }
+    #caixa3{
+        text-align:left;
+        font-size: 35px;
+    }
+    
+    a:link {
+        text-decoration: none;
+      }
+    
+    a:hover {
+        text-decoration: underline;
+        color:rgb(139, 9, 9);
+      }
+    
+      a:visited {
+        text-decoration: none;
+        color:red;
+       
+      }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+
+<body>
+        <div id="caixa0">
+            
+                <img src="Bombeiros.png" alt="logo"><br>
+                Cadastro
+            </div>
+    <div id="caixa1">
+        
+        <form>
+            <div id="caixa2">
+                Nome Completo: <input type="text" id="nome_cad" placeholder="Insira seu nome completo" class="box" required/><br>
+                Data de Nascimento:<input type="date" id="data_cad" class="box" required/><br>
+                CPF: <input type="number" id="cpf_cad" placeholder="Insira apenas numeros" class="box" required/><br>
+                RG: <input type="number" id="rg_cad" placeholder="Insira apenas numeros" class="box" required/><br>
+                Sexo: <input type="radio" name="sexo" value="masculino" required/> Masculino
+                <input type="radio" name="sexo" value="feminino" required/> Feminino <br>
+                CEP: <input type="number" id="cep_cad" placeholder="Insira apenas numeros" class="box" required/><br>
+                Endereço: <input type="text" id="endereco_cad" placeholder="Insira seu endereço completo"
+                    class="box" required/><br>
+                Zona: <select id="zona_cad" class="box" required/>
+                    <option value="">Escolha sua zona</option>
+                    <option value="Zona Norte">Zona Norte</option>
+                    <option value="Zona Sul">Zona Sul</option>
+                    <option value="Zona Leste">Zona Leste</option>
+                    <option value="Zona Oeste">Zona Oeste</option>
+                    <option value="Centro">Centro</option>
+                </select><br>
+                Telefone: <input type="number" id="telefone_cad" placeholder="Insira apenas numeros" class="box" required/><br>
+                E-mail: <input type="email" id="email_cad" placeholder="Insira seu e-mail" height="35px"
+                    class="box" required/><br>
+                Confirmar E-mail:<input type="email" id="email_cad" placeholder="Confirme seu e-mail" height="35px"
+                    class="box" required/><br>
+                Usuário:<input type="text" id="usuario_cad" placeholder="Insira seu usuario de acesso" class="box" required/><br>
+                Senha: <input type="password" id="senha_login" placeholder="Insira sua senha" class="box" required/><br>
+                Confirmar Senha: <input type="password" id="senha_login" placeholder="Confirme sua senha" class="box" required/><br><br><br>
+                <input type="checkbox" value="aceito1" required/>Aceito receber informações e notificações por SMS, e no e-mail. <br>
+                <input type="checkbox" value="aceito2" required/>Concordo com os Termos de Segurança<br>
+                <input type="checkbox" value="aceito3" required/>Aceito participar dos treinamentos com a brigada de incêncio<br>
+
+                <br><br>
+            
+        </form>
+    </div>
+    <a href="cadastro_efetuado.html"><button onclick="" id="botao_cad">Cadastrar </button> </a> <br><br>
+    <div id="caixa3">
+            <a href="menu.html" > Voltar para o menu</a>
+
+    </div>
+    </div>
+    
+</body>
+
+</html>
