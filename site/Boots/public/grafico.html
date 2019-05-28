@@ -22,10 +22,11 @@
     <script src="simulacao_quartis.js"></script>
     <script src="interacoes_dashboard.js"></script>
     <script src="select_banco_grafico.js"></script>
+    <script src="comunicacao_dashboad_banco.js"></script>
 
 </head>
 
-<body id="page-top">
+<body onload="atualizarGrafico()" id="page-top">
 
 
 
@@ -105,14 +106,14 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span id="nome_usuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/512/64/64096.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" onclick="logoff()" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
                                 </a>
                             </div>
@@ -539,19 +540,29 @@
             <script src="js/sb-admin-2.min.js"></script>
 
             <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script>
+            <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
             <!-- Page level custom scripts -->
-            <script src="js/demo/chart-area-demo.js"></script>
+            <!-- <script src="js/demo/chart-area-demo.js"></script> -->
             <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
             <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script>
+            <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
             <!-- Page level custom scripts -->
-            <script src="js/demo/chart-area-demo.js"></script>
+            <!--<script src="js/demo/chart-area-demo.js"></script> -->
+
+            <!-- scripts do Chart.js -->
+            <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+            <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
 
 </body>
 
 </html>
+
+<script>
+
+    verificarAutenticacao() ;
+
+</script>
