@@ -1,0 +1,22 @@
+	SITE
+
+É algum erro com o site?
+
+Não está conseguindo entrar na sua conta?
+
+É algum erro relacionado a estética do site? (EX: Algum texto/imagem que não dê para ver pelo seu tamanho)
+
+As informações estão aparecendo no gráfico?
+
+As notificações estão aparecendo?
+
+A internet está funcionando normalmente?
+
+
+	ARDUINO
+
+Todas as peças do arduino estão conectadas de forma correta?
+
+Há algum erro com a conexão do arduino e a internet?
+
+A internet está funcionando normalmente?
