@@ -33,6 +33,7 @@ foreign key (fkarea) references area(idarea)
 );
 
 create table sensor(
+idSensor int,
 temperatura decimal(5,2),
 umidade decimal(3,1),
 dataHora timestamp
@@ -41,7 +42,7 @@ dataHora timestamp
 select * from usuario;
 select * from area;
 select * from temparea;
-select * from sensor
+select * from sensor;
 
 insert into usuario (tipoPessoa,nome,email,endereco,telefone,cpf,NomeEmpresa,usuario,senha) values ('pf','william','email','rua','123','123','empresa','asd','asd');
 update  usuario set empresaPai = '1' where idusuario = 1;
