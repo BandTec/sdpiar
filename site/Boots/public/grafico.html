@@ -24,6 +24,10 @@
     <script src="select_banco_grafico.js"></script>
     <script src="comunicacao_dashboad_banco.js"></script>
 
+    <!-- scripts do Chart.js -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> 
+
 </head>
 
 <body onload="atualizarGrafico()" id="page-top">
@@ -135,11 +139,11 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Gráfico</h6>
                                 </div>
                                 <!-- Gráfico em si -->
-                                <div class="card-body">
-                                    <div class="chart-area">
+                                <div id="div_aguarde">Dados sendo obtidos...</div>
+                                    <div style="height:auto" class="chart-area">
                                         <canvas id="myAreaChart"></canvas>
                                     </div>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -172,7 +176,7 @@
                             </div><br>
 
                             <div class="text-center">
-                                <button class="btn-outline-success" onclick="inserir()">Gerar Dados</button>
+                                <button class="btn-outline-success" onclick="gerar_dados()">Gerar Dados</button>
                             </div>
                         </div>
                     </div>
@@ -540,22 +544,20 @@
             <script src="js/sb-admin-2.min.js"></script>
 
             <!-- Page level plugins -->
-            <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
 
             <!-- Page level custom scripts -->
-            <!-- <script src="js/demo/chart-area-demo.js"></script> -->
-            <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
+            <!-- <script src="js/demo/chart-area-demo.js"></script> 
+            <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
             <!-- Page level plugins -->
-            <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
+            <script src="vendor/chart.js/Chart.min.js"></script> 
 
-            <!-- Page level custom scripts -->
-            <!--<script src="js/demo/chart-area-demo.js"></script> -->
+            <!-- Page level custom scripts 
+            <script src="js/demo/chart-area-demo.js"></script> -->
 
-            <!-- scripts do Chart.js -->
-            <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-            <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+            
 
 </body>
 

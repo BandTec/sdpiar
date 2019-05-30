@@ -1,12 +1,14 @@
 var usuario;
 var exibiu_grafico = false;
 
+verificarAutenticacao();
+
 function verificarAutenticacao() {
     usuario = sessionStorage.usuario_bandtec;
     if (usuario == undefined) {
         window.location.href = 'login.html';
     } else {
-        nome_usuario.innerHTML = usuario ;
+        nome_usuario.innerHTML = usuario;
     }
 }
 
@@ -15,11 +17,52 @@ function logoff() {
     verificarAutenticacao();
 }
 
+// só mexer se quiser alterar o tempo de atualização
+// ou se souber o que está fazendo!
 function atualizarGrafico() {
     obterDadosGrafico();
-    // setTimeout(atualizarGrafico, 10000);
+    setTimeout(atualizarGrafico, 10000);
 }
 
+// altere aqui as configurações do gráfico
+// (tamanhos, cores, textos, etc)
+function configurarGrafico() {
+    var configuracoes = {
+        responsive: true,
+        animation: exibiu_grafico ? false : {duration: 1500},
+        hoverMode: 'index',
+        stacked: false,
+        title: {
+            display: true,
+            text: 'Histórico recente de temperatura e umidade'
+        },
+        scales: {
+            yAxes: [{
+                type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                display: true,
+                position: 'left',
+                id: 'y-temperatura',
+            }, {
+                type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                display: true,
+                position: 'right',
+                id: 'y-umidade',
+
+                // grid line settings
+                gridLines: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                },
+            }],
+        }
+    };
+
+    exibiu_grafico = true;
+
+    return configuracoes;
+}
+
+// altere aqui como os dados serão exibidos
+// e como são recuperados do BackEnd
 function obterDadosGrafico() {
 
     // neste JSON tem que ser 'labels', 'datasets' etc, 
@@ -82,6 +125,7 @@ function obterDadosGrafico() {
 
 }
 
+// só altere aqui se souber o que está fazendo!
 function plotarGrafico(dados) {
     console.log('iniciando plotagem do gráfico...');
 
@@ -90,39 +134,4 @@ function plotarGrafico(dados) {
         data: dados,
         options: configurarGrafico()
     });
-}
-
-function configurarGrafico() {
-    var configuracoes = {
-        responsive: true,
-        animation: exibiu_grafico ? false : {duration: 1500},
-        hoverMode: 'index',
-        stacked: false,
-        title: {
-            display: true,
-            text: 'Histórico recente de temperatura e umidade'
-        },
-        scales: {
-            yAxes: [{
-                type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: true,
-                position: 'left',
-                id: 'y-temperatura',
-            }, {
-                type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                display: true,
-                position: 'right',
-                id: 'y-umidade',
-
-                // grid line settings
-                gridLines: {
-                    drawOnChartArea: false, // only want the grid lines for one axis to show up
-                },
-            }],
-        }
-    };
-
-    exibiu_grafico = true;
-
-    return configuracoes;
 }

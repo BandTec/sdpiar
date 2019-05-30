@@ -5,15 +5,15 @@ tipoPessoa varchar(2),
 nome varchar(45),
 email varchar(50),
 endereco varchar(50),
+cep varchar(9),
 telefone varchar(15),
-CPF varchar(18) unique,
+CPF_CNPJ varchar(18) unique,
 NomeEmpresa varchar(50),
 usuario varchar(45) unique,
 senha varchar(45),
 check(tipoPessoa in ('pf','pj')),
 foreign key (empresaPai) references usuario(idusuario)
 );
-drop table usuario;
 
 create table area(
 idarea int primary key,
@@ -23,21 +23,19 @@ terceiroSensor int unique,
 fkdono int,
 foreign key (fkdono) references usuario(idusuario),
 );
-drop table area;
 
 create table tempArea(
 temperaturaMedia decimal(5,2),
 umidadeMedia decimal(4,2),
-DataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+DataHora timestamp
 fkarea int,
 foreign key (fkarea) references area(idarea)
 );
-drop table temarea;
 
 create table sensor(
 temperatura decimal(5,2),
 umidade decimal(3,1),
-dataHora  DATETIME DEFAULT CURRENT_TIMESTAMP 
+dataHora timestamp
 );
 
 select * from usuario;

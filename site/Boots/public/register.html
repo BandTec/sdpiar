@@ -43,97 +43,96 @@
                 <button class="btn btn-primary btn-user m-1" onclick="pf()" id="btpf">Pessoa Fisica</button><button
                   class="btn btn-primary btn-user" onclick="pj()" id="btpj" style="background-color: rgba(164,179,87,1)" >Pessoa Jurídica</button>
               </div>
-              <form class="user" id="pessoaf" style="display: none;">
+              <form method="post" onsubmit="return cadastrarpf()" class="user" id="pessoaf" style="display: none;">
                 <div class="form-group controls">
-                  <input type="text" class="form-control form-control-user" id="nome" placeholder="Nome">
+                  <input type="text" class="form-control form-control-user" name="nomepf" placeholder="Nome">
                 </div>
                 <div class="form-group controls">
-                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email">
+                  <input type="email" class="form-control form-control-user" name="emailpf" placeholder="Email">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user telefone" placeholder="Telefone"
+                    <input type="text" class="form-control form-control-user telefone" name="telefonepf" placeholder="Telefone"
                       maxlength="11">
                   </div>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user dataNasc" placeholder="Data de nascimento">
-                  </div>
-
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user cpf" placeholder="CPF">
+                    <input type="text" class="form-control form-control-user cpf" name="cpf" placeholder="CPF">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user cep" name="cep" placeholder="CEP">
+                    <input type="text" class="form-control form-control-user cep" name="ceppf" placeholder="CEP">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="endereco"
+                  <input type="text" class="form-control form-control-user" name="enderecopf"
                     placeholder="Endereço da área que vai ser monitorada ">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="usuario" placeholder="Usuário">
+                    <input type="text" class="form-control form-control-user" name="usuariopf" placeholder="Usuário">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="senha" placeholder="Senha">
+                    <input type="password" class="form-control form-control-user" name="senhapf" placeholder="Senha">
                   </div>
 
                 </div>
                 <!-- botao da pessoa fisica -->
-                <button id="botaoFisica" type="button" class="btn btn-primary btn-user btn-block">Criar Conta</button>
+                <button id="botaoFisica" class="btn btn-primary btn-user btn-block">Criar Conta</button>
                 <hr>
               </form>
 
-              <form class="user" id="pessoaj" style="display: none;">
+              <form method="post" onsubmit="return cadastrarpj()" class="user" id="pessoaj" style="display: none;">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="empresa"
+                    <input type="text" class="form-control form-control-user" name="empresa"
                       placeholder="Nome da empresa">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="nome"
+                    <input type="text" class="form-control form-control-user" name="nomepj"
                       placeholder="Nome do funcionário">
                   </div>
                 </div>
 
                 <div class="form-group controls">
-                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email">
+                  <input type="email" class="form-control form-control-user" name="emailpj" placeholder="Email">
                 </div>
 
                 <div class="form-group controls">
-                  <input type="text" class="form-control form-control-user telefone" placeholder="Telefone"
+                  <input type="text" class="form-control form-control-user telefone" name="telefonepj" placeholder="Telefone"
                     maxlength="11">
                 </div>
 
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user cnpj" placeholder="CNPJ">
+                    <input type="text" class="form-control form-control-user cnpj" name="cnpj" placeholder="CNPJ">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user cep" name="cep" placeholder="CEP">
+                    <input type="text" class="form-control form-control-user cep" name="ceppj" placeholder="CEP">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="endereco"
+                  <input type="text" class="form-control form-control-user" name="enderecopj"
                     placeholder="Endereço da área que vai ser monitorada ">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="usuario" placeholder="Usuário">
+                    <input type="text" class="form-control form-control-user" name="usuariopj" placeholder="Usuário">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="senha" placeholder="Senha">
+                    <input type="password" class="form-control form-control-user" name="senhapj" placeholder="Senha">
                   </div>
 
                 </div>
                 <!-- botao para a pessoa juridica -->
-                <button id="botaoJuridica" type="button" class="btn btn-primary btn-user btn-block">Criar Conta</button>
+                <button id="botaoJuridica" class="btn btn-primary btn-user btn-block">Criar Conta</button>
                 <hr>
 
               </form>
 
+              <img src="aguarde2.gif" id="img_aguarde" style="display: none;" width="100px">
+
+              <div id="erros"></div>
 
               <div class="row">
                 <div class="text-center col-lg-6 col-sm-6">
@@ -169,13 +168,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
   <script src="mask.js"></script>
   <script src="alternar_cadastro.js"></script>
+  <script src="cadastrar.js"></script>
 
 </body>
 
 </html>
 
-<script>
-
-
-
-</script>
