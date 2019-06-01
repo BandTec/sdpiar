@@ -13,7 +13,7 @@ router.get('/ultimas', function (req, res, next) {
                             temperatura, 
                             umidade, 
                             FORMAT(dataHora,'HH:mm:ss') as hora 
-                            from sensor order by idsensor desc`);
+                            from sensor order by hora desc`);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
