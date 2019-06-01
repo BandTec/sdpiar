@@ -87,6 +87,10 @@ function registrar_leitura(temperatura, umidade) {
     console.log(`temperatura: ${temperatura}`);
     console.log(`umidade: ${umidade}`);
 
+    if (idsensorbanco > 4) {
+        idsensorbanco = 1 ;
+    }
+
     banco.conectar().then(() => {
 
         return banco.sql.query(`INSERT into sensor (idsensor,temperatura,umidade,dataHora) values (${idsensorbanco++}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);`);

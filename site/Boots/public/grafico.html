@@ -13,7 +13,9 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -26,7 +28,7 @@
 
     <!-- scripts do Chart.js -->
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> 
+    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
 
 </head>
 
@@ -69,13 +71,15 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a onclick="zerar_notas()" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a onclick="zerar_notas()" class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span id="qtd_notifications" class="badge badge-danger badge-counter">2+</span>
                             </a>
                             <!-- Notificações -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Notificações
                                 </h6>
@@ -87,7 +91,8 @@
                                     </div>
                                     <div>
                                         <div class="small text-gray-500"> 29 de abril de 2019 // 14h30</div>
-                                        <span class="font-weight-bold">Sua temperatura ficou um pouquinho alta, acionamos o irrigador !</span>
+                                        <span class="font-weight-bold">Sua temperatura ficou um pouquinho alta,
+                                            acionamos o irrigador !</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -102,22 +107,27 @@
                                     </div>
                                 </a>
 
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Exibir notificações anteriores</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Exibir notificações
+                                    anteriores</a>
                             </div>
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span id="nome_usuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/512/64/64096.png">
+                                <img class="img-profile rounded-circle"
+                                    src="https://image.flaticon.com/icons/png/512/64/64096.png">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" onclick="logoff()" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" onclick="logoff()" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
                                 </a>
                             </div>
@@ -135,15 +145,16 @@
                         <div class="col-xl-9">
                             <div class="card shadow mb-4">
                                 <!-- Cabeçalho (Título) -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Gráfico</h6>
                                 </div>
                                 <!-- Gráfico em si -->
                                 <div id="div_aguarde">Dados sendo obtidos...</div>
-                                    <div style="height:auto" class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                
+                                <div style="height:auto" class="chart-area">
+                                    <canvas id="myAreaChart"></canvas>
+                                </div>
+
                             </div>
                         </div>
 
@@ -164,15 +175,15 @@
                             </div><br>
 
                             <div class="text-center">
-                                
+
                                 <span id="cor_temp" class=""><i class="fas fa-temperature-low fa-3x ml-4"></i></span>
-                                
+
                             </div><br>
 
                             <div class="text-center">
-                                
+
                                 <span id="cor_umid" class=""><i class="fas fa-tint fa-3x"></i></span>
-                                
+
                             </div><br>
 
                             <div class="text-center">
@@ -194,7 +205,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Mínimo</div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Mínimo
+                                            </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">14,2º</div>
                                         </div>
                                         <div class="col-auto">
@@ -210,8 +222,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">1º Quartil</div>
-                                            <div id="temp_quartil_um" class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">1º
+                                                Quartil</div>
+                                            <div id="temp_quartil_um" class="h5 mb-0 font-weight-bold text-gray-800">0º
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
@@ -226,7 +240,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Média</div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Média
+                                            </div>
                                             <div id="avg_temp" class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
                                         </div>
                                         <div class="col-auto">
@@ -242,8 +257,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Mediana</div>
-                                            <div id="temp_mediana" class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Mediana</div>
+                                            <div id="temp_mediana" class="h5 mb-0 font-weight-bold text-gray-800">0º
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
@@ -258,8 +275,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">3º Quartil</div>
-                                            <div id="temp_quartil_tres" class="h5 mb-0 font-weight-bold text-gray-800">0º</div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">3º
+                                                Quartil</div>
+                                            <div id="temp_quartil_tres" class="h5 mb-0 font-weight-bold text-gray-800">
+                                                0º</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
@@ -274,7 +293,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Máxima</div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Máxima
+                                            </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">285,0º</div>
                                         </div>
                                         <div class="col-auto">
@@ -292,7 +312,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Máximo</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Máximo</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">100%</div>
                                         </div>
                                         <div class="col-auto">
@@ -308,8 +329,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">3º Quartil</div>
-                                            <div id="umid_quartil_tres" class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">3º
+                                                Quartil</div>
+                                            <div id="umid_quartil_tres" class="h5 mb-0 font-weight-bold text-gray-800">
+                                                0%</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -324,7 +347,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Média</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Média
+                                            </div>
                                             <div id="avg_umid" class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
                                         </div>
                                         <div class="col-auto">
@@ -340,8 +364,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mediana</div>
-                                            <div id="umid_mediana" class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Mediana</div>
+                                            <div id="umid_mediana" class="h5 mb-0 font-weight-bold text-gray-800">0%
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -355,8 +381,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">1º Quartil</div>
-                                            <div id="umid_quartil_um" class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">1º
+                                                Quartil</div>
+                                            <div id="umid_quartil_um" class="h5 mb-0 font-weight-bold text-gray-800">0%
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -371,7 +399,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mínimo</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Mínimo</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">0%</div>
                                         </div>
                                         <div class="col-auto">
@@ -398,25 +427,35 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Umidade diária</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">09h00 às 10h00 <span class="float-right">20%</span></h4>
+                                    <h4 class="small font-weight-bold">09h00 às 10h00 <span
+                                            class="float-right">20%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">11h00 às 13h00 <span class="float-right">40%</span></h4>
+                                    <h4 class="small font-weight-bold">11h00 às 13h00 <span
+                                            class="float-right">40%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">14h00 às 15h00 <span class="float-right">60%</span></h4>
+                                    <h4 class="small font-weight-bold">14h00 às 15h00 <span
+                                            class="float-right">60%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: 60%"
+                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">16h00 às 18h00 <span class="float-right">80%</span></h4>
+                                    <h4 class="small font-weight-bold">16h00 às 18h00 <span
+                                            class="float-right">80%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">19h00 às 21h00 <span class="float-right">20%</span></h4>
+                                    <h4 class="small font-weight-bold">19h00 às 21h00 <span
+                                            class="float-right">20%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
                                 </div>
@@ -472,7 +511,8 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center">
-                                        <p>Gostaria de monitorar mais áreas ou tirar alguma dúvida? <br> mande uma <a target="_blank" rel="nofollow" href="index.html ">Mensagem</a>. </p>
+                                        <p>Gostaria de monitorar mais áreas ou tirar alguma dúvida? <br> mande uma <a
+                                                target="_blank" rel="nofollow" href="index.html ">Mensagem</a>. </p>
                                         <!-- <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt=""> -->
                                     </div>
 
@@ -515,14 +555,15 @@
             </a>
 
             <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Realmente deseja sair?</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+                                <span aria-hidden="true">×</span>
+                            </button>
                         </div>
                         <div class="modal-body">Selecione "Sair" para voltar para tela de login.</div>
                         <div class="modal-footer">
@@ -552,12 +593,22 @@
 
 
             <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script> 
+            <script src="vendor/chart.js/Chart.min.js"></script>
 
             <!-- Page level custom scripts 
             <script src="js/demo/chart-area-demo.js"></script> -->
 
-            
+            <script type="text/javascript">
+                var vsid = "sa82978";
+                (function () {
+                    var vsjs = document.createElement('script'); vsjs.type = 'text/javascript'; vsjs.async = true; vsjs.setAttribute('defer', 'defer');
+                    vsjs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.virtualspirits.com/vsa/chat-' + vsid + '.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
+                })();
+            </script>
+
+
+
 
 </body>
 
@@ -565,6 +616,6 @@
 
 <script>
 
-    verificarAutenticacao() ;
+    verificarAutenticacao();
 
 </script>
