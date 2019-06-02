@@ -21,7 +21,8 @@ function nova_area () {
     s2.style.display = "none" ;
     s3.style.display = "none" ;
     dono.style.display = "none" ;
-    programas.innerHTML = ` <br>
+    steps.style.display = 'block' ;
+    steps.innerHTML = ` <br>
         Quantos sensores tem na propriedade?
         <br>
         <input type="number" id="sensores">
@@ -33,7 +34,7 @@ function nova_area () {
 function nova_area2 (s) {
     var qtd_s = parseInt ( Number (s.value) / 3 );
     total_areas = qtd_s ;
-    programas.innerHTML = ` <br>
+    steps.innerHTML = ` <br>
         Quem é o usuário proprietário destes sensores?
         <br>
         <input type="text" id="proprietario" placeholder="ID do usuário">
@@ -47,33 +48,49 @@ function just_name () {
 }
 
 function nova_area3 (s) {
-    programas.innerHTML = "" ;
-    programas.innerHTML = `<br> O usuário de ID ${n_user.value} pode cadastrar ${s} áreas <br> 
-        <form method="post" onsubmit="return enviar_banco()" id="areas">
-        <input name="area" type="hidden" value="${contador}">
-        <input name="usuario" type="hidden" value="${n_user.value}">
-        <br>
-        Área ${contador} = <input name="s1" type="number" placeholder="sensor 1">
-        <input name="s2" type="number" placeholder="sensor 2"> 
-        <input name="s3" type="number" placeholder="sensor 3"> ;
-        <br><br> 
-        <button id="botao_areas">Cadastrar áreas</button> </form> <br>
-        <img src="aguarde2.gif" id="img_aguarde" style="display: none; margin-left: 40%;" width="100px">
-        <div id="erros"></div>
-    ` ;
+    f_id.innerHTML = `${n_user.value}` ;
+    f_c.innerHTML = `${contador}` ;
+    f_rc.innerHTML = `${s}` ;
+    a.value = `${contador}` ;
+    u.value = `${n_user.value}` ;    
+    steps.style.display = 'none' ;
+    programas.style.display = 'block' ;
     if (contador > total_areas) {
         alert ("Cadastro realizado com sucesso! \nCadastrado todas as áreas permitidas!") ;
-        programas.innerHTML = "" ;
+        programas.style.display = 'none' ;
         pf.disabled = false;
         pj.disabled = false;
         ac.disabled = false;
     }
 }
 
+// function teste () {
+//         var formulario = new URLSearchParams(new FormData(test));
+//         fetch("/usuarios/testando", {
+//             method: "POST",
+//             body: formulario
+//         }).then(function (response) {
+            
+//             if (response.ok) {
+
+                
+
+//             } else {
+
+//                 console.log('Erro de cadastro!');
+//                 response.text().then(function (resposta) {
+//                 testes_erro.innerHTML = resposta ;    
+//                 });
+//             }
+//         });
+
+//         return false;   
+// }
+
 function enviar_banco() {
         aguardar();
-        var formulario = new URLSearchParams(new FormData(areas));
-        fetch("/usuarios/cadastrar_areas", {
+        var formulario = new URLSearchParams(new FormData(porra));
+        fetch("/usuarios/careas", {
             method: "POST",
             body: formulario
         }).then(function (response) {
@@ -102,13 +119,13 @@ function enviar_banco() {
 
 function aguardar() {
     botao_areas.disabled = true;
-    img_aguarde.style.display='block';
+    img_aguarde2.style.display='inline';
     erros.style.display='none';
 }
 
 function finalizar_aguardar() {
     botao_areas.disabled = false;
-    img_aguarde.style.display='none';
+    img_aguarde2.style.display='none';
     erros.style.display='block';
 }
 
@@ -146,7 +163,7 @@ function pfs () {
                 pessoas_fisicas_cadastradas.push({
                     id : registro.idusuario ,
                     nome : registro.nome ,
-                    empresa : registro.empresapai ,
+                    nome_empresa : registro.empresaPai ,
                     cep : registro.cep ,
                     cpf : registro.CPF_CNPJ ,
                     usuario : registro.usuario
@@ -177,7 +194,7 @@ function pfs () {
     for ( c = 0 ; c < pessoas_fisicas_cadastradas.length ; c++ ) {
         ids.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].id}` ;
         nomes.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].nome}` ;
-        empresas_pai.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].empresa}` ;
+        empresas_pai.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].nome_empresa}` ;
         ceps.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].cep}` ;
         cpfs.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].cpf}` ;
         usuarios.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].usuario}` ;

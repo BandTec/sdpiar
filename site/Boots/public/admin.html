@@ -144,8 +144,34 @@
 
 
                     <div class="row">
-                        <div id="programas" class="col-12 text-center">
+                        <div id="steps" class="col-12 text-center"></div>
                         
+                        <div id="programas" class="col-12 text-center" style="display:none">
+                            
+                            <br> O usuário de ID <span id="f_id"></span> pode cadastrar <span id="f_rc"></span> áreas <br> 
+                            <form method="post" onsubmit="return enviar_banco()" id="porra">
+                            <input id="a" name="a" type="hidden" value="">
+                            <input id="u" name="u" type="hidden" value="">
+                            <br>
+                            Área <span id="f_c"></span> = <input name="s1" type="number" placeholder="sensor 1">
+                            <input name="s2" type="number" placeholder="sensor 2"> 
+                            <input name="s3" type="number" placeholder="sensor 3"> ;
+                            <br><br> 
+                            <button id="botao_areas">Cadastrar áreas</button> </form> <br>
+                            <div class="text-center">
+                            <img src="aguarde2.gif" id="img_aguarde2" style="display: none;width:100px">
+                            </div>
+                            <div id="erros"></div>
+
+                            <!-- <form method="POST" onsubmit="return teste()" id="test">
+                                <input type="text" name="ida">
+                                <input type="text" name="donofk">
+                                <input type="text" name="sens1">
+                                <button>Submit</button>
+                            </form>
+
+                            <div id="testes_erro"></div> -->
+
                         </div>
                     </div>
 
