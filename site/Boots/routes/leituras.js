@@ -67,18 +67,6 @@ router.get('/estatisticas', function (req, res, next) {
 
 });
 
-<<<<<<< HEAD
-router.get('/area', function (req, res, next) {
-  console.log(banco.conexao);
-  banco.conectar().then(() => {
-    var limite_linhas = 6;
-    var escolhido = 4;
-    return banco.sql.query(`select top ${limite_linhas} 
-    temperatura, 
-    umidade,
-    FORMAT(s.datahora,'HH:mm:ss') as hora
-    from sensor as s, area as a where fk_usuario = ${escolhido}`);
-=======
 router.get('/pfs', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
@@ -128,7 +116,6 @@ router.get('/areas', function (req, res, next) {
   banco.conectar().then(() => {
     return banco.sql.query(`select * 
                             from area `);
->>>>>>> 1f375762bf41c701db9ae16490caf322afd0cf13
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
