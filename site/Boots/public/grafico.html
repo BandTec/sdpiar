@@ -187,8 +187,21 @@
                             </div><br>
 
                             <div class="text-center">
-                                <button class="btn-outline-success" onclick="gerar_dados()">Gerar Dados</button>
+
+                                <form class="px-4 py-3">
+                                    <div class="form-group">
+                                        <label for="numero_area">Coloque abaixo a área que você deseja pesquisar</label>
+                                        <input type="number" class="form-control" id="numero_area" name="numero_area"
+                                            placeholder="1">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" onclick="alguma()">Mostrar
+                                        dados</button>
+                                </form>
+
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -606,10 +619,6 @@
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
                 })();
             </script>
-
-
-
-
 </body>
 
 </html>

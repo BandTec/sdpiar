@@ -36,8 +36,8 @@ router.get('/estatisticas', function (req, res, next) {
   console.log(banco.conexao);
 
   var estatisticas = {
-    temp_maxima: 0, 
-    temp_minima: 0, 
+    temp_maxima: 0,
+    temp_minima: 0,
     temp_media: 0
   };
 
@@ -55,6 +55,33 @@ router.get('/estatisticas', function (req, res, next) {
     estatisticas.temp_media = consulta.recordset[0].temp_media;
     console.log(`Estatísticas: ${estatisticas}`);
     res.send(estatisticas);
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+router.get('/area', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    var limite_linhas = 6;
+    var escolhido = 4;
+    return banco.sql.query(`select top ${limite_linhas} 
+    temperatura, 
+    umidade,
+    FORMAT(s.datahora,'HH:mm:ss') as hora
+    from sensor as s, area as a where fk_usuario = ${escolhido}`);
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
   }).catch(err => {
 
     var erro = `Erro na leitura dos últimos registros: ${err}`;
