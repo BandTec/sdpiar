@@ -16,13 +16,12 @@ foreign key (empresaPai) references usuario(idusuario)
 );
 
 create table area(
-idarea int,
+idarea int primary key,
 primeiroSensor int unique,
 segundoSensor int unique,
 terceiroSensor int unique,
 fkdono int,
 foreign key (fkdono) references usuario(idusuario),
-primary key (idarea,fkdono)
 );
 
 create table tempArea(
@@ -34,11 +33,22 @@ foreign key (fkarea) references area(idarea)
 );
 
 create table sensor(
-idsensor int,
-temperatura float,
-umidade float,
-dataHora TIMESTAMP 
-fk_usuario int;
+idSensor int,
+temperatura decimal(5,2),
+umidade decimal(3,1),
+dataHora timestamp,
+fk_dono int,
+foreign key (fk_dono) references usuario(idusuario)
 );
 
-insert into usuario(tipopessoa,nome,usuario,senha) values ('pj','wilma','wilma','grupo10');
+select * from usuario;
+select * from area;
+select * from temparea;
+select * from sensor;
+
+insert into usuario (tipoPessoa,nome,email,endereco,telefone,cpf,NomeEmpresa,usuario,senha) values ('pf','william','email','rua','123','123','empresa','asd','asd');
+update  usuario set empresaPai = '1' where idusuario = 1;
+
+insert into area values (1,1,2,3,1);
+
+insert into tempArea (temperaturaMedia,umidadeMedia,fkarea) values (23,23,1);

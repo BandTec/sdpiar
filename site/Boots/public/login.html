@@ -115,7 +115,9 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-    if (sessionStorage.usuario_bandtec != undefined) {
+    if (sessionStorage.usuario_bandtec == "Wilma") {
+      window.location.href = 'admin.html';
+    } else if (sessionStorage.usuario_bandtec != undefined) {
       window.location.href = 'grafico.html';
     }
   }

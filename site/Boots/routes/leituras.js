@@ -13,7 +13,7 @@ router.get('/ultimas', function (req, res, next) {
                             temperatura, 
                             umidade, 
                             FORMAT(dataHora,'HH:mm:ss') as hora 
-                            from sensor order by idsensor desc`);
+                            from sensor order by hora desc`);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -67,6 +67,7 @@ router.get('/estatisticas', function (req, res, next) {
 
 });
 
+<<<<<<< HEAD
 router.get('/area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
@@ -77,6 +78,57 @@ router.get('/area', function (req, res, next) {
     umidade,
     FORMAT(s.datahora,'HH:mm:ss') as hora
     from sensor as s, area as a where fk_usuario = ${escolhido}`);
+=======
+router.get('/pfs', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    return banco.sql.query(`select * 
+                            from usuario where tipoPessoa = 'pf' `);
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+router.get('/pjs', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    return banco.sql.query(`select * 
+                            from usuario where tipoPessoa = 'pj' `);
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+router.get('/areas', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    return banco.sql.query(`select * 
+                            from area `);
+>>>>>>> 1f375762bf41c701db9ae16490caf322afd0cf13
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard - Admin</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">    
+
+    <!-- scripts do Chart.js -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> 
+
+    <!-- Funções da página -->
+    <script src="funcoes_admin.js"></script>
+
+</head>
+
+<body id="page-top">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button> -->
+
+                    <a class="img-profile rounded-circle h1 mb-0" href="index.html">
+                        <img src="img/logo.PNG" width="100" height="100">
+                    </a>
+
+
+
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">SDPIAR</a>
+                        </li>
+                    </ul>
+
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="nome_usuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <img class="img-profile rounded-circle"
+                                    src="https://image.flaticon.com/icons/png/512/64/64096.png">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="logoff()" data-toggle="modal"
+                                    data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- Fim da barra de navegação -->
+
+                <!-- Conteúdo da página -->
+                <div id="content_of_page" class="container">
+
+                    <div class="row">
+                        
+                        <div class="col-12 text-center text-dark">
+
+                            O que deseja fazer?
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            
+                            <button id="na" class="btn-primary" type="button" onclick="nova_area()">
+                                
+                                Registrar nova área
+
+                            </button>
+                        
+                        </div>
+
+                        <div class="col-4 text-center">
+                            
+                            <button id="pf" class="btn-primary" type="button" onclick="pfs()">
+                                
+                                Ver PFs Cadastradas
+
+                            </button> 
+                            
+                            <br><br>
+
+                            <button id="pj" class="btn-primary" type="button" onclick="pjs()">
+                                
+                                Ver PJs Cadastradas
+
+                            </button>
+
+                        </div>
+
+                        <div class="col-4 text-center">
+                            
+                            <button id="ac" class="btn-primary" type="button" onclick="areas()">
+                                
+                                Ver Áreas Cadastradas
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <input type="hidden" id="n_user">
+                    <br>
+
+
+
+                    <div class="row">
+                        <div id="programas" class="col-12 text-center">
+                        
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <br>
+                            <img src="aguarde.gif" id="img_aguarde" style="display:none">
+                        <br>
+                    </div>
+
+                    <br><br>
+
+                    <div id="div_ps" class="row" >
+
+                        <div id="ids" class="col-1 text-center" >  </div> 
+                        <div id="nomes" class="col-4 text-center" >  </div>
+                        <div id="empresas_pai" class="col-1 text-center" >  </div>
+                        <div id="ceps" class="col-2 text-center" > </div>
+                        <div id="cpfs" class="col-2 text-center" >  </div>
+                        <div id="usuarios" class="col-2 text-center" >  </div>
+
+                         
+                        <div id="empresas" class="col-2 text-center" >  </div>
+                        <div id="telefones" class="col-2 text-center" >  </div>
+                        <div id="cnpjs" class="col-3 text-center" >  </div>
+
+                        <div id="idsa" class="col-3 text-center"> </div>
+                        <div id="s1" class="col-2 text-center"> </div>
+                        <div id="s2" class="col-2 text-center"> </div>
+                        <div id="s3" class="col-2 text-center"> </div>
+                        <div id="dono" class="col-3 text-center"> </div>
+                        
+                    </div>
+                    
+
+                </div>
+                <!-- Fim do conteúdo da página -->
+                
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; SDPIAR2019</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+
+
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Realmente deseja sair?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Selecione "Sair" para voltar para tela de login.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="login.html">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
+
+            <!-- Page level plugins -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
+
+            <!-- Page level custom scripts -->
+            <!-- <script src="js/demo/chart-area-demo.js"></script> 
+            <script src="js/demo/chart-pie-demo.js"></script> -->
+
+
+            <!-- Page level plugins -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
+
+            <!-- Page level custom scripts 
+            <script src="js/demo/chart-area-demo.js"></script> -->
+
+            <script type="text/javascript">
+                var vsid = "sa82978";
+                (function () {
+                    var vsjs = document.createElement('script'); vsjs.type = 'text/javascript'; vsjs.async = true; vsjs.setAttribute('defer', 'defer');
+                    vsjs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.virtualspirits.com/vsa/chat-' + vsid + '.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
+                })();
+            </script>
+
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    verificarAutenticacao();
+
+    function verificarAutenticacao() {
+        usuario = sessionStorage.usuario_bandtec;
+        if (usuario != "Wilma") {
+            window.location.href = 'login.html';
+        } else {
+            nome_usuario.innerHTML = usuario;
+        }
+    }
+
+    function logoff() {
+        sessionStorage.removeItem('usuario_bandtec');
+        verificarAutenticacao();
+    }
+
+</script>

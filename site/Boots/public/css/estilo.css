@@ -6,10 +6,10 @@ hr.style1{
 
 .trava {
   position:relative;
-  left:0;
+  left:40px;
   right:0;
-  width: 500px;
-  top: 20px;
+  width: 450px;
+  top: 55px;
 }
 
 .bg-gradient-primary2 {

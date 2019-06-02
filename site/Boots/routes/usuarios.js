@@ -170,5 +170,65 @@ router.post('/cadastrarpj', function (req, res, next) {
 
 });
 
+router.post('/cadastrar_areas', function (req, res, next) {
+
+    var area ;
+    var sensor1 ;
+    var sensor2 ;
+    var sensor3 ;
+    var usuario ;
+    var cadastro_valido = false;
+
+    banco.conectar().then(() => {
+      console.log(`Chegou p/ cadastro: ${JSON.stringify(req.body)}`);
+      area = req.body.area; // depois de .body, use o nome (name) do campo em seu formulário de login
+      usuario = req.body.usuario; // depois de .body, use o nome (name) do campo em seu formulário de login
+      sensor1 = req.body.s1; // depois de .body, use o nome (name) do campo em seu formulário de login
+      sensor2 = req.body.s2;
+      sensor3 = req.body.s3;
+      if (sensor1 < 0 || sensor3 < 0 || sensor2 < 0) {
+      // coloque a frase de erro que quiser aqui. Ela vai aparecer no formulário de cadastro
+        throw new Error(`Dados de cadastro não chegaram completos: ${sensor1} / ${sensor1} / ${sensor1}`);
+      }
+      return banco.sql.query(`select count(idarea) as areas from area where idarea = '${area}' and fkdono = ${usuario}`);
+    }).then(consulta => {
+
+    if (consulta.recordset[0].contagem >= 1) {
+      res.status(400).send(`Já existe área cadastrada com esse id "${area}" para esse dono "${usuario}"`);
+      return;
+      } else {
+      console.log('válido!');
+      cadastro_valido = true;
+    }
+
+    }).catch(err => {
+
+      var erro = `Erro no cadastro: ${err}`;
+      console.error(erro);
+      res.status(500).send(erro);
+
+    }).finally(() => {
+      if (cadastro_valido) {		  
+          
+      banco.sql.query(`insert into area (idarea,primeirosensor,segundosensor,terceirosensor,fkdono) 
+                      values ('${area}','${sensor1}','${sensor2}','${sensor3}','${usuario}')`).then(function() {
+        console.log(`Cadastro criado com sucesso!`);
+        res.sendStatus(201); 
+        // status 201 significa que algo foi criado no back-end, 
+          // no caso, um registro de usuário ;)		
+      }).catch(err => {
+
+        var erro = `Erro no cadastro: ${err}`;
+        console.error(erro);
+        res.status(500).send(erro);
+
+      }).finally(() => {
+        banco.sql.close();
+      });
+      }
+    });
+  
+});
+
 // não mexa nesta linha!
 module.exports = router;
