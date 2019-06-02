@@ -7,6 +7,8 @@ function verificarAutenticacao() {
     usuario = sessionStorage.usuario_bandtec;
     if (usuario == undefined) {
         window.location.href = 'login.html';
+    } else if (usuario == "Wilma") {
+        window.location.href = 'admin.html' ;
     } else {
         nome_usuario.innerHTML = usuario;
     }

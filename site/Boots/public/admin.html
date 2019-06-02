@@ -16,13 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Inserção manual de dados ( Simulação dos quartis ) -->
-    <script src="simulacao_quartis.js"></script>
-    <script src="interacoes_dashboard.js"></script>
-    <script src="select_banco_grafico.js"></script>
-    <script src="comunicacao_dashboad_banco.js"></script>
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">    
 
     <!-- scripts do Chart.js -->
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
@@ -30,18 +24,7 @@
 
 </head>
 
-<body onload="atualizarGrafico()" id="page-top">
-
-
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
+<body id="page-top">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -67,57 +50,24 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a onclick="zerar_notas()" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span id="qtd_notifications" class="badge badge-danger badge-counter">2+</span>
-                            </a>
-                            <!-- Notificações -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Notificações
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500"> 29 de abril de 2019 // 14h30</div>
-                                        <span class="font-weight-bold">Sua temperatura ficou um pouquinho alta, acionamos o irrigador !</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">20 de abril de 2019 // 12h00</div>
-                                        A área leste houve um incêndio, acionamos o corpo de bombeiros
-                                    </div>
-                                </a>
-
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Exibir notificações anteriores</a>
-                            </div>
-                        </li>
+                        
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span id="nome_usuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/512/64/64096.png">
+                                <img class="img-profile rounded-circle"
+                                    src="https://image.flaticon.com/icons/png/512/64/64096.png">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" onclick="logoff()" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" onclick="logoff()" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
                                 </a>
                             </div>
@@ -126,11 +76,62 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+                <!-- Fim da barra de navegação -->
 
+                <!-- Conteúdo da página -->
+                <div class="container">
+
+                    <div class="row">
+                        
+                        <div class="col-12 text-center text-dark">
+
+                            O que deseja fazer?
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            
+                            <button class="btn-primary" type="button" onclick="">
+                                
+                                Registrar nova área
+
+                            </button>
+                        
+                        </div>
+
+                        <div class="col-4 text-center">
+                            
+                            <button class="btn-primary" type="button" onclick="">
+                                
+                                Ver PFs Cadastradas
+
+                            </button>
+
+                        </div>
+
+                        <div class="col-4 text-center">
+                            
+                            <button class="btn-primary" type="button" onclick="">
+                                
+                                Ver PJs Cadastradas
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div id="" class="col-12"></div>
+
+                </div>
+                <!-- Fim do conteúdo da página -->
                 
-
-
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
@@ -143,7 +144,33 @@
 
 
 
-           
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Realmente deseja sair?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Selecione "Sair" para voltar para tela de login.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="login.html">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Bootstrap core JavaScript-->
             <script src="vendor/jquery/jquery.min.js"></script>
@@ -164,12 +191,22 @@
 
 
             <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script> 
+            <script src="vendor/chart.js/Chart.min.js"></script>
 
             <!-- Page level custom scripts 
             <script src="js/demo/chart-area-demo.js"></script> -->
 
-            
+            <script type="text/javascript">
+                var vsid = "sa82978";
+                (function () {
+                    var vsjs = document.createElement('script'); vsjs.type = 'text/javascript'; vsjs.async = true; vsjs.setAttribute('defer', 'defer');
+                    vsjs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.virtualspirits.com/vsa/chat-' + vsid + '.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
+                })();
+            </script>
+
+
+
 
 </body>
 
@@ -177,6 +214,20 @@
 
 <script>
 
-    verificarAutenticacao() ;
+    verificarAutenticacao();
+
+    function verificarAutenticacao() {
+        usuario = sessionStorage.usuario_bandtec;
+        if (usuario != "Wilma") {
+            window.location.href = 'login.html';
+        } else {
+            nome_usuario.innerHTML = usuario;
+        }
+    }
+
+    function logoff() {
+        sessionStorage.removeItem('usuario_bandtec');
+        verificarAutenticacao();
+    }
 
 </script>

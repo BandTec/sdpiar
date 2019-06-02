@@ -39,10 +39,4 @@ umidade float,
 dataHora TIMESTAMP 
 );
 
-insert into usuario ( nome, email, endereco, telefone, CPF_CNPJ, NomeEmpresa, usuario, senha) values 
-( 'José', 'josetn@gmail.com','Área Verde', '1125613317','4824082897', 'Terra Nova','jose_tn','123456' ),
-( 'Maria', 'Maria@gmail.com','Horto Florestal', '1125612312','76765435123', 'TurboTel','maria_tt','987654' ),
-( 'Irineu', 'irineu@gmail.com','Água Branca', '11987656789','1234082897', 'Green run','irineu_gr','098765' ),
-( 'Priscila', 'priscila@gmail.com','Ibirapuera', '11987678658','4824082098', 'Ibi','priscila_ibi','987640' ),
-( 'Eduardo', 'eduardo@gmail.com','Piqueri', '11987600658','4824080098', 'Terra Verde','Edu_tv', '067832' );
-
+insert into usuario(tipopessoa,nome,usuario,senha) values ('pj','wilma','wilma','grupo10');

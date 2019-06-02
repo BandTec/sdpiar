@@ -14,6 +14,8 @@ var banco = require(`../${pasta_projeto_site}/app-banco`);
 require('events').EventEmitter.defaultMaxListeners = 15;
 
 var idsensorbanco = 1 ;
+var controle = 1 ;
+var fk_user = 4 ;
 
 function iniciar_escuta() {
 
@@ -89,11 +91,13 @@ function registrar_leitura(temperatura, umidade) {
 
     if (idsensorbanco > 4) {
         idsensorbanco = 1 ;
+        fk_user = fk_user + controle ;
+        controle = controle * -1 ;
     }
 
     banco.conectar().then(() => {
 
-        return banco.sql.query(`INSERT into sensor (idsensor,temperatura,umidade,dataHora) values (${idsensorbanco++}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);`);
+        return banco.sql.query(`INSERT into sensor (idsensor,fk_usuario,temperatura,umidade,dataHora) values (${idsensorbanco++},${fk_user}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);`);
 
     }).catch(err => {
 
