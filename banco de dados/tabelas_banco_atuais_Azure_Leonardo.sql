@@ -16,12 +16,13 @@ foreign key (empresaPai) references usuario(idusuario)
 );
 
 create table area(
-idarea int primary key,
+idarea int,
 primeiroSensor int unique,
 segundoSensor int unique,
 terceiroSensor int unique,
 fkdono int,
 foreign key (fkdono) references usuario(idusuario),
+primary key (idarea,fkdono)
 );
 
 create table tempArea(

@@ -7,6 +7,20 @@ function nova_area () {
     pf.disabled = true ;
     pj.disabled = true ;
     ac.disabled = true ;
+    ids.style.display = "none" ;
+    nomes.style.display = "none" ;
+    empresas_pai.style.display = "none" ;
+    ceps.style.display = "none" ;
+    cpfs.style.display = "none" ;
+    usuarios.style.display = "none" ;
+    cnpjs.style.display = "none" ;
+    telefones.style.display = "none" ;
+    empresas.style.display = "none" ;
+    idsa.style.display = "none" ;
+    s1.style.display = "none" ;
+    s2.style.display = "none" ;
+    s3.style.display = "none" ;
+    dono.style.display = "none" ;
     programas.innerHTML = ` <br>
         Quantos sensores tem na propriedade?
         <br>
@@ -101,6 +115,21 @@ function finalizar_aguardar() {
 function pfs () {
    var pessoas_fisicas_cadastradas = [] ;
 
+   ids.style.display = "none" ;
+    nomes.style.display = "none" ;
+    empresas_pai.style.display = "none" ;
+    ceps.style.display = "none" ;
+    cpfs.style.display = "none" ;
+    usuarios.style.display = "none" ;
+    cnpjs.style.display = "none" ;
+    telefones.style.display = "none" ;
+    empresas.style.display = "none" ;
+    idsa.style.display = "none" ;
+    s1.style.display = "none" ;
+    s2.style.display = "none" ;
+    s3.style.display = "none" ;
+    dono.style.display = "none" ;
+
    img_aguarde.style.display = 'inline' ;
 
    fetch('/leituras/pfs', { cache: 'no-store' }).then(function (response) {
@@ -117,7 +146,7 @@ function pfs () {
                 pessoas_fisicas_cadastradas.push({
                     id : registro.idusuario ,
                     nome : registro.nome ,
-                    email : registro.email ,
+                    empresa : registro.empresapai ,
                     cep : registro.cep ,
                     cpf : registro.CPF_CNPJ ,
                     usuario : registro.usuario
@@ -133,25 +162,173 @@ function pfs () {
         console.error('Nenhum dado encontrado ou erro na API');
     }
 })
-    setTimeout(function(){content_of_page.innerHTML += ` <div class="row">
-                            <div id="ids" class="col-2 text-center"> IDUSUARIO </div> 
-                            <div id="nomes" class="col-2 text-center"> NOME </div>
-                            <div id="emails" class="col-2 text-center"> EMAIL </div>
-                            <div id="ceps" class="col-2 text-center"> CEP </div>
-                            <div id="cpfs" class="col-2 text-center"> CPF </div>
-                            <div id="usuarios" class="col-2 text-center"> USUARIO </div>
-                            </div>
-    `;
-    ;
+    setTimeout(function(){ ids.innerHTML = "IDUSUARIO" ;
+    nomes.innerHTML = "NOME" ;
+    empresas_pai.innerHTML = "EMP-PAI" ;
+    ceps.innerHTML = "CEP" ;
+    cpfs.innerHTML = "CPF" ;
+    usuarios.innerHTML = "USUARIO" ;
+    ids.style.display = "block" ;
+    nomes.style.display = "block" ;
+    empresas_pai.style.display = "block" ;
+    ceps.style.display = "block" ;
+    cpfs.style.display = "block" ;
+    usuarios.style.display = "block" ;
     for ( c = 0 ; c < pessoas_fisicas_cadastradas.length ; c++ ) {
         ids.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].id}` ;
         nomes.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].nome}` ;
-        emails.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].email}` ;
+        empresas_pai.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].empresa}` ;
         ceps.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].cep}` ;
         cpfs.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].cpf}` ;
         usuarios.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].usuario}` ;
-    }
+    } 
     }, 3000) ;
 
     
 }
+
+function pjs () {
+    var pessoas_fisicas_cadastradas = [] ;
+
+    ids.style.display = "none" ;
+    nomes.style.display = "none" ;
+    empresas_pai.style.display = "none" ;
+    ceps.style.display = "none" ;
+    cpfs.style.display = "none" ;
+    usuarios.style.display = "none" ;
+    cnpjs.style.display = "none" ;
+    telefones.style.display = "none" ;
+    empresas.style.display = "none" ;
+    idsa.style.display = "none" ;
+    s1.style.display = "none" ;
+    s2.style.display = "none" ;
+    s3.style.display = "none" ;
+    dono.style.display = "none" ;
+ 
+    img_aguarde.style.display = 'inline' ;
+ 
+    fetch('/leituras/pjs', { cache: 'no-store' }).then(function (response) {
+     if (response.ok) {
+         response.json().then(function (resposta) {
+ 
+             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+ 
+             resposta.reverse();
+ 
+             for (i = 0; i < resposta.length; i++) {
+                 var registro = resposta[i];
+ 
+                 pessoas_fisicas_cadastradas.push({
+                     id : registro.idusuario ,
+                     nome_emp : registro.NomeEmpresa ,
+                     telefone : registro.telefone ,
+                     cep : registro.cep ,
+                     cnpj : registro.CPF_CNPJ ,
+                     usuario : registro.usuario
+                 });
+             } 
+ 
+             console.log(JSON.stringify(pessoas_fisicas_cadastradas));
+ 
+             img_aguarde.style.display = 'none' ;
+ 
+         });
+     } else {
+         console.error('Nenhum dado encontrado ou erro na API');
+     }
+ })
+     setTimeout(function(){ ids.innerHTML = "IDUSUARIO" ;
+     telefones.innerHTML = "TELEFONE" ;
+     empresas.innerHTML = "EMPRESA" ;
+     ceps.innerHTML = "CEP" ;
+     cnpjs.innerHTML = "CNPJ" ;
+     usuarios.innerHTML = "USUARIO" ;
+     ids.style.display = "block" ;
+     telefones.style.display = "block" ;
+     empresas.style.display = "block" ;
+     ceps.style.display = "block" ;
+     cnpjs.style.display = "block" ;
+     usuarios.style.display = "block" ;
+     for ( c = 0 ; c < pessoas_fisicas_cadastradas.length ; c++ ) {
+         ids.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].id}` ;
+         telefones.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].telefone}` ;
+         empresas.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].nome_emp}` ;
+         ceps.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].cep}` ;
+         cnpjs.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].cnpj}` ;
+         usuarios.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].usuario}` ;
+     } 
+     }, 3000) ;
+ 
+     
+ }
+
+ function areas () {
+    var pessoas_fisicas_cadastradas = [] ;
+ 
+    ids.style.display = "none" ;
+    nomes.style.display = "none" ;
+    empresas_pai.style.display = "none" ;
+    ceps.style.display = "none" ;
+    cpfs.style.display = "none" ;
+    usuarios.style.display = "none" ;
+    cnpjs.style.display = "none" ;
+    telefones.style.display = "none" ;
+    empresas.style.display = "none" ;
+    idsa.style.display = "none" ;
+    s1.style.display = "none" ;
+    s2.style.display = "none" ;
+    s3.style.display = "none" ;
+    dono.style.display = "none" ;
+
+    img_aguarde.style.display = 'inline' ;
+ 
+    fetch('/leituras/areas', { cache: 'no-store' }).then(function (response) {
+     if (response.ok) {
+         response.json().then(function (resposta) {
+ 
+             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+ 
+             resposta.reverse();
+ 
+             for (i = 0; i < resposta.length; i++) {
+                 var registro = resposta[i];
+ 
+                 pessoas_fisicas_cadastradas.push({
+                     id : registro.idarea ,
+                     s1 : registro.primeiroSensor ,
+                     s2 : registro.segundoSensor ,
+                     s3 : registro.terceiroSensor ,
+                     dono : registro.fkdono ,
+                 });
+             } 
+ 
+             console.log(JSON.stringify(pessoas_fisicas_cadastradas));
+ 
+             img_aguarde.style.display = 'none' ;
+ 
+         });
+     } else {
+         console.error('Nenhum dado encontrado ou erro na API');
+     }
+ })
+     setTimeout(function(){ idsa.innerHTML = "IDAREA" ;
+     s1.innerHTML = "SENSOR1" ;
+     s2.innerHTML = "SENSOR2" ;
+     s3.innerHTML = "SENSOR3" ;
+     dono.innerHTML = "USUARIO DONO" ;
+     idsa.style.display = "block" ;
+     s1.style.display = "block" ;
+     s2.style.display = "block" ;
+     s3.style.display = "block" ;
+     dono.style.display = "block" ;
+     for ( c = 0 ; c < pessoas_fisicas_cadastradas.length ; c++ ) {
+         idsa.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].id}` ;
+         s1.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].s1}` ;
+         s2.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].s2}` ;
+         s3.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].s3}` ;
+         dono.innerHTML += `<br> ${pessoas_fisicas_cadastradas[c].dono}` ;
+     } 
+     }, 3000) ;
+ 
+     
+ }
