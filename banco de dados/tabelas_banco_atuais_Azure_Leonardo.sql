@@ -37,6 +37,7 @@ idsensor int,
 temperatura float,
 umidade float,
 dataHora TIMESTAMP 
+fk_usuario int;
 );
 
 insert into usuario(tipopessoa,nome,usuario,senha) values ('pj','wilma','wilma','grupo10');

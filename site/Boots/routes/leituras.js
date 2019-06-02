@@ -67,6 +67,28 @@ router.get('/estatisticas', function (req, res, next) {
 
 });
 
+router.get('/pfs', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    return banco.sql.query(`select * 
+                            from usuario where tipoPessoa = 'pf' `);
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
 
 // não mexa nesta linha!
 module.exports = router;

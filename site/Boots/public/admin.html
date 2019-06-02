@@ -22,6 +22,9 @@
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
     <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> 
 
+    <!-- Funções da página -->
+    <script src="funcoes_admin.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -79,7 +82,7 @@
                 <!-- Fim da barra de navegação -->
 
                 <!-- Conteúdo da página -->
-                <div class="container">
+                <div id="content_of_page" class="container">
 
                     <div class="row">
                         
@@ -97,7 +100,7 @@
                         
                         <div class="col-4 text-center">
                             
-                            <button class="btn-primary" type="button" onclick="">
+                            <button id="na" class="btn-primary" type="button" onclick="nova_area()">
                                 
                                 Registrar nova área
 
@@ -107,17 +110,15 @@
 
                         <div class="col-4 text-center">
                             
-                            <button class="btn-primary" type="button" onclick="">
+                            <button id="pf" class="btn-primary" type="button" onclick="pfs()">
                                 
                                 Ver PFs Cadastradas
 
-                            </button>
-
-                        </div>
-
-                        <div class="col-4 text-center">
+                            </button> 
                             
-                            <button class="btn-primary" type="button" onclick="">
+                            <br><br>
+
+                            <button id="pj" class="btn-primary" type="button" onclick="">
                                 
                                 Ver PJs Cadastradas
 
@@ -125,9 +126,26 @@
 
                         </div>
 
+                        <div class="col-4 text-center">
+                            
+                            <button id="ac" class="btn-primary" type="button" onclick="">
+                                
+                                Ver Áreas Cadastradas
+
+                            </button>
+
+                        </div>
+
                     </div>
 
-                    <div id="" class="col-12"></div>
+                    <input type="hidden" id="n_user">
+                    <br>
+
+                    <div id="programas" class="col-12 text-center">
+                        <br>
+                        <img src="aguarde.gif" id="img_aguarde" style="display:none">
+                        <br>
+                    </div>
 
                 </div>
                 <!-- Fim do conteúdo da página -->
