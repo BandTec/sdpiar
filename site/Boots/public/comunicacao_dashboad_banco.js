@@ -22,8 +22,8 @@ function logoff() {
 // só mexer se quiser alterar o tempo de atualização
 // ou se souber o que está fazendo!
 function atualizarGrafico() {
-    obterDadosGrafico();
-    setTimeout(atualizarGrafico, 10000);
+    obterDadosGrafico2();
+    setTimeout(obterDadosGrafico2, 10000);
 }
 
 // altere aqui as configurações do gráfico
@@ -31,7 +31,7 @@ function atualizarGrafico() {
 function configurarGrafico() {
     var configuracoes = {
         responsive: true,
-        animation: exibiu_grafico ? false : {duration: 1500},
+        animation: exibiu_grafico ? false : { duration: 1500 },
         hoverMode: 'index',
         stacked: false,
         title: {
@@ -101,7 +101,70 @@ function obterDadosGrafico() {
 
                 for (i = 0; i < resposta.length; i++) {
                     var registro = resposta[i];
-                
+
+                    // aqui, após 'registro.' use os nomes 
+                    // dos atributos que vem no JSON 
+                    // que gerou na consulta ao banco de dados
+
+                    dados.labels.push(registro.hora);
+
+                    dados.datasets[0].data.push(registro.temperatura);
+                    dados.datasets[1].data.push(registro.umidade);
+                }
+                console.log(JSON.stringify(dados));
+
+                div_aguarde.style.display = 'none';
+
+                plotarGrafico(dados);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
+
+
+function obterDadosGrafico2() {
+
+    // neste JSON tem que ser 'labels', 'datasets' etc, 
+    // porque é o padrão do Chart.js
+    var dados = {
+        labels: [],
+        datasets: [
+            {
+                yAxisID: 'y-temperatura',
+                label: 'Temperatura',
+                borderColor: window.chartColors.red,
+                backgroundColor: window.chartColors.red,
+                fill: false,
+                data: []
+            },
+            {
+                yAxisID: 'y-umidade',
+                label: 'Umidade',
+                borderColor: window.chartColors.blue,
+                backgroundColor: window.chartColors.blue,
+                fill: false,
+                data: []
+            }
+        ]
+    };
+
+    fetch('/leituras/area', { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                resposta.reverse();
+
+                for (i = 0; i < resposta.length; i++) {
+                    var registro = resposta[i];
+
                     // aqui, após 'registro.' use os nomes 
                     // dos atributos que vem no JSON 
                     // que gerou na consulta ao banco de dados

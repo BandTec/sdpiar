@@ -36,8 +36,8 @@ router.get('/estatisticas', function (req, res, next) {
   console.log(banco.conexao);
 
   var estatisticas = {
-    temp_maxima: 0, 
-    temp_minima: 0, 
+    temp_maxima: 0,
+    temp_minima: 0,
     temp_media: 0
   };
 
