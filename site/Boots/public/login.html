@@ -115,9 +115,9 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-    if (sessionStorage.usuario_bandtec == 'Wilma') {
+    if (sessionStorage.nome_usuario_bandtec == 'Wilma') {
       window.location.href = 'admin.html';
-    } else if (sessionStorage.usuario_bandtec != undefined) {
+    } else if (sessionStorage.nome_usuario_bandtec != undefined) {
       window.location.href = 'grafico.html';
     }
   }
@@ -134,7 +134,9 @@
 
         response.json().then(function (resposta) {
 
-          sessionStorage.usuario_bandtec = resposta.nome;
+          //sessionStorage.usuario_bandtec = {nome: resposta.nome, id:resposta.idusuario};
+          sessionStorage.nome_usuario_bandtec = resposta.nome;
+          sessionStorage.id_usuario_bandtec = resposta.idusuario;
           verificarAutenticacao();
 
         });

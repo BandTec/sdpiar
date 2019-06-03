@@ -445,9 +445,31 @@ router.get('/medianaU', function (req, res, next) {
   }).finally(() => {
     banco.sql.close();
   });
-
 });
 
+
+router.get('/teste/:usuario', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    // var limite_linhas = 15;
+    return banco.sql.query(`Select u.idusuario, a.* from usuario as u, area as a where idusuario = fkdono 
+    and idusuario = ${req.params.usuario}`);
+    
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta do teste: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+});
 
 
 // não mexa nesta linha!

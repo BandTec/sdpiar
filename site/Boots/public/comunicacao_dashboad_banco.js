@@ -4,7 +4,7 @@ var exibiu_grafico = false;
 verificarAutenticacao();
 
 function verificarAutenticacao() {
-    usuario = sessionStorage.usuario_bandtec;
+    usuario = sessionStorage.nome_usuario_bandtec;
     if (usuario == undefined) {
         window.location.href = 'login.html';
     } else if (usuario == "Wilma") {
@@ -15,7 +15,7 @@ function verificarAutenticacao() {
 }
 
 function logoff() {
-    sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('nome_usuario_bandtec');
     verificarAutenticacao();
 }
 
@@ -199,4 +199,22 @@ function plotarGrafico(dados) {
         data: dados,
         options: configurarGrafico()
     });
+}
+
+
+function teste() {
+    fetch(`/leituras/teste/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
 }
