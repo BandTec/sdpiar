@@ -133,15 +133,16 @@ router.get('/areas', function (req, res, next) {
 
 });
 
-router.get('/area', function (req, res, next) {
+router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
-    var limite_linhas = 15;
-    var escolhido = 4;
-    return banco.sql.query(`select top ${limite_linhas} 
-          temperatura, 
-          umidade, 
-          FORMAT(s.dataHora,'HH:mm:ss') as hora from sensor as s, area as a where fk_usuario = ${escolhido}`);
+    // var limite_linhas = 15;
+    return banco.sql.query(` select top 15 ia.temperaturamedia as mt, umidademedia as mu,
+    FORMAT(ia.datahora,'HH:mm:ss') as hora from areabruto as ia 
+    where fk_area = ${req.params.area} and fk_primeirosensor = ${req.params.s1} and
+    fk_segundosensor = ${req.params.s2} and fk_terceirosensor = ${req.params.s3} 
+    and fk_dono = ${req.params.dono} ; 
+      `);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -448,12 +449,71 @@ router.get('/medianaU', function (req, res, next) {
 });
 
 
+
+// Teste
+
 router.get('/teste/:usuario', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select u.idusuario, a.* from usuario as u, area as a where idusuario = fkdono 
-    and idusuario = ${req.params.usuario}`);
+    return banco.sql.query(`Select a.idarea,a.primeirosensor,a.segundosensor,a.terceirosensor
+    from usuario, area as a where idusuario = a.fkdono 
+    and idusuario = '${req.params.usuario}'`);
+    
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta do teste: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+});
+
+// Aquisição Node
+
+router.get('/teste2/:area/:dono/:s1/:s2/:s3', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    return banco.sql.query(`insert into areabruto values (
+      ${req.params.area}, ${req.params.dono},
+      ${req.params.s1}, ${req.params.s2},
+      ${req.params.s3},  
+      
+        ((select top 1 temperatura from area,sensor 
+        where fkdono = fk_usuario and primeirosensor = idsensor and
+        idarea = ${req.params.area} and fkdono = ${req.params.dono} 
+        order by sensor.datahora desc ) + 
+        (select top 1 temperatura from area,sensor 
+        where fkdono = fk_usuario and segundosensor = idsensor and
+        idarea = ${req.params.area} and fkdono = ${req.params.dono}  
+        order by sensor.datahora desc ) +
+        (select top 1 temperatura from area,sensor 
+        where fkdono = fk_usuario and terceirosensor = idsensor and
+        idarea = ${req.params.area} and fkdono = ${req.params.dono}  
+        order by sensor.datahora desc ) ) / 3,
+
+        ((select top 1 umidade from area,sensor 
+        where fkdono = fk_usuario and primeirosensor = idsensor and
+        idarea = ${req.params.area} and fkdono = ${req.params.dono} 
+        order by sensor.datahora desc ) + 
+        (select top 1 temperatura from area,sensor 
+        where fkdono = fk_usuario and segundosensor = idsensor and
+        idarea = ${req.params.area} and fkdono = ${req.params.dono}  
+        order by sensor.datahora desc ) +
+        (select top 1 temperatura from area,sensor 
+        where fkdono = fk_usuario and terceirosensor = idsensor and
+        idarea = ${req.params.area} and fkdono = ${req.params.dono}  
+        order by sensor.datahora desc ) ) / 3
+      
+        , current_timestamp ) ;
+     `);
     
   }).then(consulta => {
 

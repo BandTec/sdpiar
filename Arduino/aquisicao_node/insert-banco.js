@@ -89,6 +89,8 @@ function registrar_leitura(temperatura, umidade) {
     console.log(`temperatura: ${temperatura}`);
     console.log(`umidade: ${umidade}`);
 
+
+    // Controlando a quantidade de sensores por usuário que serão inseridos na tabela
     if (idsensorbanco > 4) {
         idsensorbanco = 1 ;
         fk_user = fk_user + controle ;

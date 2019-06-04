@@ -23,7 +23,7 @@
     <!-- Inserção manual de dados ( Simulação dos quartis ) -->
     <script src="simulacao_quartis.js"></script>
     <script src="interacoes_dashboard.js"></script>
-    <script src="select_banco_grafico.js"></script>
+    
     <script src="comunicacao_dashboad_banco.js"></script>
 
     <!-- scripts do Chart.js -->
@@ -32,7 +32,7 @@
 
 </head>
 
-<body onload="atualizarGrafico()" id="page-top">
+<body onload="buscar_areas()" id="page-top">
 
 
 
@@ -117,7 +117,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id="nome_usuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <span id="n_do_user" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="https://image.flaticon.com/icons/png/512/64/64096.png">
                             </a>
@@ -126,7 +126,7 @@
                                 aria-labelledby="userDropdown">
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" onclick="logoff()" data-toggle="modal"
+                                <a class="dropdown-item" href="#" data-toggle="modal"
                                     data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
                                 </a>
@@ -194,7 +194,7 @@
                                         <input type="number" class="form-control" id="numero_area" name="numero_area"
                                             placeholder="1">
                                     </div>
-                                    <button type="button" class="btn btn-primary" onclick="()">Mostrar
+                                    <button type="button" class="btn btn-primary">Mostrar
                                         dados</button>
                                 </form>
 
@@ -581,7 +581,7 @@
                         <div class="modal-body">Selecione "Sair" para voltar para tela de login.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="login.html">Sair</a>
+                            <a class="btn btn-primary" href="#" onclick="logoff()">Sair</a>
                         </div>
                     </div>
                 </div>
@@ -623,8 +623,3 @@
 
 </html>
 
-<script>
-
-    verificarAutenticacao();
-
-</script>
