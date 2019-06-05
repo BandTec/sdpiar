@@ -166,40 +166,39 @@ router.get('/quartil1T', function (req, res, next) {
   banco.conectar().then(() => {
     // var limite_linhas = 15;
     return banco.sql.query(`Select ((
-      Select Top 1 temperatura
+      Select Top 1 TEMPERATURAMEDIA
       From   (
-          Select	Top 75 Percent temperatura
-          From	sensor
-          Where	temperatura Is NOT NULL
-          Order By temperatura
-          ) As A
-      Order By temperatura DESC) + 
+          Select    Top 15 Percent TEMPERATURAMEDIA
+          From	areabruto
+          Where	TEMPERATURAMEDIA Is NOT NULL
+          Order By TEMPERATURAMEDIA
+          ) As A 
+      Order By TEMPERATURAMEDIA DESC) + 
       (
-      Select Top 1 temperatura
+      Select Top 1 TEMPERATURAMEDIA
       From   (
-          Select	Top 75 Percent temperatura
-          From	sensor
-          Where	temperatura Is NOT NULL
-          Order By temperatura DESC
-          ) As A
-      Order By temperatura Asc)) / 3;
-  
-  `);
+          Select	Top 15 Percent TEMPERATURAMEDIA
+          From	areabruto
+          Where	TEMPERATURAMEDIA Is NOT NULL
+          Order By TEMPERATURAMEDIA DESC
+          ) As A 
+      Order By TEMPERATURAMEDIA Asc)) / 2;`);
+
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
     res.send(consulta.recordset);
-
+    
   }).catch(err => {
-
+    
     var erro = `Erro na leitura dos últimos registros: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
-
+    
   }).finally(() => {
     banco.sql.close();
   });
-
+  
 });
 
 router.get('/quartil1U', function (req, res, next) {
@@ -207,24 +206,23 @@ router.get('/quartil1U', function (req, res, next) {
   banco.conectar().then(() => {
     // var limite_linhas = 15;
     return banco.sql.query(`Select ((
-      Select Top 1 umidade
+      Select Top 1 UMIDADEMEDIA
       From   (
-          Select	Top 75 Percent umidade
-          From	sensor
-          Where	umidade Is NOT NULL
-          Order By umidade
-          ) As A
-      Order By umidade DESC) + 
+          Select    Top 15 Percent UMIDADEMEDIA
+          From	areabruto
+          Where	UMIDADEMEDIA Is NOT NULL
+          Order By UMIDADEMEDIA
+          ) As A 
+      Order By UMIDADEMEDIA DESC) + 
       (
-      Select Top 1 umidade
+      Select Top 1 UMIDADEMEDIA
       From   (
-          Select	Top 75 Percent umidade
-          From	sensor
-          Where	umidade Is NOT NULL
-          Order By umidade DESC
-          ) As A
-      Order By umidade Asc)) / 3;
-  
+          Select	Top 15 Percent UMIDADEMEDIA
+          From	areabruto
+          Where	UMIDADEMEDIA Is NOT NULL
+          Order By UMIDADEMEDIA DESC
+          ) As A 
+      Order By UMIDADEMEDIA Asc)) / 2;
   `);
   }).then(consulta => {
 
@@ -248,23 +246,23 @@ router.get('/quartil3T', function (req, res, next) {
   banco.conectar().then(() => {
     // var limite_linhas = 15;
     return banco.sql.query(`Select ((
-      Select Top 1 temperatura
+      Select Top 1 TEMPERATURAMEDIA
       From   (
-          Select	Top 25 Percent temperatura
-          From	sensor
-          Where	temperatura Is NOT NULL
-          Order By temperatura
+          Select	Top 50 Percent TEMPERATURAMEDIA
+          From	areabruto
+          Where	TEMPERATURAMEDIA Is NOT NULL
+          Order By TEMPERATURAMEDIA
           ) As A
-      Order By temperatura DESC) + 
+      Order By TEMPERATURAMEDIA DESC) + 
       (
-      Select Top 1 temperatura
+      Select Top 1 TEMPERATURAMEDIA
       From   (
-          Select	Top 25 Percent temperatura
-          From	sensor
-          Where	temperatura Is NOT NULL
-          Order By temperatura DESC
+          Select	Top 50 Percent TEMPERATURAMEDIA
+          From	areabruto
+          Where	TEMPERATURAMEDIA Is NOT NULL 
+          Order By TEMPERATURAMEDIA DESC
           ) As A
-      Order By temperatura Asc)) / 2;
+      Order By TEMPERATURAMEDIA Asc)) / 2;
   
   `);
   }).then(consulta => {
@@ -289,23 +287,23 @@ router.get('/quartil3U', function (req, res, next) {
   banco.conectar().then(() => {
     // var limite_linhas = 15;
     return banco.sql.query(`Select ((
-      Select Top 1 umidade
+      Select Top 1 UMIDADEMEDIA
       From   (
-          Select	Top 25 Percent umidade
-          From	sensor
-          Where	umidade Is NOT NULL
-          Order By umidade
+          Select	Top 50 Percent UMIDADEMEDIA
+          From	areabruto
+          Where	UMIDADEMEDIA Is NOT NULL 
+          Order By UMIDADEMEDIA
           ) As A
-      Order By umidade DESC) + 
+      Order By UMIDADEMEDIA DESC) + 
       (
-      Select Top 1 umidade
+      Select Top 1 UMIDADEMEDIA
       From   (
-          Select	Top 25 Percent umidade
-          From	sensor
-          Where	umidade Is NOT NULL
-          Order By umidade DESC
+          Select	Top 50 Percent UMIDADEMEDIA
+          From	areabruto
+          Where	UMIDADEMEDIA Is NOT NULL
+          Order By UMIDADEMEDIA DESC
           ) As A
-      Order By umidade Asc)) / 2;
+      Order By UMIDADEMEDIA Asc)) / 2;
   
   `);
   }).then(consulta => {
@@ -329,7 +327,7 @@ router.get('/mediaT', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select Avg(temperatura) From   sensor;
+    return banco.sql.query(`Select Avg(TEMPERATURAMEDIA) From   areabruto;
     `);
   }).then(consulta => {
 
@@ -352,7 +350,7 @@ router.get('/mediaU', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select Avg(umidade) From   sensor;
+    return banco.sql.query(`Select Avg(UMIDADEMEDIA) From   areabruto;
     `);
   }).then(consulta => {
 
@@ -370,84 +368,6 @@ router.get('/mediaU', function (req, res, next) {
   });
 
 });
-
-router.get('/medianaT', function (req, res, next) {
-  console.log(banco.conexao);
-  banco.conectar().then(() => {
-    // var limite_linhas = 15;
-    return banco.sql.query(`Select ((
-      Select Top 1 temperatura
-      From   (
-          Select	Top 50 Percent temperatura
-          From	sensor
-          Where	temperatura Is NOT NULL
-          Order By temperatura
-          ) As A
-      Order By temperatura DESC) + 
-      (
-      Select Top 1 temperatura
-      From   (
-          Select	Top 50 Percent temperatura
-          From	sensor
-          Where	temperatura Is NOT NULL
-          Order By temperatura DESC
-          ) As A
-      Order By temperatura Asc)) / 2`);
-  }).then(consulta => {
-
-    console.log(`Resultado da consulta: ${consulta.recordset}`);
-    res.send(consulta.recordset);
-
-  }).catch(err => {
-
-    var erro = `Erro na leitura dos últimos registros: ${err}`;
-    console.error(erro);
-    res.status(500).send(erro);
-
-  }).finally(() => {
-    banco.sql.close();
-  });
-
-});
-
-router.get('/medianaU', function (req, res, next) {
-  console.log(banco.conexao);
-  banco.conectar().then(() => {
-    // var limite_linhas = 15;
-    return banco.sql.query(`Select ((
-      Select Top 1 umidade
-      From   (
-          Select	Top 50 Percent umidade
-          From	sensor
-          Where	umidade Is NOT NULL
-          Order By umidade
-          ) As A
-      Order By umidade DESC) + 
-      (
-      Select Top 1 umidade
-      From   (
-          Select	Top 50 Percent umidade
-          From	sensor
-          Where	umidade Is NOT NULL
-          Order By umidade DESC
-          ) As A
-      Order By umidade Asc)) / 2`);
-  }).then(consulta => {
-
-    console.log(`Resultado da consulta: ${consulta.recordset}`);
-    res.send(consulta.recordset);
-
-  }).catch(err => {
-
-    var erro = `Erro na leitura dos últimos registros: ${err}`;
-    console.error(erro);
-    res.status(500).send(erro);
-
-  }).finally(() => {
-    banco.sql.close();
-  });
-});
-
 
 
 // Teste
