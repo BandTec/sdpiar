@@ -6,12 +6,12 @@ verificarAutenticacao();
 
 function verificarAutenticacao() {
     usuario = sessionStorage.nome_usuario_bandtec;
-    
+
     if (usuario == undefined) {
         window.location.href = 'login.html';
     } else if (usuario == "Wilma") {
-        window.location.href = 'admin.html' ;
-    } 
+        window.location.href = 'admin.html';
+    }
 }
 
 function logoff() {
@@ -150,14 +150,14 @@ function buscar_areas() {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                sessionStorage.idarea = resposta[0].idarea ;
-                sessionStorage.s1 = resposta[0].primeirosensor ;
-                sessionStorage.s2 = resposta[0].segundosensor ;
-                sessionStorage.s3 = resposta[0].terceirosensor ;
+                sessionStorage.idarea = resposta[0].idarea;
+                sessionStorage.s1 = resposta[0].primeirosensor;
+                sessionStorage.s2 = resposta[0].segundosensor;
+                sessionStorage.s3 = resposta[0].terceirosensor;
 
                 atualizarGrafico();
-                
-                               
+                mediaT();
+
 
             });
         } else {
@@ -171,15 +171,13 @@ function buscar_areas() {
 
 // Aquisição Node
 
-function buscar_tus(r,d) {
-    
+function buscar_tus(r, d) {
+
     fetch(`/leituras/teste2/${r[0].idarea}/${r[0].primeirosensor}/${r[0].segundosensor}/${r[0].terceirosensor}/${d}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                
 
             });
         } else {
@@ -189,4 +187,200 @@ function buscar_tus(r,d) {
         .catch(function (error) {
             console.error(`Erro : ${error.message}`);
         });
-} 
+}
+
+
+
+
+
+
+
+
+// FUNÇÃO DOS QUARTIS
+
+function mediaT() {
+    // MEDIA DA TEMPERATURA
+
+    fetch(`/leituras/mediaT/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                avg_temp.innerHTML = parseInt(resposta[0].batata) + 'º';
+                mediaU();
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+}
+
+function mediaU() {
+    // MEDIA DA UMIDADE
+
+    fetch(`/leituras/mediaU/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                avg_umid.innerHTML = parseInt(resposta[0].batata) + '%';
+                quartil3T();
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+
+}
+
+
+
+function quartil3T() {
+
+    fetch(`/leituras/quartil3T/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                temp_quartil_tres.innerHTML = parseInt(resposta[0].batata) + 'º';
+                quartil3U();
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+
+
+}
+function quartil3U() {
+    // 3 QUARTIL DA UMIDADE
+
+    fetch(`/leituras/quartil3U/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                umid_quartil_tres.innerHTML = parseInt(resposta[0].batata) + '%';
+                quartil1T();
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+}
+
+
+
+function quartil1T() {
+    // PRIMEIRO QUARTIL DA TEMPERATURA
+    fetch(`/leituras/quartil1T/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                temp_quartil_um.innerHTML = parseInt(resposta[0].batata) + 'º';
+                quartil1U();
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+
+
+}
+
+function quartil1U() {
+    // PRIMEIRO QUARTIL DA UMIDADE
+
+    fetch(`/leituras/quartil1U/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                umid_quartil_um.innerHTML = parseInt(resposta[0].batata) + '%';
+                medianaT();
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+}
+
+function medianaT() {
+    // PRIMEIRO QUARTIL DA UMIDADE
+
+    fetch(`/leituras/medianaT/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                temp_mediana.innerHTML = parseInt(resposta[0].mediana) + 'º';
+                medianaU();
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+}
+
+function medianaU() {
+    // PRIMEIRO QUARTIL DA UMIDADE
+
+    fetch(`/leituras/medianaU/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                umid_mediana.innerHTML = parseInt(resposta[0].mediana) + '%';
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro : ${error.message}`);
+        });
+}

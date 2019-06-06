@@ -161,7 +161,7 @@ router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
 });
 
 
-router.get('/quartil1T', function (req, res, next) {
+router.get('/quartil1T/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
@@ -170,7 +170,7 @@ router.get('/quartil1T', function (req, res, next) {
       From   (
           Select    Top 15 Percent TEMPERATURAMEDIA
           From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL
+          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By TEMPERATURAMEDIA
           ) As A 
       Order By TEMPERATURAMEDIA DESC) + 
@@ -179,29 +179,29 @@ router.get('/quartil1T', function (req, res, next) {
       From   (
           Select	Top 15 Percent TEMPERATURAMEDIA
           From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL
+          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By TEMPERATURAMEDIA DESC
           ) As A 
-      Order By TEMPERATURAMEDIA Asc)) / 2;`);
+      Order By TEMPERATURAMEDIA Asc)) / 2 as batata;`);
 
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
     res.send(consulta.recordset);
-    
+
   }).catch(err => {
-    
+
     var erro = `Erro na leitura dos últimos registros: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
-    
+
   }).finally(() => {
     banco.sql.close();
   });
-  
+
 });
 
-router.get('/quartil1U', function (req, res, next) {
+router.get('/quartil1U/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
@@ -210,7 +210,7 @@ router.get('/quartil1U', function (req, res, next) {
       From   (
           Select    Top 15 Percent UMIDADEMEDIA
           From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL
+          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA
           ) As A 
       Order By UMIDADEMEDIA DESC) + 
@@ -219,11 +219,10 @@ router.get('/quartil1U', function (req, res, next) {
       From   (
           Select	Top 15 Percent UMIDADEMEDIA
           From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL
+          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA DESC
           ) As A 
-      Order By UMIDADEMEDIA Asc)) / 2;
-  `);
+      Order By UMIDADEMEDIA Asc)) / 2 as batata;`);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -241,7 +240,7 @@ router.get('/quartil1U', function (req, res, next) {
 
 });
 
-router.get('/quartil3T', function (req, res, next) {
+router.get('/quartil3T/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
@@ -250,7 +249,7 @@ router.get('/quartil3T', function (req, res, next) {
       From   (
           Select	Top 50 Percent TEMPERATURAMEDIA
           From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL
+          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By TEMPERATURAMEDIA
           ) As A
       Order By TEMPERATURAMEDIA DESC) + 
@@ -259,12 +258,10 @@ router.get('/quartil3T', function (req, res, next) {
       From   (
           Select	Top 50 Percent TEMPERATURAMEDIA
           From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL 
+          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By TEMPERATURAMEDIA DESC
           ) As A
-      Order By TEMPERATURAMEDIA Asc)) / 2;
-  
-  `);
+      Order By TEMPERATURAMEDIA Asc)) / 2 as batata;`);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -282,7 +279,7 @@ router.get('/quartil3T', function (req, res, next) {
 
 });
 
-router.get('/quartil3U', function (req, res, next) {
+router.get('/quartil3U/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
@@ -291,7 +288,7 @@ router.get('/quartil3U', function (req, res, next) {
       From   (
           Select	Top 50 Percent UMIDADEMEDIA
           From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL 
+          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA
           ) As A
       Order By UMIDADEMEDIA DESC) + 
@@ -300,12 +297,10 @@ router.get('/quartil3U', function (req, res, next) {
       From   (
           Select	Top 50 Percent UMIDADEMEDIA
           From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL
+          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA DESC
           ) As A
-      Order By UMIDADEMEDIA Asc)) / 2;
-  
-  `);
+      Order By UMIDADEMEDIA Asc)) / 2 as batata;`);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -323,11 +318,11 @@ router.get('/quartil3U', function (req, res, next) {
 
 });
 
-router.get('/mediaT', function (req, res, next) {
+router.get('/mediaT/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select Avg(TEMPERATURAMEDIA) From   areabruto;
+    return banco.sql.query(`Select Avg(TEMPERATURAMEDIA) as batata From areabruto where fk_dono = ${req.params.dono} ;
     `);
   }).then(consulta => {
 
@@ -346,11 +341,63 @@ router.get('/mediaT', function (req, res, next) {
 
 });
 
-router.get('/mediaU', function (req, res, next) {
+router.get('/mediaU/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select Avg(UMIDADEMEDIA) From   areabruto;
+    return banco.sql.query(`Select Avg(UMIDADEMEDIA) as batata From areabruto where fk_dono = ${req.params.dono};
+    `);
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+router.get('/medianaT/:dono', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    // var limite_linhas = 15;
+    return banco.sql.query(`select  max(TEMPERATURAMEDIA) as [mediana], quartil
+    from    (select TEMPERATURAMEDIA, ntile(4) over (order by TEMPERATURAMEDIA) as [quartil]
+             from   areabruto where fk_dono = ${req.params.dono}) i
+    where quartil = 2 
+    group by quartil  ;
+    `);
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta: ${consulta.recordset}`);
+    res.send(consulta.recordset);
+
+  }).catch(err => {
+
+    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+router.get('/medianaU/:dono', function (req, res, next) {
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    // var limite_linhas = 15;
+    return banco.sql.query(`select  max(UMIDADEMEDIA) as [mediana], quartil
+    from    (select UMIDADEMEDIA, ntile(4) over (order by UMIDADEMEDIA) as [quartil]
+             from   areabruto where fk_dono = ${req.params.dono}) i
+    where quartil = 2 
+    group by quartil 
     `);
   }).then(consulta => {
 
@@ -379,7 +426,7 @@ router.get('/teste/:usuario', function (req, res, next) {
     return banco.sql.query(`Select a.idarea,a.primeirosensor,a.segundosensor,a.terceirosensor
     from usuario, area as a where idusuario = a.fkdono 
     and idusuario = '${req.params.usuario}'`);
-    
+
   }).then(consulta => {
 
     console.log(`Resultado da consulta do teste: ${consulta.recordset}`);
@@ -434,7 +481,7 @@ router.get('/teste2/:area/:dono/:s1/:s2/:s3', function (req, res, next) {
       
         , current_timestamp ) ;
      `);
-    
+
   }).then(consulta => {
 
     console.log(`Resultado da consulta do teste: ${consulta.recordset}`);
