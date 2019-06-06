@@ -111,6 +111,8 @@ function obterDadosGrafico2() {
 
                     dados.datasets[0].data.push(registro.mt);
                     dados.datasets[1].data.push(registro.mu);
+                    last_temp.innerHTML = parseInt(registro.mt)+'º';
+                    last_umid.innerHTML = parseInt(registro.mu)+'%';
                 }
                 console.log(JSON.stringify(dados));
 
