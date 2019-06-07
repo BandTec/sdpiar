@@ -100,7 +100,11 @@ function registrar_leitura(temperatura, umidade) {
     banco.conectar().then(() => {
 
         
-        return banco.sql.query(`INSERT into sensor (idsensor,fk_usuario,temperatura,umidade,dataHora) values (${idsensorbanco++},${fk_user}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);`);
+        return banco.sql.query(`INSERT into sensor 
+        (idsensor,fk_usuario,temperatura,umidade,dataHora) values
+         (${idsensorbanco++},${fk_user}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);
+         
+         `);
 
     }).catch(err => {
 
@@ -120,8 +124,8 @@ var efetuando_insert = false;
 iniciar_escuta();
 
 // dados aleatórios: 3 linhas abaixo:
-// setInterval(function() {
-//     registrar_leitura(Math.random()*100,Math.random()*200) 
-// }, 5000)
+setInterval(function() {
+    registrar_leitura(Math.random()*100,Math.random()*200) 
+}, 5000)
 
 

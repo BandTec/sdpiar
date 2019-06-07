@@ -23,6 +23,14 @@ function logoff() {
 // ou se souber o que está fazendo!
 function atualizarGrafico() {
     obterDadosGrafico2();
+    mediaT();
+    medianaU();
+    medianaT();
+    quartil1U();
+    quartil1T();
+    quartil3U();
+    quartil3T();
+    mediaU();
     setTimeout(atualizarGrafico, 10000);
 }
 
@@ -92,7 +100,7 @@ function obterDadosGrafico2() {
         ]
     };
 
-    fetch(`/leituras/area/${sessionStorage.idarea}/${sessionStorage.s1}/${sessionStorage.s2}/${sessionStorage.s3}/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/area/${sessionStorage.idarea0}/${sessionStorage.s10}/${sessionStorage.s20}/${sessionStorage.s30}/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
@@ -152,13 +160,23 @@ function buscar_areas() {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                sessionStorage.idarea = resposta[0].idarea;
-                sessionStorage.s1 = resposta[0].primeirosensor;
-                sessionStorage.s2 = resposta[0].segundosensor;
-                sessionStorage.s3 = resposta[0].terceirosensor;
+                // sessionStorage.idarea = resposta[0].idarea;
+                // sessionStorage.s1 = resposta[0].primeirosensor;
+                // sessionStorage.s2 = resposta[0].segundosensor;
+                // sessionStorage.s3 = resposta[0].terceirosensor;
+
+                for ( contador = 0 ; contador < resposta.length ; contador++ ) {
+                    sessionStorage.setItem(`idarea${contador}`, resposta[contador].idarea);
+                    sessionStorage.setItem(`s1${contador}`, resposta[contador].primeirosensor);
+                    sessionStorage.setItem(`s2${contador}`, resposta[contador].segundosensor);
+                    sessionStorage.setItem(`s3${contador}`, resposta[contador].terceirosensor);
+                }
 
                 atualizarGrafico();
-                mediaT();
+
+
+                
+                
 
 
             });
@@ -172,10 +190,11 @@ function buscar_areas() {
 }
 
 // Aquisição Node
+var c = 0 ;
 
-function buscar_tus(r, d) {
+function calcular_areas () {
 
-    fetch(`/leituras/teste2/${r[0].idarea}/${r[0].primeirosensor}/${r[0].segundosensor}/${r[0].terceirosensor}/${d}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/calc_areas/${sessionStorage.idarea[c]}/${sessionStorage.s1[c]}/${r[0].segundosensor}/${r[0].terceirosensor}/${d}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
@@ -189,6 +208,8 @@ function buscar_tus(r, d) {
         .catch(function (error) {
             console.error(`Erro : ${error.message}`);
         });
+        
+    setTimeout(calcular_areas, 2000);
 }
 
 
@@ -210,7 +231,7 @@ function mediaT() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 avg_temp.innerHTML = parseInt(resposta[0].batata) + 'º';
-                mediaU();
+                
 
 
             });
@@ -233,7 +254,7 @@ function mediaU() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 avg_umid.innerHTML = parseInt(resposta[0].batata) + '%';
-                quartil3T();
+                
 
 
             });
@@ -258,7 +279,7 @@ function quartil3T() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_quartil_tres.innerHTML = parseInt(resposta[0].batata) + 'º';
-                quartil3U();
+                
 
 
             });
@@ -282,8 +303,7 @@ function quartil3U() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 umid_quartil_tres.innerHTML = parseInt(resposta[0].batata) + '%';
-                quartil1T();
-
+                
 
             });
         } else {
@@ -306,8 +326,7 @@ function quartil1T() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_quartil_um.innerHTML = parseInt(resposta[0].batata) + 'º';
-                quartil1U();
-
+                
 
             });
         } else {
@@ -331,8 +350,7 @@ function quartil1U() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 umid_quartil_um.innerHTML = parseInt(resposta[0].batata) + '%';
-                medianaT();
-
+                
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -353,8 +371,7 @@ function medianaT() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_mediana.innerHTML = parseInt(resposta[0].mediana) + 'º';
-                medianaU();
-
+                
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
