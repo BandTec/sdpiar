@@ -194,6 +194,9 @@ hr.style2{
     color: #224abe;
     text-decoration: underline;
   }
+  .teste:hover{
+    color: #000;
+  }
   
   a:not([href]):not([tabindex]) {
     color: inherit;

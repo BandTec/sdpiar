@@ -168,7 +168,7 @@ router.get('/quartil1T/:dono', function (req, res, next) {
     return banco.sql.query(`Select ((
       Select Top 1 TEMPERATURAMEDIA
       From   (
-          Select    Top 15 Percent TEMPERATURAMEDIA
+          Select    Top 10 Percent TEMPERATURAMEDIA
           From	areabruto
           Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By TEMPERATURAMEDIA
@@ -177,12 +177,12 @@ router.get('/quartil1T/:dono', function (req, res, next) {
       (
       Select Top 1 TEMPERATURAMEDIA
       From   (
-          Select	Top 15 Percent TEMPERATURAMEDIA
+          Select	Top 10 Percent TEMPERATURAMEDIA
           From	areabruto
           Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By TEMPERATURAMEDIA DESC
           ) As A 
-      Order By TEMPERATURAMEDIA Asc)) / 2 as batata;`);
+      Order By TEMPERATURAMEDIA Asc)) / 3 as batata;`);
 
   }).then(consulta => {
 
@@ -208,20 +208,20 @@ router.get('/quartil1U/:dono', function (req, res, next) {
     return banco.sql.query(`Select ((
       Select Top 1 UMIDADEMEDIA
       From   (
-          Select    Top 15 Percent UMIDADEMEDIA
+          Select	Top 50 Percent UMIDADEMEDIA
           From	areabruto
           Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA
-          ) As A 
+          ) As A
       Order By UMIDADEMEDIA DESC) + 
       (
       Select Top 1 UMIDADEMEDIA
       From   (
-          Select	Top 15 Percent UMIDADEMEDIA
+          Select	Top 50 Percent UMIDADEMEDIA
           From	areabruto
           Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA DESC
-          ) As A 
+          ) As A
       Order By UMIDADEMEDIA Asc)) / 2 as batata;`);
   }).then(consulta => {
 
@@ -283,23 +283,24 @@ router.get('/quartil3U/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select ((
+    return banco.sql.query(`
+    Select ((
       Select Top 1 UMIDADEMEDIA
       From   (
-          Select	Top 50 Percent UMIDADEMEDIA
+          Select    Top 15 Percent UMIDADEMEDIA
           From	areabruto
           Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA
-          ) As A
+          ) As A 
       Order By UMIDADEMEDIA DESC) + 
       (
       Select Top 1 UMIDADEMEDIA
       From   (
-          Select	Top 50 Percent UMIDADEMEDIA
+          Select	Top 15 Percent UMIDADEMEDIA
           From	areabruto
           Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
           Order By UMIDADEMEDIA DESC
-          ) As A
+          ) As A 
       Order By UMIDADEMEDIA Asc)) / 2 as batata;`);
   }).then(consulta => {
 
