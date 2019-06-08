@@ -173,6 +173,7 @@ function buscar_areas() {
                 }
 
                 atualizarGrafico();
+                mediaT();
 
 
                 
@@ -226,7 +227,7 @@ function mediaT() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 avg_temp.innerHTML = parseInt(resposta[0].batata) + 'º';
-                
+                mediaU();
 
 
             });
@@ -249,7 +250,7 @@ function mediaU() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 avg_umid.innerHTML = parseInt(resposta[0].batata) + '%';
-                
+                quartil3T();
 
 
             });
@@ -274,7 +275,7 @@ function quartil3T() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_quartil_tres.innerHTML = parseInt(resposta[0].batata) + 'º';
-                
+                quartil3U();
 
 
 
@@ -299,7 +300,7 @@ function quartil3U() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 umid_quartil_tres.innerHTML = parseInt(resposta[0].batata) + '%';
-                
+                quartil1T();
 
             });
         } else {
@@ -322,7 +323,7 @@ function quartil1T() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_quartil_um.innerHTML = parseInt(resposta[0].batata) + 'º';
-                
+                quartil1U();
 
 
             });
@@ -347,6 +348,7 @@ function quartil1U() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 umid_quartil_um.innerHTML = parseInt(resposta[0].batata) + '%';
+                medianaT();
                 
             });
         } else {
@@ -368,13 +370,9 @@ function medianaT() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_mediana.innerHTML = parseInt(resposta[0].mediana) + 'º';
-<<<<<<< HEAD
                 medianaU();
 
 
-=======
-                
->>>>>>> 1cefb809e65696010bc130410b054f52c44d6fe1
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
