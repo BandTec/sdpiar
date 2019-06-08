@@ -137,11 +137,11 @@ router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(` select top 15 ia.temperaturamedia as mt, umidademedia as mu,
-    FORMAT(ia.datahora,'HH:mm:ss') as hora from areabruto as ia 
+    return banco.sql.query(` select top 15 ia.temperaturamedia as mt, ia.umidademedia as mu,
+    FORMAT(ia.datahora,'HH:mm:ss') as hora, FORMAT(ia.datahora,'yyyy-MM-dd') as dia from areabruto as ia 
     where fk_area = ${req.params.area} and fk_primeirosensor = ${req.params.s1} and
     fk_segundosensor = ${req.params.s2} and fk_terceirosensor = ${req.params.s3} 
-    and fk_dono = ${req.params.dono} ; 
+    and fk_dono = ${req.params.dono} order by hora,dia desc; 
       `);
   }).then(consulta => {
 
@@ -426,7 +426,7 @@ router.get('/teste/:usuario', function (req, res, next) {
     // var limite_linhas = 15;
     return banco.sql.query(`Select a.idarea,a.primeirosensor,a.segundosensor,a.terceirosensor
     from usuario, area as a where idusuario = a.fkdono 
-    and idusuario = '${req.params.usuario}'`);
+    and idusuario = ${req.params.usuario}`);
 
   }).then(consulta => {
 
@@ -446,7 +446,7 @@ router.get('/teste/:usuario', function (req, res, next) {
 
 // Aquisição Node
 
-router.get('/teste2/:area/:dono/:s1/:s2/:s3', function (req, res, next) {
+router.get('/calc_areas/:area/:dono/:s1/:s2/:s3', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     return banco.sql.query(`insert into areabruto values (
