@@ -41,53 +41,39 @@ function nova_area2 (s) {
         <br>
         <input type="text" id="cadastradas" placeholder="Só se já houver áreas">
         <br><br>
-        <button class="btn-success" type="button" onclick="just_name(),nova_area3(${qtd_s},cadastradas)">Prosseguir</button>
+        <button class="btn-success" type="button" onclick="just_name(cadastradas),nova_area3(${qtd_s})">Prosseguir</button>
     `
 }
 
-function just_name () {
+function just_name (c) {
     n_user.value = proprietario.value ;
+    areas_cadastradas_mais_um = Number (c.value) + 1 ;
 }
 
 function nova_area3 (s) {
-    // if ( c.value > 0 ) {
-    //     areas_cadastradas = Number (c.value) + 1 ;
-    // }
-    f_id.innerHTML = `${n_user.value}` ;
-    f_c.innerHTML = `${contador}` ;
-    f_rc.innerHTML = `${s}` ;
-    a.value = `${contador}` ;
-    u.value = `${n_user.value}` ;    
-    steps.style.display = 'none' ;
-    programas.style.display = 'block' ;
+    if (areas_cadastradas_mais_um > 0) {
+        f_id.innerHTML = `${n_user.value}` ;
+        f_c.innerHTML = `${areas_cadastradas_mais_um}` ;
+        f_rc.innerHTML = `${s}` ;
+        a.value = `${areas_cadastradas_mais_um}` ;
+        u.value = `${n_user.value}` ;    
+        steps.style.display = 'none' ;
+        programas.style.display = 'block' ;
+        areas_cadastradas_mais_um += 1 ;
+    } else {
+        f_id.innerHTML = `${n_user.value}` ;
+        f_c.innerHTML = `${contador}` ;
+        f_rc.innerHTML = `${s}` ;
+        a.value = `${contador}` ;
+        u.value = `${n_user.value}` ;    
+        steps.style.display = 'none' ;
+        programas.style.display = 'block' ;
+    }
     if (contador > total_areas) {
         alert ("Cadastro realizado com sucesso! \nCadastrado todas as áreas permitidas!") ;
         programas.style.display = 'none' ;
     }
 }
-
-// function teste () {
-//         var formulario = new URLSearchParams(new FormData(test));
-//         fetch("/usuarios/testando", {
-//             method: "POST",
-//             body: formulario
-//         }).then(function (response) {
-            
-//             if (response.ok) {
-
-                
-
-//             } else {
-
-//                 console.log('Erro de cadastro!');
-//                 response.text().then(function (resposta) {
-//                 testes_erro.innerHTML = resposta ;    
-//                 });
-//             }
-//         });
-
-//         return false;   
-// }
 
 function enviar_banco() {
         aguardar();

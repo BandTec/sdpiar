@@ -86,6 +86,14 @@ function registrar_leitura(temperatura, umidade) {
 
     efetuando_insert = true;
 
+    /* if ( temperatura > 25.6 ) { 
+        temperatura = parseFloat((temperatura * 5.7).toFixed(1)) ;
+    }
+
+    if ( umidade > 80 ) {
+        umidade = parseFloat((umidade * 1.11).toFixed(1)) ;
+    } */
+
     console.log(`temperatura: ${temperatura}`);
     console.log(`umidade: ${umidade}`);
 
@@ -125,7 +133,7 @@ iniciar_escuta();
 
 // dados aleatórios: 3 linhas abaixo:
 setInterval(function() {
-    registrar_leitura(Math.random()*100,Math.random()*200) 
+    registrar_leitura((Math.random()*50).toFixed(1),(Math.random()*90).toFixed(1)) 
 }, 5000)
 
 

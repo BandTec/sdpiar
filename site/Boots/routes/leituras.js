@@ -141,7 +141,7 @@ router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
     FORMAT(ia.datahora,'HH:mm:ss') as hora, FORMAT(ia.datahora,'yyyy-MM-dd') as dia from areabruto as ia 
     where fk_area = ${req.params.area} and fk_primeirosensor = ${req.params.s1} and
     fk_segundosensor = ${req.params.s2} and fk_terceirosensor = ${req.params.s3} 
-    and fk_dono = ${req.params.dono} order by hora,dia desc; 
+    and fk_dono = ${req.params.dono} order by hora desc,dia desc; 
       `);
   }).then(consulta => {
 

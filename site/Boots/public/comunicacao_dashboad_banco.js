@@ -23,15 +23,7 @@ function logoff() {
 // ou se souber o que está fazendo!
 function atualizarGrafico() {
     obterDadosGrafico2();
-    mediaT();
-    medianaU();
-    medianaT();
-    quartil1U();
-    quartil1T();
-    quartil3U();
-    quartil3T();
-    mediaU();
-    setTimeout(atualizarGrafico, 10000);
+    setTimeout(atualizarGrafico, 50000);
 }
 
 // altere aqui as configurações do gráfico
@@ -100,7 +92,7 @@ function obterDadosGrafico2() {
         ]
     };
 
-    fetch(`/leituras/area/${sessionStorage.idarea0}/${sessionStorage.s10}/${sessionStorage.s20}/${sessionStorage.s30}/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/area/${sessionStorage.area_atual}/${sessionStorage.s1_atual}/${sessionStorage.s2_atual}/${sessionStorage.s3_atual}/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
@@ -127,6 +119,14 @@ function obterDadosGrafico2() {
                 div_aguarde.style.display = 'none';
 
                 plotarGrafico(dados);
+                mediaT();
+                medianaU();
+                medianaT();
+                quartil1U();
+                quartil1T();
+                quartil3U();
+                quartil3T();
+                mediaU();
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -140,6 +140,7 @@ function obterDadosGrafico2() {
 
 // só altere aqui se souber o que está fazendo!
 function plotarGrafico(dados) {
+    botao_mudar_area.disabled = false ;
     console.log('iniciando plotagem do gráfico...');
 
     var ctx = myAreaChart.getContext('2d');
@@ -154,6 +155,7 @@ function plotarGrafico(dados) {
 // Testes de busca de acordo com usuário logado
 
 function buscar_areas() {
+    botao_mudar_area.disabled = true ;
     fetch(`/leituras/teste/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
@@ -172,8 +174,13 @@ function buscar_areas() {
                     sessionStorage.setItem(`s3${contador}`, resposta[contador].terceirosensor);
                 }
 
-                atualizarGrafico();
-                mediaT();
+                sessionStorage.area_atual = resposta[0].idarea ;
+                sessionStorage.s1_atual = resposta[0].primeirosensor ;
+                sessionStorage.s2_atual = resposta[0].segundosensor ;
+                sessionStorage.s3_atual = resposta[0].terceirosensor ;
+
+                // calcular_areas();
+                setTimeout(atualizarGrafico,10000) ;                
 
 
                 
@@ -190,27 +197,53 @@ function buscar_areas() {
         });
 }
 
+function trocar_area() {
+    if (numero_area.value > areas || numero_area.value < 1) {
+        alert (`Você não tem essa área cadastrada`) ;
+    } else if (numero_area.value == 1) {
+        sessionStorage.area_atual = sessionStorage.idarea0 ;
+        sessionStorage.s1_atual = sessionStorage.s10 ;
+        sessionStorage.s2_atual = sessionStorage.s20 ;
+        sessionStorage.s3_atual = sessionStorage.s30 ;
+        } else if (numero_area.value == 2) {
+            sessionStorage.area_atual = sessionStorage.idarea1 ;
+            sessionStorage.s1_atual = sessionStorage.s11 ;
+            sessionStorage.s2_atual = sessionStorage.s21 ;
+            sessionStorage.s3_atual = sessionStorage.s31 ;
+            } else if (numero_area.value == 3) {
+                sessionStorage.area_atual = sessionStorage.idarea2 ;
+                sessionStorage.s1_atual = sessionStorage.s12 ;
+                sessionStorage.s2_atual = sessionStorage.s22 ;
+                sessionStorage.s3_atual = sessionStorage.s32 ;
+                }
+}
+
 // Aquisição Node
 var c = 0 ;
-
+var areas = ( sessionStorage.length - 6 ) / 4 ;
 function calcular_areas () {
 
-    fetch(`/leituras/calc_areas/${sessionStorage.idarea[c]}/${sessionStorage.s1[c]}/${r[0].segundosensor}/${r[0].terceirosensor}/${d}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
+    if (c < areas) {
+        fetch(`/leituras/calc_areas/${sessionStorage.idarea0}/${sessionStorage.id_usuario_bandtec}/${sessionStorage.s10}/${sessionStorage.s20}/${sessionStorage.s30}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
 
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro : ${error.message}`);
             });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    })
-        .catch(function (error) {
-            console.error(`Erro : ${error.message}`);
-        });
-        
-    setTimeout(calcular_areas, 2000);
+        c++ ;    
+    } else {
+        c = 0 ;
+    }
+
+    setTimeout(calcular_areas, 5000);
 }
 
 
