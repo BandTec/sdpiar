@@ -1,5 +1,6 @@
 var usuario;
 var exibiu_grafico = false;
+var areas = 0 ;
 
 verificarAutenticacao();
 
@@ -23,7 +24,7 @@ function logoff() {
 // ou se souber o que está fazendo!
 function atualizarGrafico() {
     obterDadosGrafico2();
-    setTimeout(atualizarGrafico, 50000);
+    setTimeout(atualizarGrafico, 20000);
 }
 
 // altere aqui as configurações do gráfico
@@ -119,14 +120,14 @@ function obterDadosGrafico2() {
                 div_aguarde.style.display = 'none';
 
                 plotarGrafico(dados);
-                mediaT();
-                medianaU();
-                medianaT();
-                quartil1U();
-                quartil1T();
-                quartil3U();
-                quartil3T();
-                mediaU();
+                // mediaT();
+                // medianaU();
+                // medianaT();
+                // quartil1U();
+                // quartil1T();
+                // quartil3U();
+                // quartil3T();
+                // mediaU();
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -144,15 +145,16 @@ function plotarGrafico(dados) {
     console.log('iniciando plotagem do gráfico...');
 
     var ctx = myAreaChart.getContext('2d');
-    window.grafico_linha = Chart.Line(ctx, {
+    window.grafico_linha = new Chart.Line(ctx, {
         data: dados,
         options: configurarGrafico()
     });
+    area_atual.innerHTML = sessionStorage.area_atual ;
 }
 
 
 
-// Testes de busca de acordo com usuário logado
+// Buscando áreas pertencentes ao usuário logado
 
 function buscar_areas() {
     botao_mudar_area.disabled = true ;
@@ -180,7 +182,8 @@ function buscar_areas() {
                 sessionStorage.s3_atual = resposta[0].terceirosensor ;
 
                 // calcular_areas();
-                setTimeout(atualizarGrafico,10000) ;                
+                setTimeout(atualizarGrafico,10000) ;  
+                areas = ( sessionStorage.length - 6 ) / 4 ;              
 
 
                 
@@ -199,7 +202,7 @@ function buscar_areas() {
 
 function trocar_area() {
     if (numero_area.value > areas || numero_area.value < 1) {
-        alert (`Você não tem essa área cadastrada`) ;
+        alert (`Você não tem essa área cadastrada\nEspere alguns segundos e tente novamente`) ;
     } else if (numero_area.value == 1) {
         sessionStorage.area_atual = sessionStorage.idarea0 ;
         sessionStorage.s1_atual = sessionStorage.s10 ;
@@ -215,12 +218,17 @@ function trocar_area() {
                 sessionStorage.s1_atual = sessionStorage.s12 ;
                 sessionStorage.s2_atual = sessionStorage.s22 ;
                 sessionStorage.s3_atual = sessionStorage.s32 ;
-                }
+                } else if (numero_area.value == 4) {
+                    sessionStorage.area_atual = sessionStorage.idarea3 ;
+                    sessionStorage.s1_atual = sessionStorage.s13 ;
+                    sessionStorage.s2_atual = sessionStorage.s23 ;
+                    sessionStorage.s3_atual = sessionStorage.s33 ;
+                    }
+    botao_mudar_area.disabled = true ;
 }
 
 // Aquisição Node
-var c = 0 ;
-var areas = ( sessionStorage.length - 6 ) / 4 ;
+
 function calcular_areas () {
 
     if (c < areas) {

@@ -137,11 +137,9 @@ router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(` select top 15 ia.temperaturamedia as mt, ia.umidademedia as mu,
-    FORMAT(ia.datahora,'HH:mm:ss') as hora, FORMAT(ia.datahora,'yyyy-MM-dd') as dia from areabruto as ia 
-    where fk_area = ${req.params.area} and fk_primeirosensor = ${req.params.s1} and
-    fk_segundosensor = ${req.params.s2} and fk_terceirosensor = ${req.params.s3} 
-    and fk_dono = ${req.params.dono} order by hora desc,dia desc; 
+    return banco.sql.query(` EXEC p_last_temp_umid_area
+    ${req.params.area},${req.params.s1},${req.params.s2},
+    ${req.params.s3},${req.params.dono}
       `);
   }).then(consulta => {
 
@@ -418,15 +416,14 @@ router.get('/medianaU/:dono', function (req, res, next) {
 });
 
 
-// Teste
+// Áreas do usuário logado
 
 router.get('/teste/:usuario', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select a.idarea,a.primeirosensor,a.segundosensor,a.terceirosensor
-    from usuario, area as a where idusuario = a.fkdono 
-    and idusuario = ${req.params.usuario}`);
+    return banco.sql.query(`EXEC user_areas ${req.params.usuario}
+    `);
 
   }).then(consulta => {
 
