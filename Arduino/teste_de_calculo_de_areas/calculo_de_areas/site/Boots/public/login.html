@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Entre ou cadastre-se</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+
+
+
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-5 d-none d-lg-block my-5">
+                <img src="img/clientes.png" alt="imagem de cadastro">
+              </div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Entre ou cadastre-se!</h1>
+                  </div>
+                  
+                  <form id="form_login" method="post" onsubmit="return entrar()">
+                    <div class="form-group">
+                      Usuário: <input type="text" name="login" class="form-control form-control-user">
+                    </div>
+                    <div class="form-group">
+                      Senha: <input type="password" name="senha" class="form-control form-control-user">
+                    </div>
+                    <button id="btn_entrar" class="btn btn-primary btn-user btn-block">Entrar</button>
+                  </form>
+                  
+                  <img src="aguarde.gif" id="img_aguarde" style="display: none;width: 50px;    margin-left: 43%;">
+                  <br>
+                  <div  id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                    Usuário e/ou senha inválidos!
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="text-center col-6">
+                      <a class="small" href="register.html">Não tem uma conta? Cadastre-se!</a>
+                    </div>
+                    <div class="text-center col-6">
+                      <a class="small" href="index.html">Voltar para página inicial</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  
+<script type="text/javascript">
+  var vsid = "sa82978";
+  (function() { 
+  var vsjs = document.createElement('script'); vsjs.type = 'text/javascript'; vsjs.async = true; vsjs.setAttribute('defer', 'defer');
+   vsjs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.virtualspirits.com/vsa/chat-'+vsid+'.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
+  })();
+ </script>
+ 
+ 
+
+</body>
+
+</html>
+<script>
+
+  verificarAutenticacao();
+
+  function verificarAutenticacao() {
+    if (sessionStorage.nome_usuario_bandtec == 'Wilma') {
+      window.location.href = 'admin.html';
+    } else if (sessionStorage.nome_usuario_bandtec != undefined) {
+      window.location.href = 'grafico.html';
+    }
+  }
+
+  function entrar() {
+    aguardar();
+    var formulario = new URLSearchParams(new FormData(form_login));
+    fetch("/usuarios/entrar", {
+      method: "POST",
+      body: formulario
+    }).then(function (response) {
+
+      if (response.ok) {
+
+        response.json().then(function (resposta) {
+
+          //sessionStorage.usuario_bandtec = {nome: resposta.nome, id:resposta.idusuario};
+          sessionStorage.nome_usuario_bandtec = resposta.nome;
+          sessionStorage.id_usuario_bandtec = resposta.idusuario;
+          verificarAutenticacao();
+
+        });
+      } else {
+
+        console.log('Erro de login!');
+        finalizar_aguardar();
+      }
+    });
+
+    return false;
+  }
+
+  function aguardar() {
+    btn_entrar.disabled = true;
+    img_aguarde.style.display = 'block';
+    div_erro.style.display = 'none';
+  }
+
+  function finalizar_aguardar() {
+    btn_entrar.disabled = false;
+    img_aguarde.style.display = 'none';
+    div_erro.style.display = 'block';
+  }
+
+</script>
