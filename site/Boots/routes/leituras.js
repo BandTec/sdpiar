@@ -158,7 +158,6 @@ router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
 
 });
 
-
 router.get('/quartil1T/:dono', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
