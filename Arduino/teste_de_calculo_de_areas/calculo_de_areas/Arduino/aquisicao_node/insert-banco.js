@@ -41,7 +41,7 @@ function ver_areas() {
 
 setInterval(function() {
     calcular_areas()
-}, 30000)
+}, 10000)
 
 function calcular_areas () {
     if (contador < todas_areas.length) {
@@ -49,9 +49,23 @@ function calcular_areas () {
         banco.conectar().then(() => {
 
         
-            return banco.sql.query(`
+            console.log(`
                 
-                EXEC calc_areas 1,4,1,2,3
+            EXEC calc_areas ${parseInt(todas_areas[contador].idarea)},
+                ${parseInt(todas_areas[contador].fkdono)},
+                ${parseInt(todas_areas[contador].primeiroSensor)},
+                ${parseInt(todas_areas[contador].segundoSensor)},
+                ${parseInt(todas_areas[contador].terceiroSensor)}
+
+             `)
+
+            return banco.sql.query(`
+
+            EXEC calc_areas ${parseInt(todas_areas[contador].idarea)},
+                ${parseInt(todas_areas[contador].fkdono)},
+                ${parseInt(todas_areas[contador].primeiroSensor)},
+                ${parseInt(todas_areas[contador].segundoSensor)},
+                ${parseInt(todas_areas[contador].terceiroSensor)} 
 
              `);
             
