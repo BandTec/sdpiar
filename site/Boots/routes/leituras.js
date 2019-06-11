@@ -159,28 +159,31 @@ router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
 });
 
 
-router.get('/quartil1T/:dono', function (req, res, next) {
+router.get('/quartil1T/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select ((
-      Select Top 1 TEMPERATURAMEDIA
-      From   (
-          Select    Top 10 Percent TEMPERATURAMEDIA
-          From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By TEMPERATURAMEDIA
-          ) As A 
-      Order By TEMPERATURAMEDIA DESC) + 
-      (
-      Select Top 1 TEMPERATURAMEDIA
-      From   (
-          Select	Top 10 Percent TEMPERATURAMEDIA
-          From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By TEMPERATURAMEDIA DESC
-          ) As A 
-      Order By TEMPERATURAMEDIA Asc)) / 3 as batata;`);
+    return banco.sql.query(`EXEC quartil1T 
+    ${req.params.dono}, ${req.params.area}`);
+
+    // return banco.sql.query(`Select ((
+    //   Select Top 1 TEMPERATURAMEDIA
+    //   From   (
+    //       Select    Top 10 Percent TEMPERATURAMEDIA
+    //       From	areabruto
+    //       Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //       Order By TEMPERATURAMEDIA
+    //       ) As A 
+    //   Order By TEMPERATURAMEDIA DESC) + 
+    //   (
+    //   Select Top 1 TEMPERATURAMEDIA
+    //   From   (
+    //       Select	Top 10 Percent TEMPERATURAMEDIA
+    //       From	areabruto
+    //       Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //       Order By TEMPERATURAMEDIA DESC
+    //       ) As A 
+    //   Order By TEMPERATURAMEDIA Asc)) / 3 as quartil1T;`);
 
   }).then(consulta => {
 
@@ -199,28 +202,31 @@ router.get('/quartil1T/:dono', function (req, res, next) {
 
 });
 
-router.get('/quartil1U/:dono', function (req, res, next) {
+router.get('/quartil1U/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select ((
-      Select Top 1 UMIDADEMEDIA
-      From   (
-          Select	Top 50 Percent UMIDADEMEDIA
-          From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By UMIDADEMEDIA
-          ) As A
-      Order By UMIDADEMEDIA DESC) + 
-      (
-      Select Top 1 UMIDADEMEDIA
-      From   (
-          Select	Top 50 Percent UMIDADEMEDIA
-          From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By UMIDADEMEDIA DESC
-          ) As A
-      Order By UMIDADEMEDIA Asc)) / 2 as batata;`);
+    return banco.sql.query(`EXEC quartil1U 
+            ${req.params.dono}, ${req.params.area}`);
+
+    // return banco.sql.query(`Select ((
+    //   Select Top 1 UMIDADEMEDIA
+    //   From   (
+    //       Select	Top 50 Percent UMIDADEMEDIA
+    //       From	areabruto
+    //       Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //       Order By UMIDADEMEDIA
+    //       ) As A
+    //   Order By UMIDADEMEDIA DESC) + 
+    //   (
+    //   Select Top 1 UMIDADEMEDIA
+    //   From   (
+    //       Select	Top 50 Percent UMIDADEMEDIA
+    //       From	areabruto
+    //       Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //       Order By UMIDADEMEDIA DESC
+    //       ) As A
+    //   Order By UMIDADEMEDIA Asc)) / 2 as quartil1U;`);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -238,28 +244,34 @@ router.get('/quartil1U/:dono', function (req, res, next) {
 
 });
 
-router.get('/quartil3T/:dono', function (req, res, next) {
+router.get('/quartil3T/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select ((
-      Select Top 1 TEMPERATURAMEDIA
-      From   (
-          Select	Top 50 Percent TEMPERATURAMEDIA
-          From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By TEMPERATURAMEDIA
-          ) As A
-      Order By TEMPERATURAMEDIA DESC) + 
-      (
-      Select Top 1 TEMPERATURAMEDIA
-      From   (
-          Select	Top 50 Percent TEMPERATURAMEDIA
-          From	areabruto
-          Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By TEMPERATURAMEDIA DESC
-          ) As A
-      Order By TEMPERATURAMEDIA Asc)) / 2 as batata;`);
+    return banco.sql.query(`EXEC quartil3T 
+                    ${req.params.dono}, ${req.params.area}`);
+
+
+    //               return banco.sql.query(`Select ((
+    //                 Select Top 1 TEMPERATURAMEDIA
+    //                 From   (
+    //                   Select	Top 50 Percent TEMPERATURAMEDIA
+    //                   From	areabruto
+    //                   Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //                   Order By TEMPERATURAMEDIA
+    //     ) As A
+    // Order By TEMPERATURAMEDIA DESC) + 
+    // (
+    // Select Top 1 TEMPERATURAMEDIA
+    // From   (
+    //     Select	Top 50 Percent TEMPERATURAMEDIA
+    //     From	areabruto
+    //     Where	TEMPERATURAMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //     Order By TEMPERATURAMEDIA DESC
+    //     ) As A
+    // Order By TEMPERATURAMEDIA Asc)) / 2 as quartil3T;`);
+
+
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -277,29 +289,32 @@ router.get('/quartil3T/:dono', function (req, res, next) {
 
 });
 
-router.get('/quartil3U/:dono', function (req, res, next) {
+router.get('/quartil3U/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`
-    Select ((
-      Select Top 1 UMIDADEMEDIA
-      From   (
-          Select    Top 15 Percent UMIDADEMEDIA
-          From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By UMIDADEMEDIA
-          ) As A 
-      Order By UMIDADEMEDIA DESC) + 
-      (
-      Select Top 1 UMIDADEMEDIA
-      From   (
-          Select	Top 15 Percent UMIDADEMEDIA
-          From	areabruto
-          Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono}
-          Order By UMIDADEMEDIA DESC
-          ) As A 
-      Order By UMIDADEMEDIA Asc)) / 2 as batata;`);
+    return banco.sql.query(`EXEC quartil3U
+                                            ${req.params.dono}, ${req.params.area}`);
+
+    // return banco.sql.query(`
+    // Select ((
+    //   Select Top 1 UMIDADEMEDIA
+    //   From   (
+    //       Select    Top 15 Percent UMIDADEMEDIA
+    //       From	areabruto
+    //       Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //       Order By UMIDADEMEDIA
+    //       ) As A 
+    //   Order By UMIDADEMEDIA DESC) + 
+    //   (
+    //   Select Top 1 UMIDADEMEDIA
+    //   From   (
+    //       Select	Top 15 Percent UMIDADEMEDIA
+    //       From	areabruto
+    //       Where	UMIDADEMEDIA Is NOT NULL and fk_dono = ${req.params.dono} and fk_area = ${req.params.area}
+    //       Order By UMIDADEMEDIA DESC
+    //       ) As A 
+    //   Order By UMIDADEMEDIA Asc)) / 2 as quartil3U;`);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -317,12 +332,13 @@ router.get('/quartil3U/:dono', function (req, res, next) {
 
 });
 
-router.get('/mediaT/:dono', function (req, res, next) {
+router.get('/mediaT/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select Avg(TEMPERATURAMEDIA) as batata From areabruto where fk_dono = ${req.params.dono} ;
-    `);
+    return banco.sql.query(`Select Avg(TEMPERATURAMEDIA) as mediaT From areabruto where fk_dono = ${req.params.dono} and fk_area = ${req.params.area};`);
+    // return banco.sql.query(`EXEC mediaT ${req.params.dono},${req.params.area}`);
+
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);
@@ -340,64 +356,73 @@ router.get('/mediaT/:dono', function (req, res, next) {
 
 });
 
-router.get('/mediaU/:dono', function (req, res, next) {
+router.get('/mediaU/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`Select Avg(UMIDADEMEDIA) as batata From areabruto where fk_dono = ${req.params.dono};
-    `);
+    return banco.sql.query(`Select Avg(UMIDADEMEDIA) as mediaU From areabruto where fk_dono = ${req.params.dono} and fk_area = ${req.params.area};`);
+    // return banco.sql.query(`EXEC mediaU ${req.params.dono},${req.params.area}`);
+    
   }).then(consulta => {
-
+    
     console.log(`Resultado da consulta: ${consulta.recordset}`);
     res.send(consulta.recordset);
-
+    
   }).catch(err => {
-
+    
     var erro = `Erro na leitura dos últimos registros: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
-
+    
   }).finally(() => {
     banco.sql.close();
   });
-
+  
 });
-router.get('/medianaT/:dono', function (req, res, next) {
+router.get('/medianaT/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`select  max(TEMPERATURAMEDIA) as [mediana], quartil
-    from    (select TEMPERATURAMEDIA, ntile(4) over (order by TEMPERATURAMEDIA) as [quartil]
-             from   areabruto where fk_dono = ${req.params.dono}) i
-    where quartil = 2 
-    group by quartil  ;
-    `);
+    
+    return banco.sql.query(`EXEC medianaT ${req.params.dono},${req.params.area}`);
+    
+    
+    // return banco.sql.query(`
+    // select  max(TEMPERATURAMEDIA) as [medianaT], quartil
+    // from    (select TEMPERATURAMEDIA, ntile(4) over (order by TEMPERATURAMEDIA) as [quartil]
+    //          from   areabruto where fk_dono = ${req.params.dono} and fk_area = ${req.params.area}) i
+    // where quartil = 2 
+    // group by quartil; `);
+    
   }).then(consulta => {
-
+    
     console.log(`Resultado da consulta: ${consulta.recordset}`);
     res.send(consulta.recordset);
-
+    
   }).catch(err => {
-
+    
     var erro = `Erro na leitura dos últimos registros: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
-
+    
   }).finally(() => {
     banco.sql.close();
   });
-
+  
 });
-router.get('/medianaU/:dono', function (req, res, next) {
+router.get('/medianaU/:dono/:area', function (req, res, next) {
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
-    return banco.sql.query(`select  max(UMIDADEMEDIA) as [mediana], quartil
-    from    (select UMIDADEMEDIA, ntile(4) over (order by UMIDADEMEDIA) as [quartil]
-             from   areabruto where fk_dono = ${req.params.dono}) i
-    where quartil = 2 
-    group by quartil 
-    `);
+    return banco.sql.query(`EXEC medianaU ${req.params.dono},${req.params.area}`);
+
+
+    // return banco.sql.query(`select  max(UMIDADEMEDIA) as [medianaU], quartil
+    // from    (select UMIDADEMEDIA, ntile(4) over (order by UMIDADEMEDIA) as [quartil]
+    //          from   areabruto where fk_dono = ${req.params.dono} and fk_area = ${req.params.area}) i
+    // where quartil = 2 
+    // group by quartil 
+    // `);
   }).then(consulta => {
 
     console.log(`Resultado da consulta: ${consulta.recordset}`);

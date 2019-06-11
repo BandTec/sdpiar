@@ -114,13 +114,14 @@ function obterDadosGrafico2() {
                     dados.datasets[1].data.push(registro.mu);
                     last_temp.innerHTML = parseInt(registro.mt) + 'º';
                     last_umid.innerHTML = parseInt(registro.mu) + '%';
+
                 }
                 console.log(JSON.stringify(dados));
 
                 div_aguarde.style.display = 'none';
 
                 plotarGrafico(dados);
-                // mediaT();
+                mediaT();
                 // medianaU();
                 // medianaT();
                 // quartil1U();
@@ -184,10 +185,6 @@ function buscar_areas() {
                 // calcular_areas();
                 setTimeout(atualizarGrafico,10000) ;  
                 areas = ( sessionStorage.length - 6 ) / 4 ;              
-
-
-                
-                
 
 
             });
@@ -261,13 +258,13 @@ function calcular_areas () {
 function mediaT() {
     // MEDIA DA TEMPERATURA
 
-    fetch(`/leituras/mediaT/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/mediaT/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                avg_temp.innerHTML = parseInt(resposta[0].batata) + 'º';
+                avg_temp.innerHTML = parseInt(resposta[0].mediaT) + 'º';
                 mediaU();
 
 
@@ -284,13 +281,13 @@ function mediaT() {
 function mediaU() {
     // MEDIA DA UMIDADE
 
-    fetch(`/leituras/mediaU/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/mediaU/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                avg_umid.innerHTML = parseInt(resposta[0].batata) + '%';
+                avg_umid.innerHTML = parseInt(resposta[0].mediaU) + '%';
                 quartil3T();
 
 
@@ -309,13 +306,13 @@ function mediaU() {
 
 function quartil3T() {
 
-    fetch(`/leituras/quartil3T/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/quartil3T/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                temp_quartil_tres.innerHTML = parseInt(resposta[0].batata) + 'º';
+                temp_quartil_tres.innerHTML = parseInt(resposta[0].quartil3T) + 'º';
                 quartil3U();
 
 
@@ -334,13 +331,13 @@ function quartil3T() {
 function quartil3U() {
     // 3 QUARTIL DA UMIDADE
 
-    fetch(`/leituras/quartil3U/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/quartil3U/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                umid_quartil_tres.innerHTML = parseInt(resposta[0].batata) + '%';
+                umid_quartil_tres.innerHTML = parseInt(resposta[0].quartil3U) + '%';
                 quartil1T();
 
             });
@@ -357,13 +354,13 @@ function quartil3U() {
 
 function quartil1T() {
     // PRIMEIRO QUARTIL DA TEMPERATURA
-    fetch(`/leituras/quartil1T/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/quartil1T/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                temp_quartil_um.innerHTML = parseInt(resposta[0].batata) + 'º';
+                temp_quartil_um.innerHTML = parseInt(resposta[0].quartil1T) + 'º';
                 quartil1U();
 
 
@@ -382,13 +379,13 @@ function quartil1T() {
 function quartil1U() {
     // PRIMEIRO QUARTIL DA UMIDADE
 
-    fetch(`/leituras/quartil1U/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/quartil1U/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                umid_quartil_um.innerHTML = parseInt(resposta[0].batata) + '%';
+                umid_quartil_um.innerHTML = parseInt(resposta[0].quartil1U) + '%';
                 medianaT();
                 
             });
@@ -404,13 +401,13 @@ function quartil1U() {
 function medianaT() {
     // PRIMEIRO QUARTIL DA UMIDADE
 
-    fetch(`/leituras/medianaT/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/medianaT/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                temp_mediana.innerHTML = parseInt(resposta[0].mediana) + 'º';
+                temp_mediana.innerHTML = parseInt(resposta[0].medianaT) + 'º';
                 medianaU();
 
 
@@ -427,14 +424,14 @@ function medianaT() {
 function medianaU() {
     // PRIMEIRO QUARTIL DA UMIDADE
 
-    fetch(`/leituras/medianaU/${sessionStorage.id_usuario_bandtec}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/leituras/medianaU/${sessionStorage.id_usuario_bandtec}/${sessionStorage.area_atual}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                umid_mediana.innerHTML = parseInt(resposta[0].mediana) + '%';
-
+                umid_mediana.innerHTML = parseInt(resposta[0].medianaU) + '%';
+                cores();
 
 
             });
@@ -445,4 +442,22 @@ function medianaU() {
         .catch(function (error) {
             console.error(`Erro : ${error.message}`);
         });
+}
+
+function cores(){
+    if ( parseInt(registro.mt) < temp_mediana.value ) {
+        cor_temp.className = 'text-success' ;
+    } else if ( parseInt(registro.mt) >= temp_mediana.value && parseInt(registro.mt) < temp_quartil_tres.value ) {
+        cor_temp.className = 'text-warning' ;
+    } else {
+        cor_temp.className = 'text-danger' ;
+    }
+
+    if ( parseInt(registro.mu) < umid_mediana.value ) {
+        cor_umid.className = 'text-danger' ;
+    } else if ( parseInt(registro.mu) >= umid_mediana.value && parseInt(registro.mu) < umid_quartil_tres.value ) {
+        cor_umid.className = 'text-warning' ;
+    } else {
+        cor_umid.className = 'text-primary' ;
+    }
 }
