@@ -5,6 +5,7 @@ var areas_cadastradas ;
 function nova_area () {
     contador = 1 ;
     total_areas = 0 ;
+    programas.style.display = 'none' ;
     ids.style.display = "none" ;
     nomes.style.display = "none" ;
     empresas_pai.style.display = "none" ;
