@@ -158,12 +158,8 @@ router.get('/area/:area/:s1/:s2/:s3/:dono', function (req, res, next) {
 
 });
 
-<<<<<<< HEAD
-router.get('/quartil1T/:dono', function (req, res, next) {
-=======
 
 router.get('/quartil1T/:dono/:area', function (req, res, next) {
->>>>>>> 6b14c7fe42a98d435067dd83648ff281cc476544
   console.log(banco.conexao);
   banco.conectar().then(() => {
     // var limite_linhas = 15;
