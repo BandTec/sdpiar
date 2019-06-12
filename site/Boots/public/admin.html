@@ -13,274 +13,278 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo.css">
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">    
 
     <!-- scripts do Chart.js -->
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> 
+    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
 
     <!-- Funções da página -->
     <script src="funcoes_admin.js"></script>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="fundo-admin">
+    <span style="color:black">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+            <!-- Sidebar Toggle (Topbar) -->
+            <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button> -->
 
-                    <a class="img-profile rounded-circle h1 mb-0" href="index.html">
-                        <img src="img/logo.PNG" width="100" height="100">
+            <a class="img-profile rounded-circle h1 mb-0" href="index.html">
+                <img src="img/logo.PNG" width="100" height="100">
+            </a>
+
+
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">SDPIAR</a>
+                </li>
+            </ul>
+
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+
+                <div class="topbar-divider d-none d-sm-block"></div>
+
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span id="nome_usuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                        <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/512/64/64096.png">
                     </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
+                        </a>
+                    </div>
+                </li>
 
+            </ul>
 
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">SDPIAR</a>
-                        </li>
-                    </ul>
+        </nav>
+        <!-- Fim da barra de navegação -->
 
+        <!-- Conteúdo da página -->
+        <div id="content_of_page" class="container">
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+            <div class="row">
 
-                        
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                <div class="col-12 text-center text-dark">
+                    <div class="display-4">
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id="nome_usuario" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle"
-                                    src="https://image.flaticon.com/icons/png/512/64/64096.png">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                        O que deseja fazer?
+                    </div>
 
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"  data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
-                                </a>
-                            </div>
-                        </li>
+                </div>
 
-                    </ul>
+            </div>
 
-                </nav>
-                <!-- Fim da barra de navegação -->
+            <br>
 
-                <!-- Conteúdo da página -->
-                <div id="content_of_page" class="container">
+            <div class="container-fluid">
 
-                    <div class="row">
-                        
-                        <div class="col-12 text-center text-dark">
+                <div class="row">
 
-                            O que deseja fazer?
+                    <div class="col-3 text-center">
 
-                        </div>
+                        <button id="na" class="btn btn-primary" type="button" onclick="nova_area()">
+
+                            Registrar nova área
+
+                        </button>
 
                     </div>
 
-                    <br>
+                    <div class="col-3 text-center">
 
-                    <div class="row">
-                        
-                        <div class="col-4 text-center">
-                            
-                            <button id="na" class="btn-primary" type="button" onclick="nova_area()">
-                                
-                                Registrar nova área
+                        <button id="pf" class="btn btn-primary" type="button" onclick="pfs()">
 
-                            </button>
-                        
-                        </div>
+                            Ver PFs Cadastradas
 
-                        <div class="col-4 text-center">
-                            
-                            <button id="pf" class="btn-primary" type="button" onclick="pfs()">
-                                
-                                Ver PFs Cadastradas
+                        </button>
 
-                            </button> 
-                            
-                            <br><br>
-
-                            <button id="pj" class="btn-primary" type="button" onclick="pjs()">
-                                
-                                Ver PJs Cadastradas
-
-                            </button>
-
-                        </div>
-
-                        <div class="col-4 text-center">
-                            
-                            <button id="ac" class="btn-primary" type="button" onclick="areas()">
-                                
-                                Ver Áreas Cadastradas
-
-                            </button>
-
-                        </div>
 
                     </div>
 
-                    <input type="hidden" id="n_user">
-                    <br>
+                    <div class="col-3 text-center">
+
+                        <button id="ac" class="btn btn-primary" type="button" onclick="areas()">
+
+                            Ver Áreas Cadastradas
+
+                        </button>
+
+                    </div>
+                    <div class="col-3 text_center">
+                        <button id="pj" class="btn btn-primary" type="button" onclick="pjs()">
+
+                            Ver PJs Cadastradas
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <input type="hidden" id="n_user">
+                <br>
 
 
 
-                    <div class="row">
-                        <div id="steps" class="col-12 text-center"></div>
-                        
-                        <div id="programas" class="col-12 text-center" style="display:none">
-                            
-                            <br> O usuário de ID <span id="f_id"></span> pode cadastrar <span id="f_rc"></span> áreas <br> 
-                            <form method="post" onsubmit="return enviar_banco()" id="porra">
+                <div class="row">
+                    <div id="steps" class="col-12 text-center"></div>
+
+                    <div id="programas" class="col-12 text-center" style="display:none">
+
+                        <br> O usuário de ID <span id="f_id"></span> pode cadastrar <span id="f_rc"></span> áreas <br>
+                        <form method="post" onsubmit="return enviar_banco()" id="porra">
                             <input id="a" name="a" type="hidden" value="">
                             <input id="u" name="u" type="hidden" value="">
                             <br>
                             Área <span id="f_c"></span> = <input name="s1" type="number" placeholder="sensor 1">
-                            <input name="s2" type="number" placeholder="sensor 2"> 
+                            <input name="s2" type="number" placeholder="sensor 2">
                             <input name="s3" type="number" placeholder="sensor 3"> ;
-                            <br><br> 
+                            <br><br>
                             <button id="botao_areas">Cadastrar áreas</button> </form> <br>
-                            <div class="text-center">
+                        <div class="text-center">
                             <img src="aguarde2.gif" id="img_aguarde2" style="display: none;width:100px">
-                            </div>
-                            <div id="erros"></div>
+                        </div>
 
-                            <!-- <form method="POST" onsubmit="return teste()" id="test">
-                                <input type="text" name="ida">
-                                <input type="text" name="donofk">
-                                <input type="text" name="sens1">
-                                <button>Submit</button>
-                            </form>
-
-                            <div id="testes_erro"></div> -->
+                        <div id="erros">
 
                         </div>
+
                     </div>
+                </div>
 
-                    <div class="text-center">
-                        <br>
-                            <img src="aguarde.gif" id="img_aguarde" style="display:none">
-                        <br>
-                    </div>
+                <div class="text-center">
+                    <br>
+                    <img src="aguarde.gif" id="img_aguarde" style="display:none">
+                    <br>
+                </div>
 
-                    <br><br>
+                <br><br>
 
-                    <div id="div_ps" class="row" >
+                <div id="div_ps" class="row">
 
-                        <div id="ids" class="col-1 text-center" >  </div> 
-                        <div id="nomes" class="col-4 text-center" >  </div>
-                        <div id="empresas_pai" class="col-1 text-center" >  </div>
-                        <div id="ceps" class="col-2 text-center" > </div>
-                        <div id="cpfs" class="col-2 text-center" >  </div>
-                        <div id="usuarios" class="col-2 text-center" >  </div>
+                    <div id="ids" class="col-1 text-center"> </div>
+                    <div id="nomes" class="col-4 text-center"> </div>
+                    <div id="empresas_pai" class="col-1 text-center"> </div>
+                    <div id="ceps" class="col-2 text-center"> </div>
+                    <div id="cpfs" class="col-2 text-center"> </div>
+                    <div id="usuarios" class="col-2 text-center"> </div>
 
-                         
-                        <div id="empresas" class="col-2 text-center" >  </div>
-                        <div id="telefones" class="col-2 text-center" >  </div>
-                        <div id="cnpjs" class="col-3 text-center" >  </div>
 
-                        <div id="idsa" class="col-3 text-center"> </div>
-                        <div id="s1" class="col-2 text-center"> </div>
-                        <div id="s2" class="col-2 text-center"> </div>
-                        <div id="s3" class="col-2 text-center"> </div>
-                        <div id="dono" class="col-3 text-center"> </div>
-                        
-                    </div>
-                    
+                    <div id="empresas" class="col-2 text-center"> </div>
+                    <div id="telefones" class="col-2 text-center"> </div>
+                    <div id="cnpjs" class="col-3 text-center"> </div>
+
+                    <div id="idsa" class="col-3 text-center"> </div>
+                    <div id="s1" class="col-2 text-center"> </div>
+                    <div id="s2" class="col-2 text-center"> </div>
+                    <div id="s3" class="col-2 text-center"> </div>
+                    <div id="dono" class="col-3 text-center"> </div>
 
                 </div>
-                <!-- Fim do conteúdo da página -->
-                
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; SDPIAR2019</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
-
 
 
             </div>
-            <!-- End of Page Wrapper -->
+            <!-- Fim do conteúdo da página -->
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
+            <!-- Footer -->
 
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Realmente deseja sair?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Selecione "Sair" para voltar para tela de login.</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="#" onclick="logoff()">Sair</a>
-                        </div>
-                    </div>
+    </span>
+
+    <div class="container-fluid margin-marota">
+        <div class="copyright py-4  text-center">
+            <small>Copyright &copy; SDPIAR 2019</small>
+        </div>
+    </div>
+
+
+
+    <!-- End of Footer -->
+
+
+
+    </div>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Realmente deseja sair?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Selecione "Sair" para voltar para tela de login.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="#" onclick="logoff()">Sair</a>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts -->
-            <!-- <script src="js/demo/chart-area-demo.js"></script> 
-            <script src="js/demo/chart-pie-demo.js"></script> -->
+    <!-- Page level custom scripts -->
+    <!-- <script src="js/demo/chart-area-demo.js"></script> 
+                                            <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
-            <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts 
+    <!-- Page level custom scripts 
             <script src="js/demo/chart-area-demo.js"></script> -->
 
-            <script type="text/javascript">
-                var vsid = "sa82978";
-                (function () {
-                    var vsjs = document.createElement('script'); vsjs.type = 'text/javascript'; vsjs.async = true; vsjs.setAttribute('defer', 'defer');
-                    vsjs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.virtualspirits.com/vsa/chat-' + vsid + '.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
-                })();
-            </script>
+    <script type="text/javascript">
+        var vsid = "sa82978";
+        (function () {
+            var vsjs = document.createElement('script'); vsjs.type = 'text/javascript'; vsjs.async = true; vsjs.setAttribute('defer', 'defer');
+            vsjs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.virtualspirits.com/vsa/chat-' + vsid + '.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
+        })();
+    </script>
 
 
 

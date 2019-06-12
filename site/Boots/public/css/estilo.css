@@ -3,6 +3,24 @@ hr.style1{
     margin-left: 30%;
     margin-right: 30%;
 }
+.fundo-admin{
+    background:
+      -webkit-linear-gradient(315deg, hsla(115.46, 94.43%, 48.38%, 1) 0%, hsla(115.46, 94.43%, 48.38%, 0) 70%),
+      -webkit-linear-gradient(65deg, hsla(181.39, 83.93%, 61.73%, 1) 10%, hsla(181.39, 83.93%, 61.73%, 0) 80%),
+      -webkit-linear-gradient(135deg, hsla(118.72, 95.7%, 47.09%, 1) 15%, hsla(118.72, 95.7%, 47.09%, 0) 80%);
+    background:
+      linear-gradient(135deg, hsla(115.46, 94.43%, 48.38%, 1) 0%, hsla(115.46, 94.43%, 48.38%, 0) 70%),
+      linear-gradient(25deg, hsla(181.39, 83.93%, 61.73%, 1) 10%, hsla(181.39, 83.93%, 61.73%, 0) 80%),
+      linear-gradient(315deg, hsla(118.72, 95.7%, 47.09%, 1) 15%, hsla(118.72, 95.7%, 47.09%, 0) 80%);
+    
+}
+.margin-marota{
+  margin-top: 2%;
+}
+.tamanho{
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .trava {
   position:relative;

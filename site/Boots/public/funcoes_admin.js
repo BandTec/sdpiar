@@ -23,9 +23,9 @@ function nova_area () {
     steps.innerHTML = ` <br>
         Quantos sensores tem na propriedade?
         <br>
-        <input type="number" id="sensores">
+        <input type="number" class="form-control form-control-user col-3 tamanho" id="sensores">
         <br><br>
-        <button class="btn-success" type="button" onclick="nova_area2(sensores)">Prosseguir</button>
+        <button class="btn btn-success" type="button" onclick="nova_area2(sensores)">Prosseguir</button>
     `
 }
 
@@ -41,7 +41,7 @@ function nova_area2 (s) {
         <br>
         <input type="text" id="cadastradas" placeholder="Só se já houver áreas">
         <br><br>
-        <button class="btn-success" type="button" onclick="just_name(cadastradas),nova_area3(${qtd_s})">Prosseguir</button>
+        <button class="btn btn-success" type="button" onclick="just_name(cadastradas),nova_area3(${qtd_s})">Prosseguir</button>
     `
 }
 
@@ -119,7 +119,6 @@ function finalizar_aguardar() {
 
 function pfs () {
    var pessoas_fisicas_cadastradas = [] ;
-
    ids.style.display = "none" ;
     nomes.style.display = "none" ;
     empresas_pai.style.display = "none" ;
@@ -193,6 +192,7 @@ function pfs () {
 
 function pjs () {
     var pessoas_fisicas_cadastradas = [] ;
+    steps.style.display = 'none' ;
 
     ids.style.display = "none" ;
     nomes.style.display = "none" ;
