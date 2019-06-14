@@ -13,9 +13,23 @@ var banco = require(`../${pasta_projeto_site}/app-banco`);
 // prevenir problemas com muitos recebimentos de dados do Arduino
 require('events').EventEmitter.defaultMaxListeners = 15;
 
+// READLINE - Receber entrada do console
+var readline = require('readline');
+var fk_user
+var leitor = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+leitor.question("Os dados que serão enviados pertencem a qual usuário?\n", function(answer) {
+    fk_user = answer;
+    console.log("\nO ID de usuário '" + fk_user + "' foi gravado com sucesso");
+    leitor.close();
+});
+// READLINE - Receber entrada do console
+
 var idsensorbanco = 1 ;
-var controle = 1 ;
-var fk_user = 4 ;
+
 
 function iniciar_escuta() {
 
@@ -99,10 +113,8 @@ function registrar_leitura(temperatura, umidade) {
 
 
     // Controlando a quantidade de sensores por usuário que serão inseridos na tabela
-    if (idsensorbanco > 3) {
+    if (idsensorbanco > 4) {
         idsensorbanco = 1 ;
-        fk_user = fk_user + controle ;
-        controle = controle * -1 ;
     }
 
     banco.conectar().then(() => {
@@ -110,7 +122,7 @@ function registrar_leitura(temperatura, umidade) {
         
         return banco.sql.query(`INSERT into sensor 
         (idsensor,fk_usuario,temperatura,umidade,dataHora) values
-         (${idsensorbanco++},${fk_user}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);
+         (${idsensorbanco++},${Number(fk_user)}, ${temperatura}, ${umidade},CURRENT_TIMESTAMP);
          
          `);
 
@@ -129,11 +141,22 @@ function registrar_leitura(temperatura, umidade) {
 var efetuando_insert = false;
 
 // iniciando a "escuta" de dispositivos Arduino
-iniciar_escuta();
+
+teste();
+
+function teste() {
+    if (fk_user == null || fk_user == "") {
+        console.log("Digite o id do usuário");
+        setTimeout(teste, 5000);
+    } else {
+        iniciar_escuta();
+        setInterval(function() {
+            registrar_leitura((Math.random()*50).toFixed(1),(Math.random()*90).toFixed(1)) 
+        }, 5000)
+    }
+}
 
 // dados aleatórios: 3 linhas abaixo:
-setInterval(function() {
-    registrar_leitura((Math.random()*50).toFixed(1),(Math.random()*90).toFixed(1)) 
-}, 5000)
-
-
+// setInterval(function() {
+//     registrar_leitura((Math.random()*50).toFixed(1),(Math.random()*90).toFixed(1)) 
+// }, 5000)
