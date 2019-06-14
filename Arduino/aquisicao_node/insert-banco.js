@@ -99,7 +99,7 @@ function registrar_leitura(temperatura, umidade) {
 
 
     // Controlando a quantidade de sensores por usuário que serão inseridos na tabela
-    if (idsensorbanco > 4) {
+    if (idsensorbanco > 3) {
         idsensorbanco = 1 ;
         fk_user = fk_user + controle ;
         controle = controle * -1 ;
