@@ -122,13 +122,14 @@ function obterDadosGrafico2() {
 
                 plotarGrafico(dados);
                 mediaT();
-                // medianaU();
-                // medianaT();
-                // quartil1U();
-                // quartil1T();
-                // quartil3U();
-                // quartil3T();
-                // mediaU();
+                medianaU();
+                medianaT();
+                quartil1U();
+                quartil1T();
+                quartil3U();
+                quartil3T();
+                mediaU();
+                cores();
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -265,7 +266,7 @@ function mediaT() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 avg_temp.innerHTML = parseInt(resposta[0].mediaT) + 'º';
-                mediaU();
+                // mediaU();
 
 
             });
@@ -288,7 +289,7 @@ function mediaU() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 avg_umid.innerHTML = parseInt(resposta[0].mediaU) + '%';
-                quartil3T();
+                // quartil3T();
 
 
             });
@@ -313,7 +314,7 @@ function quartil3T() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_quartil_tres.innerHTML = parseInt(resposta[0].quartil3T) + 'º';
-                quartil3U();
+                // quartil3U();
 
 
 
@@ -338,7 +339,7 @@ function quartil3U() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 umid_quartil_tres.innerHTML = parseInt(resposta[0].quartil3U) + '%';
-                quartil1T();
+                // quartil1T();
 
             });
         } else {
@@ -361,7 +362,7 @@ function quartil1T() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_quartil_um.innerHTML = parseInt(resposta[0].quartil1T) + 'º';
-                quartil1U();
+                // quartil1U();
 
 
             });
@@ -386,7 +387,7 @@ function quartil1U() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 umid_quartil_um.innerHTML = parseInt(resposta[0].quartil1U) + '%';
-                medianaT();
+                // medianaT();
                 
             });
         } else {
@@ -408,7 +409,7 @@ function medianaT() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 temp_mediana.innerHTML = parseInt(resposta[0].medianaT) + 'º';
-                medianaU();
+                // medianaU();
 
 
             });
@@ -431,7 +432,6 @@ function medianaU() {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                 umid_mediana.innerHTML = parseInt(resposta[0].medianaU) + '%';
-                cores();
 
 
             });
