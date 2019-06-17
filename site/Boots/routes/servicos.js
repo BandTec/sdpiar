@@ -7,7 +7,8 @@ var banco = require('../app-banco');
 var todas_areas ;
 var contador = 0 ;
 
-ver_areas();
+// Ative esta linha para calcular as medias das areas
+// ver_areas();
 
 function ver_areas() {
 

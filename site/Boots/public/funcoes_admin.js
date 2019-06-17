@@ -22,7 +22,7 @@ function nova_area () {
     dono.style.display = "none" ;
     steps.style.display = 'block' ;
     steps.innerHTML = ` <br>
-        Quantos sensores tem na propriedade?
+        Quantas áreas serão cadastradas?
         <br>
         <input type="number" class="form-control form-control-user col-3 tamanho" id="sensores">
         <br><br>
@@ -31,7 +31,7 @@ function nova_area () {
 }
 
 function nova_area2 (s) {
-    var qtd_s = parseInt ( Number (s.value) / 3 );
+    var qtd_s = parseInt ( Number (s.value) );
     total_areas = qtd_s ;
     steps.innerHTML = ` <br>
         Quem é o usuário proprietário destes sensores?
