@@ -445,17 +445,17 @@ function medianaU() {
 }
 
 function cores(){
-    if ( parseInt(registro.mt) < temp_mediana.value ) {
+    if ( parseInt(last_temp.innerHTML) < parseInt(temp_mediana.innerHTML) ) {
         cor_temp.className = 'text-success' ;
-    } else if ( parseInt(registro.mt) >= temp_mediana.value && parseInt(registro.mt) < temp_quartil_tres.value ) {
+    } else if ( parseInt(last_temp.innerHTML) >= parseInt(temp_mediana.innerHTML) && parseInt(last_temp.innerHTML) < parseInt(temp_quartil_tres.innerHTML) ) {
         cor_temp.className = 'text-warning' ;
     } else {
         cor_temp.className = 'text-danger' ;
     }
 
-    if ( parseInt(registro.mu) < umid_mediana.value ) {
+    if ( parseInt(last_umid.innerHTML) < parseInt(umid_mediana.innerHTML) ) {
         cor_umid.className = 'text-danger' ;
-    } else if ( parseInt(registro.mu) >= umid_mediana.value && parseInt(registro.mu) < umid_quartil_tres.value ) {
+    } else if ( parseInt(last_umid.innerHTML) >= parseInt(umid_mediana.innerHTML) && parseInt(last_umid.innerHTML) < parseInt(umid_quartil_tres.innerHTML) ) {
         cor_umid.className = 'text-warning' ;
     } else {
         cor_umid.className = 'text-primary' ;

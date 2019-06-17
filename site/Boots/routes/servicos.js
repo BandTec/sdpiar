@@ -41,7 +41,9 @@ function calcular_areas () {
         if (contador < todas_areas.length) {
     
             banco.conectar().then(() => {
-        
+                
+                console.log(`${contador},${todas_areas.length}`)
+
                 return banco.sql.query(`
     
                 EXEC calc_areas ${parseInt(todas_areas[contador].idarea)},
@@ -60,9 +62,10 @@ function calcular_areas () {
         
             }).finally( () => {
                 banco.sql.close();
+                contador++
             });
     
-            contador++ ;
+            
             setTimeout(calcular_areas, 2000) ;
     
         } else {
