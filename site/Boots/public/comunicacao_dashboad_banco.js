@@ -12,7 +12,14 @@ function verificarAutenticacao() {
         window.location.href = 'login.html';
     } else if (usuario == "Wilma") {
         window.location.href = 'admin.html';
+       
     }
+}
+
+function nomeUsuario(){
+
+    n_do_user.innerHTML = usuario
+
 }
 
 function logoff() {
