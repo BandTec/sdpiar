@@ -2,8 +2,6 @@ var usuario;
 var exibiu_grafico = false;
 var areas = 0 ;
 
-var contador_final = 0;
-
 verificarAutenticacao();
 
 
@@ -123,11 +121,6 @@ function obterDadosGrafico2() {
                     dados.datasets[1].data.push(registro.mu);
                     last_temp.innerHTML = parseInt(registro.mt) + 'º';
                     last_umid.innerHTML = parseInt(registro.mu) + '%';
-
-                    if (contador_final == 0) {
-                        cor_temp.className = 'text-success' ;
-                        contador_final++;
-                    }
 
                 }
                 console.log(JSON.stringify(dados));
@@ -499,6 +492,21 @@ function cores(){
 
     if ( parseInt(last_umid.innerHTML) < parseInt(umid_mediana.innerHTML) ) {
         cor_umid.className = 'text-danger' ;
+        lista_notificacoes.innerHTML += `
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                </div>
+                <div>
+                <div class="small text-gray-500"> 19 de junho de 2019 </div>
+                <span class="font-weight-bold"> Alerta vermelho de umidade: Temperatura alta causando isso. Enviado
+                alerta para verificação </span>
+                </div>
+            </a>
+        `; 
+        aumentar_notificacoes();
     } else if ( parseInt(last_umid.innerHTML) >= parseInt(umid_mediana.innerHTML) && parseInt(last_umid.innerHTML) < parseInt(umid_quartil_tres.innerHTML) ) {
         cor_umid.className = 'text-warning' ;
         lista_notificacoes.innerHTML += `
@@ -517,21 +525,6 @@ function cores(){
         aumentar_notificacoes();
     } else {
         cor_umid.className = 'text-primary' ;
-        lista_notificacoes.innerHTML += `
-            <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                        <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                </div>
-                <div>
-                <div class="small text-gray-500"> 19 de junho de 2019 </div>
-                <span class="font-weight-bold"> Alerta vermelho de umidade: Temperatura alta causando isso. Enviado
-                alerta para verificação </span>
-                </div>
-            </a>
-        `; 
-        aumentar_notificacoes();
     }
 }
 
