@@ -2,6 +2,8 @@ var usuario;
 var exibiu_grafico = false;
 var areas = 0 ;
 
+var contador_final = 0;
+
 verificarAutenticacao();
 
 
@@ -121,6 +123,11 @@ function obterDadosGrafico2() {
                     dados.datasets[1].data.push(registro.mu);
                     last_temp.innerHTML = parseInt(registro.mt) + 'º';
                     last_umid.innerHTML = parseInt(registro.mu) + '%';
+
+                    if (contador_final == 0) {
+                        cor_temp.className = 'text-success' ;
+                        contador_final++;
+                    }
 
                 }
                 console.log(JSON.stringify(dados));
