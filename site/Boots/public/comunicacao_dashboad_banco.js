@@ -449,7 +449,7 @@ function cores(){
         cor_temp.className = 'text-success' ;
     } else if ( parseInt(last_temp.innerHTML) >= parseInt(temp_mediana.innerHTML) && parseInt(last_temp.innerHTML) < parseInt(temp_quartil_tres.innerHTML) ) {
         cor_temp.className = 'text-warning' ;
-        /* lista_notificacoes.innerHTML += `
+        lista_notificacoes.innerHTML += `
             <a class="dropdown-item d-flex align-items-center" href="#">
                 <div class="mr-3">
                     <div class="icon-circle bg-primary">
@@ -458,14 +458,15 @@ function cores(){
                 </div>
                 <div>
                 <div class="small text-gray-500"> 19 de junho de 2019 </div>
-                <span class="font-weight-bold"> Alerta amarelo: Enviamos uma ordem de verificação do local
+                <span class="font-weight-bold"> Alerta amarelo de temperatura: Enviamos uma ordem de verificação do local
                     para os responsáveis locais da propriedade </span>
                 </div>
             </a>
-        `; */
+        `; 
+        aumentar_notificacoes();
     } else {
         cor_temp.className = 'text-danger' ;
-        /* lista_notificacoes.innerHTML += `
+        lista_notificacoes.innerHTML += `
             <a class="dropdown-item d-flex align-items-center" href="#">
                 <div class="mr-3">
                     <div class="icon-circle bg-primary">
@@ -474,20 +475,49 @@ function cores(){
                 </div>
                 <div>
                 <div class="small text-gray-500"> 19 de junho de 2019 </div>
-                <span class="font-weight-bold"> Alerta vermelho: Enviamos alerta de evacuação e
+                <span class="font-weight-bold"> Alerta vermelho de temperatura: Enviamos alerta de evacuação e
                     acionamos o corpo de bombeiros </span>
                 </div>
             </a>
         `; 
-        aumentar_notificacoes() */
+        aumentar_notificacoes();
     }
 
     if ( parseInt(last_umid.innerHTML) < parseInt(umid_mediana.innerHTML) ) {
         cor_umid.className = 'text-danger' ;
     } else if ( parseInt(last_umid.innerHTML) >= parseInt(umid_mediana.innerHTML) && parseInt(last_umid.innerHTML) < parseInt(umid_quartil_tres.innerHTML) ) {
         cor_umid.className = 'text-warning' ;
+        lista_notificacoes.innerHTML += `
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                </div>
+                <div>
+                <div class="small text-gray-500"> 19 de junho de 2019 </div>
+                <span class="font-weight-bold"> Alerta amarelo de umidade: Acionamos os irrigadores da área </span>
+                </div>
+            </a>
+        `; 
+        aumentar_notificacoes();
     } else {
         cor_umid.className = 'text-primary' ;
+        lista_notificacoes.innerHTML += `
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                </div>
+                <div>
+                <div class="small text-gray-500"> 19 de junho de 2019 </div>
+                <span class="font-weight-bold"> Alerta vermelho de umidade: Temperatura alta causando isso. Enviado
+                alerta para verificação </span>
+                </div>
+            </a>
+        `; 
+        aumentar_notificacoes();
     }
 }
 
