@@ -1,4 +1,4 @@
-// não mexa nestas 3 linhas!
+﻿// não mexa nestas 3 linhas!
 var express = require('express');
 var router = express.Router();
 var banco = require('../app-banco');
@@ -8,7 +8,7 @@ var todas_areas ;
 var contador = 0 ;
 
 // Ative esta linha para calcular as medias das areas
-// ver_areas();
+//ver_areas();
 
 function ver_areas() {
 
